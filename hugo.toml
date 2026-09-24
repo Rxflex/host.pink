@@ -1,0 +1,56 @@
+baseURL = "https://host.pink/"
+locale = "ru"
+defaultContentLanguage = "ru"
+title = "host.pink"
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term", "rss"]
+timeZone = "Europe/Moscow"
+
+[params]
+  description = "Справочник и сетевые тулзы для тех, кто держит серверы: доки, пинг, DNS, BGP, доступность из РФ."
+  repo = "https://github.com/Rxflex/BedolagaBD"
+  deepwiki = "https://deepwiki.com/Rxflex/BedolagaBD"
+
+[markup.goldmark.renderer]
+  unsafe = true
+[markup.goldmark.parser]
+  wrapStandAloneImageWithinParagraph = false
+[markup.goldmark.parser.attribute]
+  block = true
+[markup.goldmark.extensions.typographer]
+  disable = true
+[markup.highlight]
+  noClasses = false
+  lineNos = false
+[markup.tableOfContents]
+  startLevel = 2
+  endLevel = 3
+
+[outputs]
+  home = ["html"]
+  section = ["html"]
+  page = ["html"]
+
+[minify.tdewolff.html]
+  keepQuotes = false
+  keepEndTags = false
+
+[module]
+  [[module.mounts]]
+    source = "content"
+    target = "content"
+  [[module.mounts]]
+    source = ".generated/content"
+    target = "content"
+  [[module.mounts]]
+    source = "data"
+    target = "data"
+  [[module.mounts]]
+    source = "vendor/hostpink-registry/plugins"
+    target = "data/plugins"
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+  [[module.mounts]]
+    source = ".generated/static"
+    target = "static"

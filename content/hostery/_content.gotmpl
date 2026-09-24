@@ -1,0 +1,13 @@
+{{- /* Страница на каждого хостера из data/hosters/*.json */ -}}
+{{- range $id, $h := hugo.Data.hosters }}
+  {{- if not (hasPrefix $id "_") }}
+  {{- $content := dict "mediaType" "text/markdown" "value" ($h.summary | default "") }}
+  {{- $.AddPage (dict
+      "kind" "page"
+      "path" $h.id
+      "title" $h.name
+      "content" $content
+      "params" (dict "h" $h "lede" $h.summary)
+  ) }}
+  {{- end }}
+{{- end }}

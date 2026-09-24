@@ -1,0 +1,31 @@
+{{- /* Размещение спонсоров.
+  "all"   — все рядом (главная, /sponsors/)
+  "one"   — один на страницу, выбор по хешу адреса: без JS, но спонсоры чередуются по сайту
+  "strip" — тонкая полоса со всеми спонсорами над подвалом */ -}}
+{{- $list := hugo.Data.sponsors }}
+{{- $mode := .mode }}{{ $c := .c }}
+{{- if eq $mode "all" }}
+<div class="sp-duo">
+  {{- range $list }}{{ partial "sponsor.html" (dict "s" . "v" "card" "c" $c) }}{{ end }}
+</div>
+{{ partial "adslot.html" (dict "slot" "general" "v" "wide") }}
+{{- else if eq $mode "one" }}
+  {{- /* только спонсоры, которые по теме раздела; нет таких — тематический свободный слот */ -}}
+  {{- $fit := where $list "sections" "intersect" (slice .section) }}
+  {{- if $fit }}
+    {{- $i := mod (hash.FNV32a .key) (len $fit) }}
+    {{- partial "sponsor.html" (dict "s" (index $fit $i) "v" "card" "c" $c) }}
+  {{- else if ne .slot "payments" }}
+    {{- partial "adslot.html" (dict "slot" .slot "v" "wide") }}
+  {{- end }}
+{{- else }}
+<aside class="sp-strip" aria-label="Реклама">
+  <div class="sp-strip-row">
+  {{- range $list }}
+  {{- $href := printf "%s?utm_source=host.pink&utm_medium=sponsor&utm_campaign=%s" .url $c }}
+  <a class="sp-strip-{{ .id }}" href="{{ $href }}" rel="sponsored noopener">{{ partial "sponsor-logo.html" .id }}<b>{{ .name }}</b><span class="sp-strip-t">{{ .strip }}</span></a>
+  {{- end }}
+  </div>
+  <small>Реклама</small>
+</aside>
+{{- end }}

@@ -1,0 +1,37 @@
+{{ define "main" }}
+<div class="progress" aria-hidden="true"></div>
+{{- $slot := index hugo.Data.adslots.sections (index (split (strings.TrimPrefix "/" .RelPermalink) "/") 1) | default (index hugo.Data.adslots.sections .Section) | default "general" }}
+{{- if eq .Params.category "panels" }}{{ $slot = "panels" }}{{ else if eq .Params.category "net" }}{{ $slot = "network" }}{{ end }}
+<div class="doc">
+  {{ partial "side.html" . }}
+  <div class="aside">
+    {{- $n := len .Fragments.HeadingsMap }}
+    {{- if ge $n 3 }}
+    <details class="toc"{{ if le $n 14 }} open{{ end }}>
+      <summary>На странице</summary>
+      {{ if gt $n 24 }}{{ .Fragments.ToHTML 2 2 false }}{{ else }}{{ .TableOfContents }}{{ end }}
+    </details>
+    {{- end }}
+    {{- if ne $slot "payments" }}<div class="rail">{{ partial "adslot.html" (dict "slot" $slot "v" "card") }}</div>{{ end }}
+  </div>
+  <article class="article">
+    {{ partial "crumbs.html" . }}
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.lede }}<p class="lede">{{ . }}</p>{{ end }}
+    {{ partial "meta.html" . }}
+    {{- if hasPrefix .RelPermalink "/baza/hosting/" }}
+    <div class="callout callout-tip" role="note"><p class="callout-t">Есть сводка по-человечески</p><p>Эта страница — архив цитат из чата как есть. По каждому хостеру собрана карточка: доступность из РФ, цены, для чего брать, плюсы, минусы и хронология с датами. <a href="/hostery/">Каталог хостеров</a>.</p></div>
+    {{- end }}
+    {{- if hasPrefix .RelPermalink "/baza/platezhki/" }}
+    <div class="callout callout-tip" role="note"><p class="callout-t">Есть сводка по-человечески</p><p>Эта страница — архив цитат из чата как есть. По каждой платёжке собрана карточка: комиссии, что требуют при подключении, есть ли в боте, плюсы, минусы и хронология с датами. <a href="/platezhki/">Каталог платёжек</a>.</p></div>
+    {{- end }}
+    {{- if hasPrefix .RelPermalink "/baza/hronologiya/20" }}{{ partial "gz-switch.html" (dict "month" (path.Base .RelPermalink) "on" "classic") }}{{ end }}
+    {{- if eq $slot "payments" }}<div class="slot-top">{{ partial "adslot.html" (dict "slot" "payments" "v" "wide") }}</div>{{ end }}
+    <div class="prose">{{ .Content }}</div>
+    {{- $sec := cond (eq .Section "baza") (index (split (strings.TrimPrefix "/" .RelPermalink) "/") 1) .Section }}
+    {{ partial "sponsors.html" (dict "mode" "one" "key" .RelPermalink "section" $sec "slot" $slot "c" (printf "doc-%s" $sec)) }}
+    {{- if ne $slot "payments" }}<div class="rail-end">{{ partial "adslot.html" (dict "slot" $slot "v" "wide") }}</div>{{ end }}
+    {{ partial "pager.html" . }}
+  </article>
+</div>
+{{ end }}

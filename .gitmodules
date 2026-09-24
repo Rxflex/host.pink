@@ -1,0 +1,6 @@
+[submodule "vendor/bedolagabd"]
+	path = vendor/bedolagabd
+	url = https://github.com/Rxflex/BedolagaBD
+[submodule "vendor/hostpink-registry"]
+	path = vendor/hostpink-registry
+	url = https://github.com/Rxflex/hostpink-registry.git

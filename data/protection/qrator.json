@@ -1,0 +1,28 @@
+{
+  "id": "qrator",
+  "name": "Qrator",
+  "aliases": ["Curator"],
+  "site": "",
+  "kind": "proxy",
+  "levels": [],
+  "summary": "Анти-DDoS-сервис, в базе упоминается дважды: в списке «нормальных» защит и в сводке публичных обходов (там упоминается CloudPayments за Qrator).",
+  "ru_access": {
+    "state": "unknown",
+    "note": "Данных о том, открываются ли ресурсы за Qrator из РФ, в базе нет."
+  },
+  "good_for": [],
+  "avoid_for": [],
+  "prices": [],
+  "pros": [
+    { "text": "В списке «нормальных» анти-DDoS наряду с Path.net, Voxility, DDoS-Guard и StormWall", "date": "12.08.2026", "proof": "https://t.me/c/2941121338/1103095" }
+  ],
+  "cons": [
+    { "text": "В чате сообщали о публично выложенных обходах Qrator (CloudPayments); вектор — юзерагент Happ", "date": "19.08.2026", "proof": "https://t.me/c/2941121338/1145716" }
+  ],
+  "timeline": [
+    { "date": "2026-08-19", "text": "Публично выложены обходы защиты Qrator (CloudPayments)", "proof": "https://t.me/c/2941121338/1145716" }
+  ],
+  "sponsor": false,
+  "data": "thin",
+  "sources": ["/baza/tspu/metody-obhoda/", "/baza/hronologiya/2026-08/"]
+}

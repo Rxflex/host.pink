@@ -1,0 +1,56 @@
+{{ define "main" }}
+{{- $all := .RegularPages }}
+<div class="wrap tool" style="padding-top:2.5rem;padding-bottom:1rem">
+  <div class="article" style="max-width:84rem">
+    {{ partial "crumbs.html" . }}
+    <h1>{{ .Title }}</h1>
+    <p class="lede" style="max-width:var(--measure)">{{ .Params.lede }}</p>
+
+    <div class="zhow">
+      <div><p class="zhow-t">Прокси L7</p><p>Домен направляют на адреса сервиса DNS-записью, он фильтрует HTTP и отдаёт чистый трафик на твой сервер. Для панели, сабки, сайта и вебхуков. Важно: адреса самого сервиса должны открываться из России, иначе защищённый сайт пропадёт вместе с ними.</p></div>
+      <div><p class="zhow-t">Сеть L3/L4</p><p>Защищённые IP, GRE-туннель или BGP-анонс: фильтруют объёмный трафик до того, как он дойдёт до сервера. Это для нод и всего, что не HTTP. От атаки на приложение (L7) сама по себе не спасает.</p></div>
+      <div><p class="zhow-t">Как читать статус</p><p>«Из РФ работает» — ресурсы за этой защитой открываются у российских пользователей по последним фактам. Термины L3, L4, L7 объяснены в <a href="/slovar/#l3l4l7">словаре</a>.</p></div>
+    </div>
+
+    <div class="hcat zcat">
+      {{- /* фильтры без JS: радиокнопки + :has() */ -}}
+      <input type="radio" name="zk" id="zk-all" checked><input type="radio" name="zk" id="zk-proxy"><input type="radio" name="zk" id="zk-network"><input type="radio" name="zk" id="zk-hosting">
+      <input type="radio" name="za" id="za-all" checked><input type="radio" name="za" id="za-ok"><input type="radio" name="za" id="za-partial"><input type="radio" name="za" id="za-blocked">
+      <div class="hfilters">
+        <div role="group" aria-label="Тип защиты">
+          <label for="zk-all">Все <span>{{ len $all }}</span></label>
+          {{- range slice "proxy" "network" "hosting" }}{{ $n := len (where $all "Params.z.kind" .) }}{{ if $n }}
+          <label for="zk-{{ . }}">{{ partial "prot-kind.html" . | strings.FirstUpper }} <span>{{ $n }}</span></label>{{ end }}{{ end }}
+        </div>
+        <div role="group" aria-label="Доступность из РФ">
+          <label for="za-all">Любая доступность</label>
+          <label for="za-ok">{{ partial "hoster-status.html" "ok" }}</label>
+          <label for="za-partial">{{ partial "hoster-status.html" "partial" }}</label>
+          <label for="za-blocked">{{ partial "hoster-status.html" "blocked" }}</label>
+        </div>
+      </div>
+
+      <div class="table hlist" role="region" aria-label="Каталог защиты от DDoS" tabindex="0"><table>
+        <thead><tr><th>Сервис</th><th>Тип</th><th>Из РФ</th><th>Уровни</th><th>Для чего</th><th>Цены</th><th>Данные на</th></tr></thead>
+        <tbody>
+        {{- range sort $all "Title" }}
+        {{- $p := .Params.z }}
+        <tr class="hrow" data-k="{{ $p.kind }}" data-a="{{ $p.ru_access.state | default "unknown" }}">
+          <td><a href="{{ .RelPermalink }}"><b>{{ $p.name }}</b></a>{{ if $p.sponsor }} <small class="spon" title="Спонсор host.pink">спонсор</small>{{ end }}{{ if eq $p.data "thin" }} <small class="thin" title="В базе мало упоминаний">мало данных</small>{{ end }}</td>
+          <td><span class="pk pk-z{{ $p.kind }}">{{ partial "prot-kind.html" $p.kind }}</span></td>
+          <td>{{ partial "hoster-status.html" ($p.ru_access.state | default "unknown") }}</td>
+          <td class="hc">{{ delimit ($p.levels | default (slice "—")) " " }}</td>
+          <td>{{ range $p.good_for }}<span class="chip">{{ . }}</span>{{ end }}</td>
+          <td class="hp">{{ with index $p.prices 0 }}{{ .text }}{{ end }}</td>
+          <td class="hd">{{ with $p.ru_access.date }}{{ . }}{{ end }}</td>
+        </tr>
+        {{- end }}
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="callout callout-note" role="note" style="max-width:var(--measure)"><p class="callout-t">Это не рейтинг</p><p>Карточки собраны из сообщений в чате сообщества и пересказаны без эмоций. Спонсоры помечены отдельно, и про них в карточке только то, что есть в базе, без рекламных обещаний. Как защищать сам сервер, в базе: <a href="/baza/set/firewall-ddos/">Firewall и DDoS</a>.</p></div>
+    {{ partial "sponsors.html" (dict "mode" "one" "key" .RelPermalink "section" "zashchita" "slot" "ddos" "c" "zashchita") }}
+  </div>
+</div>
+{{ end }}

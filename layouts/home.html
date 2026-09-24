@@ -1,0 +1,78 @@
+{{ define "main" }}
+<section class="hero">
+  <p class="hero-lead">{{ .Params.lede }}</p>
+  <form class="omni" action="/go" method="get" role="search">
+    <label for="q"><span>host</span><b>.pink</b>/</label>
+    <input id="q" name="q" autofocus accesskey="k" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="1.1.1.1" enterkeyhint="go" aria-describedby="try">
+    <button type="submit">Проверить</button>
+  </form>
+  <ul class="try" id="try">
+    <li>Например:</li>
+    <li><a href="/8.8.8.8">8.8.8.8</a></li>
+    <li><a href="/cloudflare.com">cloudflare.com</a></li>
+    <li><a href="/AS13335">AS13335</a></li>
+    <li><a href="/1.1.1.0/24">1.1.1.0/24</a></li>
+    <li><a href="/ask?q=почему+отвалился+xhttp">почему отвалился xhttp?</a></li>
+  </ul>
+  <p class="here" id="here"></p>
+</section>
+
+<div class="wrap">
+  {{ with site.GetPage "/baza" }}
+  <section class="band" aria-labelledby="h-baza">
+    <div class="band-head"><h2 id="h-baza">База знаний</h2><a href="{{ .RelPermalink }}">Все разделы</a></div>
+    <ol class="index">
+      {{- range .Sections.ByWeight }}
+      <li><a href="{{ .RelPermalink }}">
+        <span class="i-key">{{ .Params.key }}</span>
+        <span class="i-name">{{ .Title }}</span>
+        <span class="i-count">{{ len .RegularPages }} док.</span>
+        <span class="i-blurb">{{ .Params.lede }}</span>
+      </a></li>
+      {{- end }}
+    </ol>
+  </section>
+  {{ end }}
+
+  {{ with site.GetPage "/gaidy" }}{{ with .RegularPages.ByWeight }}
+  <section class="band" aria-labelledby="h-gaidy">
+    <div class="band-head"><h2 id="h-gaidy">Гайды</h2><a href="/gaidy/">Все гайды</a></div>
+    {{- $pages := . }}
+    <ol class="index">
+      {{- range hugo.Data.guide_categories }}{{ $n := len (where $pages "Params.category" .id) }}{{ if $n }}
+      <li><a href="/gaidy/#{{ .id }}">
+        <span class="i-key">{{ .key }}</span>
+        <span class="i-name">{{ .title }}</span>
+        <span class="i-count">{{ $n }} {{ cond (eq $n 1) "гайд" (cond (lt $n 5) "гайда" "гайдов") }}</span>
+        <span class="i-blurb">{{ .lede }}</span>
+      </a></li>
+      {{- end }}{{ end }}
+    </ol>
+  </section>
+  {{ end }}{{ end }}
+
+  <section class="band" aria-labelledby="h-tools">
+    <div class="band-head"><h2 id="h-tools">Тулзы</h2><a href="/tools/">Как это работает</a></div>
+    {{ partial "tools-list.html" . }}
+  </section>
+
+  <section class="band" aria-labelledby="h-tui">
+    <div class="band-head"><h2 id="h-tui">В терминале</h2><a href="/tui/">Что умеет hostpink</a></div>
+    <div class="tui-band">
+      <p>Все тулзы, база, ИИ и каталог скриптов сообщества в одном TUI: Решала, установщики Remnawave, бэкапы, бенчмарки. Один бинарник для Linux, macOS, Windows и FreeBSD.</p>
+      <div><code class="tui-cmd">curl -fsSL host.pink/tui | sh</code><code class="tui-cmd" style="margin-top:.4rem">irm host.pink/tui | iex</code></div>
+    </div>
+  </section>
+
+  {{ with site.GetPage "/gazeta" }}{{ with .RegularPages.ByWeight.Reverse }}{{ $g := (index . 0).Params.g }}
+  <section class="band" aria-labelledby="h-gz">
+    <div class="band-head"><h2 id="h-gz">Свежий номер</h2><a href="/gazeta/">Вся подшивка</a></div>
+    <a class="gz-promo" href="/gazeta/{{ $g.month }}/"><span class="gz-promo-name">Розовый вестник</span><span class="gz-promo-t">№{{ $g.issue }}, {{ $g.title }}: «{{ $g.lead.headline }}». {{ $g.lead.dek }}</span><span class="gz-promo-go">Читать номер</span></a>
+  </section>
+  {{ end }}{{ end }}
+
+  <section class="band sp-band" aria-label="Спонсор">
+    {{ partial "sponsors.html" (dict "mode" "all" "c" "home") }}
+  </section>
+</div>
+{{ end }}

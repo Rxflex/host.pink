@@ -1,0 +1,20 @@
+- id: usdt-trc20
+  coin: USDT
+  net: TRON, TRC20
+  addr: TYHgzVKjxiBkvXnnrQdGaYQiCrzoEYjrr7
+  note: Самая дешёвая комиссия. Проверь, что в кошельке выбрана сеть TRON.
+- id: usdt-bep20
+  coin: USDT
+  net: BNB Chain, BEP20
+  addr: "0xb3954ccd45ade87f1fee9006f56cdeac41ff8707"
+  note: Тот же адрес, что для ETH, но другая сеть. Не перепутай.
+- id: btc
+  coin: BTC
+  net: Bitcoin
+  addr: 1JxKsR9hBXqdWdJYSQpogWEtZKo8ZdnZGG
+  note: Классика. Комиссия сети бывает больше доната, выбирай момент.
+- id: eth
+  coin: ETH
+  net: Ethereum, ERC20
+  addr: "0xb3954ccd45ade87f1fee9006f56cdeac41ff8707"
+  note: Газ дорогой, мелочь лучше слать через TRC20.

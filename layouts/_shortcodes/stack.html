@@ -1,0 +1,27 @@
+{{- /* Пропорциональная полоса из частей (байты заголовков, доли). Строка: «Часть | число», «| payload» в конце — полезная нагрузка (штриховка).
+{{< stack caption="..." unit="байт" >}}
+IPv4 | 20
+UDP | 8
+Полезные данные | 1472 | payload
+{{< /stack >}} */ -}}
+{{- $rows := slice }}{{ $total := 0.0 }}
+{{- range split (trim .Inner "\n") "\n" }}{{ with trim . " \t\r" }}
+  {{- $p := split . "|" }}{{ $v := float (trim (index $p 1) " ") }}
+  {{- $rows = $rows | append (dict "n" (trim (index $p 0) " ") "v" $v "pay" (and (ge (len $p) 3) (eq (trim (index $p 2) " ") "payload"))) }}{{ $total = add $total $v }}
+{{- end }}{{ end }}
+{{- $unit := .Get "unit" | default "" }}
+<figure class="dg dg-stack">
+  <div class="dg-bar" role="img" aria-label="{{ range $i, $r := $rows }}{{ if $i }}, {{ end }}{{ $r.n }} {{ $r.v }} {{ $unit }}{{ end }}">
+    {{- $c := 0 }}{{ range $rows }}
+    {{- $w := mul (div .v $total) 100 }}
+    <span class="{{ if .pay }}pay{{ else }}c{{ add (mod $c 5) 1 }}{{ end }}" style="flex:{{ .v }} 1 0;min-width:{{ if lt $w 4.0 }}2.2rem{{ else }}0{{ end }}" title="{{ .n }}: {{ .v }} {{ $unit }}"><b>{{ .v }}</b></span>
+    {{- if not .pay }}{{ $c = add $c 1 }}{{ end }}{{ end }}
+  </div>
+  <ul class="dg-legend">
+    {{- $c := 0 }}{{ range $rows }}
+    <li><i class="{{ if .pay }}pay{{ else }}c{{ add (mod $c 5) 1 }}{{ end }}"></i>{{ .n }} <span>{{ .v }} {{ $unit }}</span></li>
+    {{- if not .pay }}{{ $c = add $c 1 }}{{ end }}{{ end }}
+    <li class="sum">Итого <span>{{ $total }} {{ $unit }}</span></li>
+  </ul>
+  {{ with .Get "caption" }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
+</figure>

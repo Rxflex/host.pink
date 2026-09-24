@@ -1,0 +1,31 @@
+{
+  "id": "hostvps",
+  "name": "hostvps",
+  "aliases": [],
+  "group": "foreign",
+  "countries": [],
+  "asn": [],
+  "summary": "Хостер, упомянутый в чате один раз вместе с hostvds — с советом от него отказаться.",
+  "ru_access": {
+    "state": "unknown",
+    "note": "Данных о доступности из РФ в базе нет.",
+    "date": "08.04.2026",
+    "proof": "https://t.me/c/2941121338/341498"
+  },
+  "prices": [],
+  "good_for": [],
+  "avoid_for": [],
+  "pros": [],
+  "cons": [
+    {
+      "text": "В чате советовали отказаться от hostvps (вместе с hostvds)",
+      "date": "08.04.2026",
+      "proof": "https://t.me/c/2941121338/341498"
+    }
+  ],
+  "timeline": [],
+  "data": "thin",
+  "sources": [
+    "/baza/hosting/zarubezhnye-hostery/#специализированные--дешёвые-хостеры"
+  ]
+}

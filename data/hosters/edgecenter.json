@@ -1,0 +1,49 @@
+{
+  "id": "edgecenter",
+  "name": "EdgeCenter",
+  "aliases": [
+    "EdgeCenter CDN"
+  ],
+  "group": "ru",
+  "countries": [
+    "RU"
+  ],
+  "asn": [
+    210756
+  ],
+  "summary": "Российский CDN/облачный провайдер. Подсеть 95.181.182.0/24 (AS210756) входила в списки БС зимой 2025–2026, EdgeCenter называли среди хостеров, дающих БС-машины.",
+  "ru_access": {
+    "state": "partial",
+    "note": "Подсеть 95.181.182.0/24 в списке БС",
+    "date": "19.01.2026",
+    "proof": "https://t.me/c/2941121338/183033"
+  },
+  "prices": [],
+  "good_for": [],
+  "avoid_for": [],
+  "pros": [
+    {
+      "text": "Подсеть 95.181.182.0/24 в пулах, проходящих БС",
+      "date": "19.12.2025",
+      "proof": "https://t.me/c/2941121338/118215"
+    }
+  ],
+  "cons": [],
+  "timeline": [
+    {
+      "date": "2025-12-19",
+      "text": "95.181.182.0/24 в списке пулов, проходящих БС",
+      "proof": "https://t.me/c/2941121338/118215"
+    },
+    {
+      "date": "2026-01-19",
+      "text": "EdgeCenter (AS210756) в полном списке БС-подсетей",
+      "proof": "https://t.me/c/2941121338/183033"
+    }
+  ],
+  "data": "thin",
+  "sources": [
+    "/baza/hosting/bs-podseti/",
+    "/baza/tspu/bs-podseti/"
+  ]
+}

@@ -1,0 +1,61 @@
+{{ define "main" }}
+{{- $p := .Params.z }}
+{{- $kinds := dict "proxy" "Прокси L7" "network" "Сеть L3/L4" "hosting" "Хостинг с защитой" }}
+<div class="doc">
+  {{ partial "side.html" . }}
+  <div class="aside"><div class="rail">{{ partial "adslot.html" (dict "slot" "ddos" "v" "card") }}</div></div>
+  <article class="article hcard">
+    <ol class="crumbs" aria-label="Путь"><li><a href="/zashchita/">Защита от DDoS</a></li><li>{{ index $kinds $p.kind | default "Прочее" }}</li></ol>
+    <h1>{{ $p.name }}</h1>
+    {{ with $p.aliases }}<p class="haka">Ещё называют: {{ delimit . ", " }}</p>{{ end }}
+    {{ if $p.sponsor }}<p class="spon-note">Спонсор host.pink. В карточке только то, что есть в базе сообщества, рекламные обещания сервиса сюда не попадают.</p>{{ end }}
+    <p class="lede">{{ $p.summary }}</p>
+
+    <div class="hfacts">
+      <div><span>Из РФ</span>{{ partial "hoster-status.html" ($p.ru_access.state | default "unknown") }}</div>
+      <div><span>Тип</span><span><span class="pk pk-z{{ $p.kind }}">{{ partial "prot-kind.html" $p.kind }}</span></span></div>
+      <div><span>Уровни</span>{{ with $p.levels }}{{ delimit . ", " }}{{ else }}нет данных{{ end }}</div>
+      {{ with $p.site }}<div><span>Сайт</span><a href="{{ . }}" rel="nofollow noopener">{{ strings.TrimSuffix "/" (strings.TrimPrefix "http://" (strings.TrimPrefix "https://" .)) }}</a></div>{{ end }}
+    </div>
+
+    {{ with $p.ru_access }}{{ if .note }}
+    <div class="callout {{ if eq .state "blocked" }}callout-warning{{ else if eq .state "ok" }}callout-tip{{ else }}callout-note{{ end }}" role="note">
+      <p class="callout-t">Доступность из РФ</p>
+      <p>{{ .note }} {{ partial "proof.html" . }}</p>
+    </div>
+    {{ end }}{{ end }}
+
+    {{ if or $p.good_for $p.avoid_for }}
+    <div class="hfor">
+      {{ with $p.good_for }}<p><b>Ставят перед:</b> {{ range . }}<span class="chip good">{{ . }}</span>{{ end }}</p>{{ end }}
+      {{ with $p.avoid_for }}<p><b>Не советуют для:</b> {{ range . }}<span class="chip bad">{{ . }}</span>{{ end }}</p>{{ end }}
+    </div>
+    {{ end }}
+
+    <div class="dg-cmp hpc">
+      <div class="good"><p class="dg-cmp-t">Хвалят</p>{{ with $p.pros }}<ul>{{ range . }}<li>{{ .text }} {{ partial "proof.html" . }}</li>{{ end }}</ul>{{ else }}<p>Ничего конкретного.</p>{{ end }}</div>
+      <div class="bad"><p class="dg-cmp-t">Ругают</p>{{ with $p.cons }}<ul>{{ range . }}<li>{{ .text }} {{ partial "proof.html" . }}</li>{{ end }}</ul>{{ else }}<p>Ничего конкретного.</p>{{ end }}</div>
+    </div>
+
+    {{ with $p.prices }}
+    <h2 id="ceny">Цены, которые называли</h2>
+    <ul class="hlist-plain">{{ range . }}<li>{{ .text }} {{ partial "proof.html" . }}</li>{{ end }}</ul>
+    {{ end }}
+
+    {{ with $p.timeline }}
+    <h2 id="hronologiya">Что случалось</h2>
+    <ol class="htl">{{ range . }}<li><time>{{ .date }}</time><span>{{ .text }} {{ partial "proof.html" (dict "proof" .proof "date" "пруф") }}</span></li>{{ end }}</ol>
+    {{ end }}
+
+    <h2 id="proverit">Проверить самому</h2>
+    <nav class="quick">
+      {{ with $p.site }}{{ $d := strings.TrimSuffix "/" (strings.TrimPrefix "http://" (strings.TrimPrefix "https://" .)) }}<a href="/check/{{ $d }}">Сайт {{ $d }} из разных стран</a><a href="/{{ $d }}">Досье домена {{ $d }}</a>{{ end }}
+      <a href="/baza/set/firewall-ddos/">Firewall и DDoS в базе</a>
+      <a href="/slovar/#ddos">Что такое DDoS</a>
+    </nav>
+
+    <p class="more">Пересказ сообщений чата сообщества, а не оценка редакции: даты важнее выводов.{{ with $p.sources }} Первоисточники в базе: {{ range $i, $s := . }}{{ if $i }} · {{ end }}<a href="{{ $s }}">{{ $s }}</a>{{ end }}.{{ end }}</p>
+    <div class="rail-end">{{ partial "sponsors.html" (dict "mode" "one" "key" .RelPermalink "section" "zashchita" "slot" "ddos" "c" "zashchita") }}</div>
+  </article>
+</div>
+{{ end }}

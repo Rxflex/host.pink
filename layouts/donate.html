@@ -1,0 +1,22 @@
+{{ define "main" }}
+<div class="wrap" style="padding-top:2.5rem; padding-bottom:2rem">
+  <article class="article" style="max-width:64rem">
+    <h1>{{ .Title }}</h1>
+    <p class="lede" style="max-width:var(--measure)">{{ .Params.lede }}</p>
+    <div class="prose" style="max-width:var(--measure)">{{ .Content }}</div>
+    <div class="coins">
+      {{- range hugo.Data.donate }}
+      <section class="coin" aria-label="{{ .coin }} в сети {{ .net }}">
+        <img src="/qr/{{ .id }}.svg" width="112" height="112" alt="QR-код адреса {{ .coin }} {{ .net }}" loading="lazy">
+        <div>
+          <b>{{ .coin }}</b>
+          <small>{{ .net }}</small>
+          <code>{{ .addr }}</code>
+          <small style="margin:.5rem 0 0">{{ .note }}</small>
+        </div>
+      </section>
+      {{- end }}
+    </div>
+  </article>
+</div>
+{{ end }}

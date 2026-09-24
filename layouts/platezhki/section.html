@@ -1,0 +1,50 @@
+{{ define "main" }}
+{{- $all := .RegularPages }}
+<div class="wrap tool" style="padding-top:2.5rem;padding-bottom:1rem">
+  <div class="article" style="max-width:84rem">
+    {{ partial "crumbs.html" . }}
+    <h1>{{ .Title }}</h1>
+    <p class="lede" style="max-width:var(--measure)">{{ .Params.lede }}</p>
+
+    <div class="hcat pcat">
+      {{- /* фильтры без JS: радиокнопки + :has() */ -}}
+      <input type="radio" name="pk" id="pk-all" checked><input type="radio" name="pk" id="pk-white"><input type="radio" name="pk" id="pk-grey"><input type="radio" name="pk" id="pk-crypto"><input type="radio" name="pk" id="pk-telegram"><input type="radio" name="pk" id="pk-other">
+      <input type="radio" name="ps" id="ps-all" checked><input type="radio" name="ps" id="ps-ok"><input type="radio" name="ps" id="ps-issues"><input type="radio" name="ps" id="ps-dead">
+      <div class="hfilters">
+        <div role="group" aria-label="Тип">
+          <label for="pk-all">Все <span>{{ len $all }}</span></label>
+          {{- range slice "white" "grey" "crypto" "telegram" "other" }}{{ $n := len (where $all "Params.p.kind" .) }}{{ if $n }}
+          <label for="pk-{{ . }}">{{ partial "pay-kind.html" . | strings.FirstUpper }} <span>{{ $n }}</span></label>{{ end }}{{ end }}
+        </div>
+        <div role="group" aria-label="Статус">
+          <label for="ps-all">Любой статус</label>
+          <label for="ps-ok">{{ partial "pay-status.html" "ok" }}</label>
+          <label for="ps-issues">{{ partial "pay-status.html" "issues" }}</label>
+          <label for="ps-dead">{{ partial "pay-status.html" "dead" }}</label>
+        </div>
+      </div>
+
+      <div class="table hlist" role="region" aria-label="Каталог платёжек" tabindex="0"><table>
+        <thead><tr><th>Платёжка</th><th>Тип</th><th>Статус</th><th>Принимает</th><th>Комиссии</th><th>В боте</th><th>Данные на</th></tr></thead>
+        <tbody>
+        {{- range sort $all "Title" }}
+        {{- $p := .Params.p }}
+        <tr class="hrow" data-k="{{ $p.kind }}" data-s="{{ $p.status.state | default "unknown" }}">
+          <td><a href="{{ .RelPermalink }}"><b>{{ $p.name }}</b></a>{{ if eq $p.data "thin" }} <small class="thin" title="В базе мало упоминаний">мало данных</small>{{ end }}</td>
+          <td><span class="pk pk-{{ $p.kind }}">{{ partial "pay-kind.html" $p.kind }}</span></td>
+          <td>{{ partial "pay-status.html" ($p.status.state | default "unknown") }}</td>
+          <td>{{ range $p.methods }}<span class="chip">{{ . }}</span>{{ end }}</td>
+          <td class="hp">{{ with index $p.fees 0 }}{{ .text }}{{ end }}</td>
+          <td class="hd">{{ with $p.bedolaga }}{{ if eq .state "yes" }}есть{{ else if eq .state "no" }}нет{{ else }}—{{ end }}{{ else }}—{{ end }}</td>
+          <td class="hd">{{ with $p.status.date }}{{ . }}{{ end }}</td>
+        </tr>
+        {{- end }}
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="callout callout-note" role="note" style="max-width:var(--measure)"><p class="callout-t">Это не рейтинг и не реклама</p><p>Карточки собраны из сообщений в чате сообщества и пересказаны без эмоций. Условия платёжек меняются за недели, а серые могут пропасть вместе с балансом. Поэтому смотри на даты и не держи на них крупные суммы. Сырые цитаты лежат в <a href="/baza/platezhki/">архиве раздела «Платёжки»</a>, как считать деньги — в <a href="/baza/platezhki/yunit-ekonomika/">юнит-экономике</a>.</p></div>
+    {{ partial "adslot.html" (dict "slot" "payments" "v" "wide") }}
+  </div>
+</div>
+{{ end }}

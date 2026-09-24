@@ -1,0 +1,33 @@
+{
+  "id": "doubleservers",
+  "name": "doubleservers",
+  "aliases": [],
+  "group": "foreign",
+  "countries": [
+    "FR"
+  ],
+  "asn": [],
+  "summary": "Хостер с локацией во Франции (Гравлин). В базе одно упоминание — мощный эксклюзивный тариф на Ryzen 9 9950X.",
+  "ru_access": {
+    "state": "unknown",
+    "note": "Данных о доступности из РФ в базе нет.",
+    "date": "22.07.2026",
+    "proof": "https://t.me/c/2941121338/940844"
+  },
+  "prices": [
+    {
+      "text": "Франция, Гравлин: 32 vCPU Ryzen 9 9950X, 60 ГБ NVMe — 27 €/мес (эксклюзивный тариф)",
+      "date": "22.07.2026",
+      "proof": "https://t.me/c/2941121338/940844"
+    }
+  ],
+  "good_for": [],
+  "avoid_for": [],
+  "pros": [],
+  "cons": [],
+  "timeline": [],
+  "data": "thin",
+  "sources": [
+    "/baza/hosting/zarubezhnye-hostery/#прочие-популярные-зарубежные-европа"
+  ]
+}

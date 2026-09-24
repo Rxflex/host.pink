@@ -1,0 +1,5 @@
+{{- /* статус платёжки: точка + подпись */ -}}
+{{- $s := . | default "unknown" }}
+{{- $map := dict "ok" (slice "up" "работает") "issues" (slice "slow" "с проблемами") "dead" (slice "down" "не работает") "unknown" (slice "none" "нет данных") }}
+{{- $v := index $map $s | default (index $map "unknown") }}
+<span class="hst"><span class="st st-{{ index $v 0 }}"></span>{{ index $v 1 }}</span>

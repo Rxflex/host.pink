@@ -1,0 +1,52 @@
+name: deploy
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 4 * * 1" # по понедельникам подтягиваем свежую BedolagaBD
+  workflow_dispatch:
+
+concurrency: deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Обновить BedolagaBD и реестр плагинов
+        if: github.event_name == 'schedule'
+        run: git submodule update --remote vendor/bedolagabd vendor/hostpink-registry
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.26"
+          cache-dependency-path: tui/go.sum
+
+      - run: npm ci
+      - run: npm run tui:test
+      - run: npm run build
+      - run: CI=1 npm run types && npx tsc -p worker
+
+      - name: Обновить поисковый индекс в D1
+        run: npm run search:remote
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Деплой
+        run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

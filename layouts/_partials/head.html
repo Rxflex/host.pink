@@ -1,0 +1,26 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{- $title := cond (eq .Layout "shell") .Title (cond .IsHome (printf "%s — справочник и сетевые тулзы" site.Title) (printf "%s — %s" .Title site.Title)) }}
+<title>{{ $title }}</title>
+{{- $desc := .Description | default .Params.lede | default site.Params.description }}
+<meta name="description" content="{{ $desc }}">
+<meta name="theme-color" content="#fbeff3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1c0d20" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/golos.woff2" as="font" type="font/woff2" crossorigin>
+{{- $css := resources.Get "css/site.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}">
+{{- if ne .Layout "shell" }}
+<link rel="canonical" href="{{ .Permalink }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:type" content="{{ cond .IsPage "article" "website" }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="host.pink">
+<meta property="og:locale" content="ru_RU">
+{{- end }}
+{{- if eq .Layout "shell" }}<hp-head></hp-head>{{ end }}
+{{- with .NextInSection }}<link rel="prefetch" href="{{ .RelPermalink }}">{{ end }}
+{{- if and .IsPage (in (slice "baza" "gaidy") .Section) }}<link rel="alternate" type="text/markdown" href="{{ .RelPermalink }}index.md">{{ end }}
+<link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt">

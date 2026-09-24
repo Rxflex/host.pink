@@ -1,0 +1,11 @@
+{{- /* Две колонки «плохо / хорошо». Разделитель — строка из трёх дефисов.
+{{< compare bad="Так ломается" good="Так работает" >}}
+markdown…
+---
+markdown…
+{{< /compare >}} */ -}}
+{{- $parts := split .Inner "\n---\n" }}
+<div class="dg dg-cmp">
+  <div class="bad"><p class="dg-cmp-t">{{ .Get "bad" | default "Плохо" }}</p>{{ index $parts 0 | .Page.RenderString (dict "display" "block") }}</div>
+  <div class="good"><p class="dg-cmp-t">{{ .Get "good" | default "Хорошо" }}</p>{{ index $parts 1 | default "" | .Page.RenderString (dict "display" "block") }}</div>
+</div>

@@ -1,0 +1,104 @@
+{{ define "main" }}
+{{- $g := .Params.g }}
+{{- $ad := hugo.Data.adslots.contact }}
+{{- $prev := .PrevInSection }}{{ $next := .NextInSection }}
+<div class="gz-wrap">
+  <div class="gz-bar">
+    <ol class="crumbs" aria-label="Путь"><li><a href="/baza/hronologiya/">Хронология</a></li><li><a href="/gazeta/">Розовый вестник</a></li></ol>
+    {{ partial "gz-switch.html" (dict "month" $g.month "on" "gazeta") }}
+  </div>
+
+  <article class="gz">
+    <header class="gz-mast no-gl">
+      <div class="gz-ears">
+        <p class="gz-ear">Выпуск №{{ $g.issue }}<br><b>{{ $g.title }}</b></p>
+        <p class="gz-ear gz-ear-r">Цена: бесплатно<br><b>как и всё на host.pink</b></p>
+      </div>
+      <p class="gz-name"><a href="/gazeta/">Розовый вестник</a></p>
+      <p class="gz-motto">Ежемесячная газета тех, кто держит ноды, панели и нервы · выходит по мере блокировок</p>
+      <p class="gz-dateline"><span>{{ $g.title }}</span><span>Сообщество Bedolaga Social Club</span><span>host.pink/gazeta</span></p>
+    </header>
+
+    {{ with $g.weather }}<p class="gz-weather"><b>Погода в ТСПУ.</b> {{ . }}</p>{{ end }}
+
+    <section class="gz-lead" aria-labelledby="gz-h">
+      <div class="gz-lead-main">
+        {{ with $g.lead.kicker }}<p class="gz-kicker">{{ . }}</p>{{ end }}
+        <h1 id="gz-h" class="gz-h1">{{ $g.lead.headline }}</h1>
+        <p class="gz-dek">{{ $g.lead.dek }}</p>
+        <div class="gz-body gz-cols">
+          {{ range $g.lead.body }}<p>{{ . }}</p>{{ end }}
+          {{ with $g.lead.proofs }}<p class="gz-proofs">Пруфы: {{ range . }}{{ partial "proof.html" (dict "proof" .url "date" .label) }} {{ end }}</p>{{ end }}
+        </div>
+      </div>
+      {{ with $g.numbers }}
+      <aside class="gz-nums" aria-label="Цифры месяца">
+        <p class="gz-box-t">Цифры месяца</p>
+        {{ range . }}<div class="gz-num"><b>{{ .value }}</b><span>{{ .label }} {{ partial "proof.html" (dict "proof" .proof "date" (partial "gz-date.html" .date)) }}</span></div>{{ end }}
+      </aside>
+      {{ end }}
+    </section>
+
+    <div class="gz-main">
+      <section class="gz-stories" aria-label="Заметки">
+        {{ range $g.stories }}
+        <article class="gz-story">
+          <p class="gz-rubric">{{ .rubric }}</p>
+          <h2>{{ .headline }}</h2>
+          <p>{{ .text }} {{ partial "proof.html" (dict "proof" .proof "date" (partial "gz-date.html" .date)) }}</p>
+        </article>
+        {{ end }}
+      </section>
+
+      <aside class="gz-side">
+        {{ with $g.quote }}
+        <figure class="gz-quote">
+          <p class="gz-box-t">Цитата месяца</p>
+          <blockquote>{{ .text }}</blockquote>
+          <figcaption>— {{ .who | default "участник чата" }}, {{ partial "proof.html" (dict "proof" .proof "date" (partial "gz-date.html" .date)) }}</figcaption>
+        </figure>
+        {{ end }}
+
+        {{ with $g.releases }}
+        <section class="gz-box">
+          <p class="gz-box-t">Релизы</p>
+          <ul class="gz-rel">{{ range . }}<li><b>{{ .name }}</b> {{ .note }} {{ partial "proof.html" (dict "proof" .proof "date" (partial "gz-date.html" .date)) }}</li>{{ end }}</ul>
+        </section>
+        {{ end }}
+
+        {{ with $g.brief }}
+        <section class="gz-box">
+          <p class="gz-box-t">Коротко</p>
+          <ul class="gz-brief">{{ range . }}<li><time>{{ partial "gz-date.html" .date }}</time> {{ .text }} {{ partial "proof.html" (dict "proof" .proof "date" "пруф") }}</li>{{ end }}</ul>
+        </section>
+        {{ end }}
+
+        {{ with $g.archive }}
+        <section class="gz-box">
+          <p class="gz-box-t">Из архива</p>
+          <ul class="gz-brief">{{ range . }}<li><time>{{ .date }}</time> {{ .text }} {{ partial "proof.html" (dict "proof" .proof "date" "пруф") }}</li>{{ end }}</ul>
+        </section>
+        {{ end }}
+
+        <section class="gz-box gz-classified" aria-label="Объявления">
+          <p class="gz-box-t">Объявления</p>
+          <p>Отдам даром MTU 1500, б/у, в туннеле не пролезает. Самовывоз.</p>
+          <p>Меняю статический IP в белом списке на спокойный сон. Торг.</p>
+          <p>Ищу платёжку, которая не уйдёт в отпуск в день зарплаты. Рассмотрю все варианты.</p>
+          <p class="gz-ad"><a href="{{ $ad.url }}" rel="noopener"><b>Здесь может быть ваше объявление.</b> Читают те, кто держит серверы. Писать {{ $ad.label }}</a></p>
+        </section>
+      </aside>
+    </div>
+
+    <footer class="gz-foot">
+      <p>«Розовый вестник» пересказывает сообщения чата сообщества Bedolaga Social Club по хронологии <a href="https://github.com/Rxflex/BedolagaBD">BedolagaBD</a> (CC BY-SA 4.0). Заголовки шутят, факты нет: у каждого есть дата и ссылка на исходное сообщение. Все события месяца без сокращений — в <a href="/baza/hronologiya/{{ $g.month }}/">классической хронологии</a>.</p>
+    </footer>
+  </article>
+
+  <nav class="gz-pager" aria-label="Выпуски">
+    {{ with $next }}<a href="{{ .RelPermalink }}" rel="prev"><span>Предыдущий выпуск</span>№{{ .Params.g.issue }} · {{ .Params.g.title }}</a>{{ else }}<span></span>{{ end }}
+    <a href="/gazeta/" class="gz-pager-all">Все выпуски</a>
+    {{ with $prev }}<a href="{{ .RelPermalink }}" rel="next"><span>Следующий выпуск</span>№{{ .Params.g.issue }} · {{ .Params.g.title }}</a>{{ else }}<span></span>{{ end }}
+  </nav>
+</div>
+{{ end }}

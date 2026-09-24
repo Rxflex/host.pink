@@ -1,0 +1,135 @@
+{
+  "id": "crypto-bot",
+  "name": "CryptoBot",
+  "aliases": [
+    "Crypto Bot",
+    "Криптобот",
+    "КБ"
+  ],
+  "kind": "crypto",
+  "site": null,
+  "summary": "Приём криптовалюты через инвойсы Telegram-бота CryptoBot. Встроен в Bedolaga с версии 2.2.5: USDT, TON, BTC, ETH и другие монеты, курс к рублю бот пересчитывает сам.",
+  "status": {
+    "state": "ok",
+    "note": "Работает и поддерживается в боте и кабинете Bedolaga; в июле 2026 была жалоба на блокировку аккаунта",
+    "date": "03.08.2026",
+    "proof": "https://t.me/c/2941121338/1033881"
+  },
+  "methods": [
+    "крипта"
+  ],
+  "bedolaga": {
+    "state": "yes",
+    "note": "Есть в боте из коробки с v2.2.5 (09.09.2025): CRYPTOBOT_* в env, вебхук /cryptobot-webhook",
+    "date": "09.09.2025",
+    "proof": "https://t.me/c/2941121338/4757"
+  },
+  "fees": [
+    {
+      "text": "Курс USD/RUB бот берёт с ЦБ РФ + exchangerate-api.com, кеш 1 час",
+      "date": "09.09.2025",
+      "proof": "https://t.me/c/2941121338/4757"
+    }
+  ],
+  "requirements": [],
+  "pros": [
+    {
+      "text": "Много монет: USDT, TON, BTC, ETH, LTC, BNB, TRX, USDC",
+      "date": "09.09.2025",
+      "proof": "https://t.me/c/2941121338/4757"
+    },
+    {
+      "text": "Появилась оплата по QR",
+      "date": "04.12.2025",
+      "proof": "https://t.me/c/2941121338/88926"
+    },
+    {
+      "text": "Работает для подарочных подписок в Bedolaga",
+      "date": "09.03.2026",
+      "proof": "https://t.me/c/2941121338/262329"
+    },
+    {
+      "text": "В кабинете Bedolaga CryptoBot доступен как способ вывода",
+      "date": "03.08.2026",
+      "proof": "https://t.me/c/2941121338/1033881"
+    }
+  ],
+  "cons": [
+    {
+      "text": "Интеграция в боте часто ломалась в 2025: 404 на вебхуке, ошибки подписи, greenlet_spawn",
+      "date": "13.11.2025",
+      "proof": "https://t.me/c/2941121338/66583"
+    },
+    {
+      "text": "Подпись вебхуков пришлось переделывать (3 стратегии) в v3.34.1",
+      "date": "18.03.2026",
+      "proof": "https://t.me/c/2941121338/278457"
+    },
+    {
+      "text": "В чате сообщали, что CryptoBot заблокировал аккаунт после возврата лишних денег",
+      "date": "29.07.2026",
+      "proof": "https://t.me/c/2941121338/995323"
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2025-09-09",
+      "text": "Bedolaga v2.2.5: интеграция CryptoBot",
+      "proof": "https://t.me/c/2941121338/4757"
+    },
+    {
+      "date": "2025-11-10",
+      "text": "Bedolaga v2.6.2: фикс округления CryptoBot",
+      "proof": "https://t.me/c/2941121338/59851"
+    },
+    {
+      "date": "2025-11-13",
+      "text": "Баг: вебхук CryptoBot отдаёт 404 в Bedolaga 2.6.2",
+      "proof": "https://t.me/c/2941121338/66583"
+    },
+    {
+      "date": "2025-12-04",
+      "text": "В CryptoBot появилась QR-оплата",
+      "proof": "https://t.me/c/2941121338/88926"
+    },
+    {
+      "date": "2026-03-09",
+      "text": "Подарочные подписки в Bedolaga с оплатой через CryptoBot",
+      "proof": "https://t.me/c/2941121338/262329"
+    },
+    {
+      "date": "2026-03-18",
+      "text": "Bedolaga v3.34.1: переделана проверка подписи вебхуков CryptoBot",
+      "proof": "https://t.me/c/2941121338/278457"
+    },
+    {
+      "date": "2026-05-13",
+      "text": "Cabinet v1.52.0: Telegram deep-link guard для CryptoBot/Stars",
+      "proof": "https://t.me/c/2941121338/500486"
+    },
+    {
+      "date": "2026-06-01",
+      "text": "Bedolaga v3.58.0: фикс CryptoBot",
+      "proof": "https://t.me/c/2941121338/619476"
+    },
+    {
+      "date": "2026-07-29",
+      "text": "В чате сообщили о блокировке аккаунта в CryptoBot",
+      "proof": "https://t.me/c/2941121338/995323"
+    },
+    {
+      "date": "2026-08-23",
+      "text": "RollyPay в партнёрстве с Bedolaga принимает оплату через криптобот",
+      "proof": "https://t.me/c/2941121338/1174749"
+    }
+  ],
+  "data": "ok",
+  "sources": [
+    "/baza/platezhki/env-vebhuki/#cryptobot-v225-id4757-09092025",
+    "/baza/platezhki/komissii/",
+    "/baza/platezhki/vehi/",
+    "/baza/paneli/relizy/",
+    "/baza/hronologiya/2025-11/",
+    "/baza/hronologiya/2026-07/"
+  ]
+}

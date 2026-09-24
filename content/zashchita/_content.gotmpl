@@ -1,0 +1,12 @@
+{{- /* Страница на каждый сервис защиты из data/protection/*.json */ -}}
+{{- range $id, $p := hugo.Data.protection }}
+  {{- if not (hasPrefix $id "_") }}
+  {{- $.AddPage (dict
+      "kind" "page"
+      "path" $p.id
+      "title" $p.name
+      "content" (dict "mediaType" "text/markdown" "value" ($p.summary | default ""))
+      "params" (dict "z" $p "lede" $p.summary)
+  ) }}
+  {{- end }}
+{{- end }}

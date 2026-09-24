@@ -1,0 +1,57 @@
+{
+  "id": "paypear",
+  "name": "PayPear",
+  "aliases": [
+    "PayPear.ru"
+  ],
+  "kind": "other",
+  "site": "https://paypear.ru",
+  "summary": "Платёжный провайдер, добавленный в Bedolaga в апреле 2026: карты, СБП, SberPay, T-Pay. Отзывов о тарифах и работе в базе нет.",
+  "status": {
+    "state": "unknown",
+    "note": "Отзывов о работе в базе нет",
+    "date": null,
+    "proof": null
+  },
+  "methods": [
+    "СБП"
+  ],
+  "bedolaga": {
+    "state": "yes",
+    "note": "Есть в боте, кабинете и на лендингах с v3.48.0 (16.04.2026), вебхуки HMAC-SHA256",
+    "date": "16.04.2026",
+    "proof": "https://t.me/c/2941121338/365545"
+  },
+  "fees": [],
+  "requirements": [],
+  "pros": [],
+  "cons": [
+    {
+      "text": "При апгрейде бота 3.46.1 → 3.60.0 миграция падала на таблице paypear_payments",
+      "date": "08.06.2026",
+      "proof": "https://t.me/c/2941121338/657698"
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2026-04-16",
+      "text": "Bedolaga v3.48.0: новый провайдер PayPear (карты, СБП, SberPay, T-Pay)",
+      "proof": "https://t.me/c/2941121338/365545"
+    },
+    {
+      "date": "2026-04-18",
+      "text": "Bedolaga v3.49.0: PayPear зарегистрирован в админке",
+      "proof": "https://t.me/c/2941121338/371909"
+    },
+    {
+      "date": "2026-06-08",
+      "text": "Миграция 3.46.1 → 3.60.0 падает: relation \"paypear_payments\" already exists",
+      "proof": "https://t.me/c/2941121338/657698"
+    }
+  ],
+  "data": "thin",
+  "sources": [
+    "/baza/hronologiya/2026-04/",
+    "/baza/paneli/relizy/"
+  ]
+}

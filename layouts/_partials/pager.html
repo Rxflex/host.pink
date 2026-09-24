@@ -1,0 +1,16 @@
+{{- $prev := .PrevInSection }}{{ $next := .NextInSection }}
+{{- with .Params.category }}
+  {{- /* у гайдов «назад/дальше» — внутри своего раздела */ -}}
+  {{- $list := (where $.CurrentSection.RegularPages "Params.category" .).ByWeight }}
+  {{- $prev = false }}{{ $next = false }}
+  {{- range $i, $p := $list }}{{ if eq $p $ }}
+    {{- if gt $i 0 }}{{ $prev = index $list (sub $i 1) }}{{ end }}
+    {{- if lt (add $i 1) (len $list) }}{{ $next = index $list (add $i 1) }}{{ end }}
+  {{- end }}{{ end }}
+{{- end }}
+{{- if or $prev $next }}
+<nav class="pager" aria-label="Соседние страницы">
+  {{- with $prev }}<a class="prev" href="{{ .RelPermalink }}" rel="prev"><small>Назад</small>{{ .Title }}</a>{{ end }}
+  {{- with $next }}<a class="next" href="{{ .RelPermalink }}" rel="next"><small>Дальше</small>{{ .Title }}</a>{{ end }}
+</nav>
+{{- end }}

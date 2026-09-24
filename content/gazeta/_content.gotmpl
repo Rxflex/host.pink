@@ -1,0 +1,13 @@
+{{- /* Выпуск газеты на каждый месяц из data/gazeta/*.json */ -}}
+{{- range $id, $g := hugo.Data.gazeta }}
+  {{- if not (hasPrefix $id "_") }}
+  {{- $.AddPage (dict
+      "kind" "page"
+      "path" $g.month
+      "title" (printf "%s — Розовый вестник №%d" $g.title (int $g.issue))
+      "weight" (int $g.issue)
+      "content" (dict "mediaType" "text/markdown" "value" ($g.lead.dek | default ""))
+      "params" (dict "g" $g "lede" $g.lead.headline)
+  ) }}
+  {{- end }}
+{{- end }}

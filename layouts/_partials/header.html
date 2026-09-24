@@ -1,0 +1,21 @@
+{{- $sec := .Section }}{{ if eq .RelPermalink "/slovar/" }}{{ $sec = "slovar" }}{{ end }}
+<header class="top">
+  {{- if eq .Kind "page" | and (in (slice "baza" "gaidy" "hostery" "platezhki" "zashchita") $sec) }}
+  <button class="menu-btn" popovertarget="side" aria-label="Разделы"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h9" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></button>
+  {{- end }}
+  <a class="logo" href="/" aria-label="host.pink, на главную">{{ partial "logo.html" . }}<span>host<b>.pink</b></span></a>
+  <nav aria-label="Основное"><ul class="nav">
+    {{- range slice (slice "baza" "/baza/" "База") (slice "hostery" "/hostery/" "Хостеры") (slice "platezhki" "/platezhki/" "Платёжки") (slice "zashchita" "/zashchita/" "Защита") (slice "gaidy" "/gaidy/" "Гайды") (slice "slovar" "/slovar/" "Словарь") (slice "tools" "/tools/" "Тулзы") (slice "ask" "/ask" "Спросить ИИ") (slice "donate" "/donate/" "Донат") }}
+    <li{{ if in (slice "slovar" "donate") (index . 0) }} class="nav-opt"{{ end }}><a href="{{ index . 1 }}"{{ if eq $sec (index . 0) }} aria-current="page"{{ end }}>{{ index . 2 }}</a></li>
+    {{- end }}
+  </ul></nav>
+  {{- if not .IsHome }}
+  <form class="mini" action="/go" method="get" role="search">
+    <label for="mq">host.pink/</label>
+    <input id="mq" name="q" accesskey="k" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="IP, домен, AS, вопрос" enterkeyhint="go">
+    <kbd title="Alt+K или Alt+Shift+K">K</kbd>
+  </form>
+  {{- end }}
+  <input type="checkbox" id="theme" aria-label="Сменить тему">
+  <label class="theme" for="theme" title="Сменить тему" {{ if .IsHome }}style="margin-left:auto"{{ end }}><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 2.75a7.25 7.25 0 0 1 0 14.5z" fill="currentColor"/></svg></label>
+</header>

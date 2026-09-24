@@ -1,0 +1,2 @@
+{{- /* пилюля-пруф: дата + ссылка на сообщение */ -}}
+{{- with .proof }}<a class="src" href="{{ . }}" rel="nofollow noopener" target="_blank" title="Исходное сообщение в чате">{{ $.date | default "пруф" }}</a>{{ else }}{{ with $.date }}<span class="src">{{ . }}</span>{{ end }}{{ end }}

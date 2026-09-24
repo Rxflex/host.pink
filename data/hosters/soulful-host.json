@@ -1,0 +1,81 @@
+{
+  "id": "soulful-host",
+  "name": "Soulful.host",
+  "aliases": [
+    "soulful.host",
+    "Soulful"
+  ],
+  "group": "foreign",
+  "site": "https://soulful.host",
+  "countries": [
+    "DE",
+    "BG"
+  ],
+  "asn": [],
+  "summary": "Хостер, открывшийся в июле 2026: VPS на i9-14900K с гео Германии, при этом, по данным чата, реальный ДЦ в Болгарии. Также перепродаёт Hetzner по старым ценам.",
+  "ru_access": {
+    "state": "ok",
+    "note": "В августе 2026 немецкий VPS работал из РФ без моста.",
+    "date": "05.08.2026",
+    "proof": "https://t.me/c/2941121338/1049467"
+  },
+  "prices": [
+    {
+      "text": "1 vCPU / 2 ГБ, i9-14900K — 7 €/мес",
+      "date": "22.07.2026",
+      "proof": "https://t.me/c/2941121338/942053"
+    },
+    {
+      "text": "Германия: 2 vCPU / 4 ГБ / 20 ГБ, 500 Мбит/с — 9 €/мес",
+      "date": "05.08.2026",
+      "proof": "https://t.me/c/2941121338/1049467"
+    }
+  ],
+  "good_for": [
+    "нода"
+  ],
+  "avoid_for": [],
+  "pros": [
+    {
+      "text": "Работает из РФ без моста",
+      "date": "05.08.2026",
+      "proof": "https://t.me/c/2941121338/1049467"
+    },
+    {
+      "text": "Процессоры i9-14900K, порт 10 Гбит/с",
+      "date": "22.07.2026",
+      "proof": "https://t.me/c/2941121338/942053"
+    },
+    {
+      "text": "Реселл Hetzner по старым ценам",
+      "date": "22.07.2026",
+      "proof": "https://t.me/c/2941121338/942440"
+    }
+  ],
+  "cons": [
+    {
+      "text": "Гео заявлено как Германия (DE-CIX/AMS-IX), а физически ДЦ, по данным чата, в Болгарии",
+      "date": "22.07.2026",
+      "proof": "https://t.me/c/2941121338/942053"
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2026-07-22",
+      "text": "Открытие хостинга soulful.host",
+      "proof": "https://t.me/c/2941121338/942053"
+    },
+    {
+      "date": "2026-08-05",
+      "text": "Отзыв: Германия 2/4/20 за 9 €/мес, работает без моста",
+      "proof": "https://t.me/c/2941121338/1049467"
+    }
+  ],
+  "data": "ok",
+  "sources": [
+    "/baza/hosting/zarubezhnye-hostery/#прочие-популярные-зарубежные-европа",
+    "/baza/platezhki/ekonomika-hostinga/",
+    "/baza/hronologiya/2026-07/",
+    "/baza/hronologiya/2026-08/"
+  ]
+}

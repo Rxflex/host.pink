@@ -1,0 +1,30 @@
+{
+  "id": "eternity-cloud",
+  "name": "Eternity Cloud",
+  "aliases": ["EternityCloud", "Eternity", "MegaEternity", "Этернити"],
+  "group": "foreign",
+  "site": "",
+  "countries": [],
+  "asn": [],
+  "summary": "Хостер VPS, известный в чате как Eternity Cloud или MegaEternity. Отзывы противоречивые: в мае 2026 сообщали об исчезнувшем сервере и называли это экзит-скамом, конкурент утверждал, что у Eternity шейпят всех. В конце июля 2026 хостер объявил о перестройке сети.",
+  "ru_access": { "state": "unknown", "note": "Прямых данных нет; 30.07.2026 хостер анонсировал PNI с inetcom, Ростелекомом и Раском, через который пойдёт ~70% трафика до РФ.", "date": "30.07.2026", "proof": "https://t.me/c/2941121338/1002238" },
+  "prices": [],
+  "good_for": [],
+  "avoid_for": [],
+  "pros": [
+    { "text": "Перестраивает сеть: ядро в соседний ДЦ, оптика до Telia, планируемый PNI с российскими операторами", "date": "30.07.2026", "proof": "https://t.me/c/2941121338/1002238" }
+  ],
+  "cons": [
+    { "text": "В чате сообщали, что сервер пользователя «просто исчез», и называли это экзит-скамом", "date": "01.05.2026", "proof": "https://t.me/c/2941121338/432581" },
+    { "text": "Поддержка StenCloud утверждала, что у Eternity «шейпят всех»", "date": "23.08.2026", "proof": "https://t.me/c/2941121338/1176503" }
+  ],
+  "timeline": [
+    { "date": "2026-05-01", "text": "Сообщение об исчезнувшем сервере, в чате заговорили об экзит-скаме", "proof": "https://t.me/c/2941121338/432581" },
+    { "date": "2026-06-14", "text": "Атаку DDoS ~2,5 Тбит/с обсуждали в связке с защитой Eternity", "proof": "https://t.me/c/2941121338/685878" },
+    { "date": "2026-07-14", "text": "Жалоба на ConnectionTimeoutError бот→панель на Eternity Cloud при работающей в браузере панели", "proof": "https://t.me/c/2941121338/868547" },
+    { "date": "2026-07-30", "text": "MegaEternity перестраивает сеть: ядро в соседний ДЦ, оптика до Telia, PNI с inetcom, Ростелекомом и Раском", "proof": "https://t.me/c/2941121338/1002238" },
+    { "date": "2026-08-23", "text": "Поддержка StenCloud заявила, что у Eternity шейпят всех", "proof": "https://t.me/c/2941121338/1176503" }
+  ],
+  "data": "thin",
+  "sources": ["/baza/hronologiya/2026-05/", "/baza/hronologiya/2026-06/", "/baza/hronologiya/2026-07/", "/baza/hronologiya/2025-08/", "/baza/paneli/oshibki-fiksy/"]
+}

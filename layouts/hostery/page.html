@@ -1,0 +1,60 @@
+{{ define "main" }}
+{{- $h := .Params.h }}
+{{- $countries := hugo.Data.countries }}
+<div class="doc">
+  {{ partial "side.html" . }}
+  <div class="aside"><div class="rail">{{ partial "adslot.html" (dict "slot" "hosting" "v" "card") }}</div></div>
+  <article class="article hcard">
+    <ol class="crumbs" aria-label="Путь"><li><a href="/hostery/">Хостеры</a></li><li>{{ cond (eq $h.group "ru") "Российские" "Зарубежные" }}</li></ol>
+    <h1>{{ $h.name }}</h1>
+    {{ with $h.aliases }}<p class="haka">Ещё называют: {{ delimit . ", " }}</p>{{ end }}
+    <p class="lede">{{ $h.summary }}</p>
+
+    <div class="hfacts">
+      <div><span>Из РФ</span>{{ partial "hoster-status.html" ($h.ru_access.state | default "unknown") }}</div>
+      {{ with $h.countries }}<div><span>Страны</span>{{ range $i, $c := . }}{{ if $i }}, {{ end }}{{ index $countries $c | default $c }}{{ end }}</div>{{ end }}
+      {{ with $h.asn }}<div><span>ASN</span>{{ range $i, $a := . }}{{ if $i }}, {{ end }}<a href="/AS{{ $a }}">AS{{ $a }}</a>{{ end }}</div>{{ end }}
+      {{ with $h.site }}<div><span>Сайт</span><a href="{{ . }}" rel="nofollow noopener">{{ strings.TrimSuffix "/" (strings.TrimPrefix "http://" (strings.TrimPrefix "https://" .)) }}</a></div>{{ end }}
+    </div>
+
+    {{ with $h.ru_access }}{{ if .note }}
+    <div class="callout {{ if eq .state "blocked" }}callout-warning{{ else if eq .state "ok" }}callout-tip{{ else }}callout-note{{ end }}" role="note">
+      <p class="callout-t">Доступность из РФ</p>
+      <p>{{ .note }} {{ partial "proof.html" . }}</p>
+    </div>
+    {{ end }}{{ end }}
+
+    {{ if or $h.good_for $h.avoid_for }}
+    <div class="hfor">
+      {{ with $h.good_for }}<p><b>Берут под:</b> {{ range . }}<span class="chip good">{{ . }}</span>{{ end }}</p>{{ end }}
+      {{ with $h.avoid_for }}<p><b>Не советуют под:</b> {{ range . }}<span class="chip bad">{{ . }}</span>{{ end }}</p>{{ end }}
+    </div>
+    {{ end }}
+
+    <div class="dg-cmp hpc">
+      <div class="good"><p class="dg-cmp-t">Хвалят</p>{{ with $h.pros }}<ul>{{ range . }}<li>{{ .text }} {{ partial "proof.html" . }}</li>{{ end }}</ul>{{ else }}<p>Ничего конкретного.</p>{{ end }}</div>
+      <div class="bad"><p class="dg-cmp-t">Ругают</p>{{ with $h.cons }}<ul>{{ range . }}<li>{{ .text }} {{ partial "proof.html" . }}</li>{{ end }}</ul>{{ else }}<p>Ничего конкретного.</p>{{ end }}</div>
+    </div>
+
+    {{ with $h.prices }}
+    <h2 id="ceny">Цены, которые называли</h2>
+    <ul class="hlist-plain">{{ range . }}<li>{{ .text }} {{ partial "proof.html" . }}</li>{{ end }}</ul>
+    {{ end }}
+
+    {{ with $h.timeline }}
+    <h2 id="hronologiya">Что случалось</h2>
+    <ol class="htl">{{ range . }}<li><time>{{ .date }}</time><span>{{ .text }} {{ partial "proof.html" (dict "proof" .proof "date" "пруф") }}</span></li>{{ end }}</ol>
+    {{ end }}
+
+    <h2 id="proverit">Проверить самому</h2>
+    <nav class="quick">
+      {{ range $h.asn }}<a href="/AS{{ . }}">Досье AS{{ . }} и апстримы</a>{{ end }}
+      {{ with $h.site }}{{ $d := strings.TrimSuffix "/" (strings.TrimPrefix "http://" (strings.TrimPrefix "https://" .)) }}<a href="/check/{{ $d }}">Сайт {{ $d }} из разных стран</a>{{ end }}
+      <a href="/gaidy/proverka-novogo-vps/">Чек-лист нового VPS</a>
+    </nav>
+
+    <p class="more">Пересказ сообщений чата сообщества, а не оценка редакции: даты важнее выводов.{{ with $h.sources }} Первоисточники в базе: {{ range $i, $s := . }}{{ if $i }} · {{ end }}<a href="{{ $s }}">{{ $s }}</a>{{ end }}.{{ end }}</p>
+    <div class="rail-end">{{ partial "adslot.html" (dict "slot" "hosting" "v" "wide") }}</div>
+  </article>
+</div>
+{{ end }}

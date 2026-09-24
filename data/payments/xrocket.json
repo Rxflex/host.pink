@@ -1,0 +1,70 @@
+{
+  "id": "xrocket",
+  "name": "xRocket",
+  "aliases": [
+    "XRocket",
+    "@xrocket"
+  ],
+  "kind": "crypto",
+  "site": null,
+  "summary": "Telegram-бот для криптоплатежей и чеков. В базе упоминается мало: без KYC, чеки создаются инлайн-командой, принимается как способ оплаты у RollyPay.",
+  "status": {
+    "state": "unknown",
+    "note": "Свежих данных о работе и проблемах в базе нет",
+    "date": null,
+    "proof": null
+  },
+  "methods": [
+    "крипта"
+  ],
+  "bedolaga": {
+    "state": "unknown",
+    "note": "Отдельной интеграции в Bedolaga в базе нет",
+    "date": null,
+    "proof": null
+  },
+  "fees": [],
+  "requirements": [
+    {
+      "text": "KYC не нужен",
+      "date": "02.06.2026",
+      "proof": "https://t.me/c/2941121338/624676"
+    }
+  ],
+  "pros": [
+    {
+      "text": "Без KYC",
+      "date": "02.06.2026",
+      "proof": "https://t.me/c/2941121338/624676"
+    },
+    {
+      "text": "Чеки создаются инлайн-командой: @xrocket <сумма> или @xrocket 1 @user",
+      "date": "07.08.2026",
+      "proof": "https://t.me/c/2941121338/1064678"
+    },
+    {
+      "text": "RollyPay принимает оплату через XRocket",
+      "date": "23.08.2026",
+      "proof": "https://t.me/c/2941121338/1174749"
+    }
+  ],
+  "cons": [],
+  "timeline": [
+    {
+      "date": "2026-06-02",
+      "text": "В чате: для xrocket KYC не нужен",
+      "proof": "https://t.me/c/2941121338/624676"
+    },
+    {
+      "date": "2026-08-23",
+      "text": "RollyPay x Bedolaga: среди способов оплаты — XRocket",
+      "proof": "https://t.me/c/2941121338/1174749"
+    }
+  ],
+  "data": "thin",
+  "sources": [
+    "/baza/platezhki/komissii/",
+    "/baza/platezhki/profili-platezhek/#rollypay-серая",
+    "/baza/hronologiya/2026-06/"
+  ]
+}

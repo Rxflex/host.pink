@@ -1,0 +1,58 @@
+{
+  "id": "riopay",
+  "name": "RioPay",
+  "aliases": [],
+  "kind": "other",
+  "site": null,
+  "summary": "Платёжка, подключённая в Bedolaga в марте 2026 через вебхуки. Кроме релизов бота, в базе о ней почти ничего нет: ни тарифов, ни отзывов о работе.",
+  "status": {
+    "state": "unknown",
+    "note": "Отзывов о работе в базе нет",
+    "date": null,
+    "proof": null
+  },
+  "methods": [],
+  "bedolaga": {
+    "state": "yes",
+    "note": "Интеграция в боте с 10.03.2026, в кабинете с v3.33.0",
+    "date": "10.03.2026",
+    "proof": "https://t.me/c/2941121338/264151"
+  },
+  "fees": [],
+  "requirements": [],
+  "pros": [],
+  "cons": [
+    {
+      "text": "В интеграции был баг 403 из-за регистра заголовка X-Api-Token, исправлен в v3.34.1",
+      "date": "18.03.2026",
+      "proof": "https://t.me/c/2941121338/278457"
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2026-03-10",
+      "text": "Релиз Bedolaga: интеграция RioPay через вебхуки",
+      "proof": "https://t.me/c/2941121338/264151"
+    },
+    {
+      "date": "2026-03-18",
+      "text": "Bedolaga v3.33.0: RioPay в кабинете",
+      "proof": "https://t.me/c/2941121338/277027"
+    },
+    {
+      "date": "2026-03-18",
+      "text": "RioPay добавлена в REAL_PAYMENT_METHODS",
+      "proof": "https://t.me/c/2941121338/277199"
+    },
+    {
+      "date": "2026-03-18",
+      "text": "Bedolaga v3.34.1: фикс RioPay 403 (x-api-token → X-Api-Token)",
+      "proof": "https://t.me/c/2941121338/278457"
+    }
+  ],
+  "data": "thin",
+  "sources": [
+    "/baza/hronologiya/2026-03/",
+    "/baza/paneli/relizy/"
+  ]
+}

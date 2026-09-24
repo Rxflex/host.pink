@@ -1,0 +1,27 @@
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Content-Security-Policy: default-src 'none'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; form-action 'self'; base-uri 'none'; frame-ancestors 'none'
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+/llms-full.txt
+  Content-Type: text/plain; charset=utf-8
+/*/index.md
+  Content-Type: text/markdown; charset=utf-8
+/dl/*
+  Content-Type: application/octet-stream
+  Cache-Control: public, max-age=300
+/dl/SHA256SUMS
+  Content-Type: text/plain; charset=utf-8
+/dl/version.txt
+  Content-Type: text/plain; charset=utf-8
+/plugins.json
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=300
+/registries.json
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=300

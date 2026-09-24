@@ -1,0 +1,8 @@
+<ol class="crumbs" aria-label="Путь">
+  {{- range .Ancestors.Reverse }}{{ if not .IsHome }}
+  <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+  {{- end }}{{ end }}
+  {{- with .Params.category }}{{ $id := . }}{{ range hugo.Data.guide_categories }}{{ if eq .id $id }}
+  <li><a href="/gaidy/#{{ .id }}">{{ .title }}</a></li>
+  {{- end }}{{ end }}{{ end }}
+</ol>

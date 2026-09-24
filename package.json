@@ -1,0 +1,26 @@
+{
+  "name": "host.pink",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "import": "node scripts/import-bedolaga.mjs",
+    "build": "node scripts/import-bedolaga.mjs && node scripts/build-qr.mjs && node scripts/build-asnames.mjs && node scripts/build-plugins.mjs && node scripts/build-tui.mjs && hugo --minify --cleanDestinationDir && node scripts/build-glossary.mjs && node scripts/build-llms.mjs && node scripts/check-nojs.mjs",
+    "dev:site": "hugo server",
+    "dev": "npm run build && wrangler dev",
+    "dev:local": "npm run build && npm run search:local && wrangler dev --env local",
+    "search": "node scripts/build-search.mjs",
+    "search:local": "node scripts/build-search.mjs && wrangler d1 execute host-pink --local --env local --file .generated/search.sql",
+    "search:remote": "node scripts/build-search.mjs && wrangler d1 execute host-pink --remote --file .generated/search.sql",
+    "check": "node scripts/check-nojs.mjs",
+    "tui": "node scripts/build-tui.mjs",
+    "tui:test": "cd tui && go vet ./... && go test ./...",
+    "types": "wrangler types worker/worker-configuration.d.ts",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "devDependencies": {
+    "hugo-extended": "^0.166.0",
+    "qrcode": "^1.5.4",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.137.0"
+  }
+}

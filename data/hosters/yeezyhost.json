@@ -1,0 +1,41 @@
+{
+  "id": "yeezyhost",
+  "name": "YeezyHost",
+  "aliases": [
+    "Yeezy Host"
+  ],
+  "group": "foreign",
+  "countries": [
+    "SE"
+  ],
+  "asn": [],
+  "summary": "Небольшой хостер с локацией в Швеции на Ryzen 9 5950X. В базе одно упоминание — как недорогой вариант с низким пингом до Швеции.",
+  "ru_access": {
+    "state": "unknown",
+    "note": "Данных о доступности из РФ в базе нет.",
+    "date": "24.02.2026",
+    "proof": "https://t.me/c/2941121338/239716"
+  },
+  "prices": [
+    {
+      "text": "Швеция, Ryzen 9 5950X: 1 vCPU / 2 ГБ / 30 ГБ — 3,6 $/мес",
+      "date": "24.02.2026",
+      "proof": "https://t.me/c/2941121338/239716"
+    }
+  ],
+  "good_for": [],
+  "avoid_for": [],
+  "pros": [
+    {
+      "text": "У автора отзыва самый низкий пинг именно до этой шведской локации",
+      "date": "24.02.2026",
+      "proof": "https://t.me/c/2941121338/239716"
+    }
+  ],
+  "cons": [],
+  "timeline": [],
+  "data": "thin",
+  "sources": [
+    "/baza/hosting/zarubezhnye-hostery/#прочие-популярные-зарубежные-европа"
+  ]
+}

@@ -1,0 +1,10 @@
+{{- $t := .PlainText }}
+{{- if or (hasPrefix $t "id=") (hasPrefix $t "note_") }}
+  {{- $parts := split $t "|" }}
+  {{- $label := "пруф" }}
+  {{- range $parts }}{{ with findRE `^~?\d{2}\.\d{2}\.\d{4}` (strings.TrimSpace .) 1 }}{{ $label = replaceRE `(\d{2}\.\d{2})\.20(\d{2})` "$1.$2" (index . 0) }}{{ end }}{{ end }}
+  {{- if hasPrefix $t "note_" }}{{ $label = printf "%s · %s" (index (split (index $parts 0) ":") 0) $label }}{{ end }}
+<a class="src" href="{{ .Destination | safeURL }}" title="{{ $t }}" rel="nofollow noopener" target="_blank">{{ $label }}</a>
+{{- else }}
+<a href="{{ .Destination | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if hasPrefix .Destination "http" }} rel="noopener"{{ end }}>{{ .Text }}</a>
+{{- end -}}

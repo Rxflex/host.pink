@@ -1,0 +1,34 @@
+{{ define "main" }}
+<div class="doc">
+  {{ partial "side.html" . }}
+  <article class="article" style="grid-column: 2 / -1; max-width: 60rem">
+    {{ partial "crumbs.html" . }}
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.lede }}<p class="lede">{{ . }}</p>{{ end }}
+    {{ with .Content }}<div class="prose" style="max-width: var(--measure)">{{ . }}</div>{{ end }}
+    <nav class="quick" aria-label="Разделы гайдов" style="margin-top:1.5rem">
+      {{- range hugo.Data.guide_categories }}<a href="#{{ .id }}">{{ .title }}</a>{{ end }}
+    </nav>
+    {{- $pages := .RegularPages }}
+    {{- range hugo.Data.guide_categories }}
+    {{- $cat := . }}
+    {{- with where $pages "Params.category" $cat.id }}
+    <section class="gcat" id="{{ $cat.id }}">
+      <h2>{{ $cat.title }}</h2>
+      <p class="gcat-lede">{{ $cat.lede }}</p>
+      <ol class="index">
+        {{- range $i, $p := .ByWeight }}
+        <li><a href="{{ $p.RelPermalink }}">
+          <span class="i-key">{{ $cat.key }}.{{ add $i 1 }}</span>
+          <span class="i-name">{{ $p.Title }}</span>
+          <span class="i-count">{{ $p.ReadingTime }} мин</span>
+          <span class="i-blurb">{{ $p.Params.lede }}</span>
+        </a></li>
+        {{- end }}
+      </ol>
+    </section>
+    {{- end }}
+    {{- end }}
+  </article>
+</div>
+{{ end }}

@@ -1,0 +1,10 @@
+{{ define "main" }}
+<div class="wrap" style="padding-top:2.5rem; padding-bottom:2rem">
+  <article class="article" style="max-width:64rem">
+    <h1>{{ .Title }}</h1>
+    <p class="lede" style="max-width:var(--measure)">{{ .Params.lede }}</p>
+    {{ partial "sponsors.html" (dict "mode" "all" "c" "sponsors-page") }}
+    <div class="prose" style="max-width:var(--measure); margin-top:2rem">{{ .Content }}</div>
+  </article>
+</div>
+{{ end }}

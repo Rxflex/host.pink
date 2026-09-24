@@ -1,0 +1,28 @@
+{
+  "id": "servicepipe",
+  "name": "Servicepipe",
+  "aliases": [],
+  "site": "",
+  "kind": "proxy",
+  "levels": [],
+  "summary": "Сервис защиты от DDoS; в базе есть только одно упоминание: подсети Servicepipe были в сводном списке подсетей из белых списков на 18.06.2026.",
+  "ru_access": {
+    "state": "ok",
+    "note": "Подсети 194.190.0.0/24, 195.161.52.0/23 и 195.161.180.0/24 значились в списке подсетей из белых списков (данные на 18.06.2026).",
+    "date": "18.06.2026",
+    "proof": "https://t.me/c/2941121338/715480"
+  },
+  "good_for": [],
+  "avoid_for": [],
+  "prices": [],
+  "pros": [
+    { "text": "Подсети Servicepipe были в сводном списке подсетей из белых списков", "date": "18.06.2026", "proof": "https://t.me/c/2941121338/715480" }
+  ],
+  "cons": [],
+  "timeline": [
+    { "date": "2026-06-18", "text": "Подсети Servicepipe в сводном списке подсетей из белых списков", "proof": "https://t.me/c/2941121338/715480" }
+  ],
+  "sponsor": false,
+  "data": "thin",
+  "sources": ["/baza/hosting/bs-podseti/", "/baza/tspu/bs-podseti/", "/baza/tspu/cdn-fronting/"]
+}

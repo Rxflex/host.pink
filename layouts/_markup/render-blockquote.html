@@ -1,0 +1,16 @@
+{{- if eq .Type "alert" }}
+{{- $t := lower .AlertType }}
+{{- $names := dict "note" "Заметка" "tip" "Лайфхак" "important" "Важно" "warning" "Грабли" "caution" "Не делай так" }}
+{{- $icons := dict
+  "note" `<circle cx="8" cy="8" r="6.5"/><path d="M8 7v4.5M8 4.6v.1"/>`
+  "tip" `<path d="M6 13.5h4M6.5 11c0-1.5-2.5-2.6-2.5-5a4 4 0 0 1 8 0c0 2.4-2.5 3.5-2.5 5z"/>`
+  "important" `<path d="M8 2.5v7M8 12.6v.1"/>`
+  "warning" `<path d="M8 1.8 14.8 13.8H1.2z"/><path d="M8 6.5v3.5M8 11.7v.1"/>`
+  "caution" `<circle cx="8" cy="8" r="6.5"/><path d="m5.2 5.2 5.6 5.6"/>` }}
+<div class="callout callout-{{ $t }}" role="note">
+  <p class="callout-t"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{{ index $icons $t | safeHTML }}</svg>{{ with .AlertTitle }}{{ . }}{{ else }}{{ index $names $t | default "Заметка" }}{{ end }}</p>
+  {{ .Text }}
+</div>
+{{- else }}
+<blockquote{{ range $k, $v := .Attributes }} {{ $k }}="{{ $v }}"{{ end }}>{{ .Text }}</blockquote>
+{{- end }}

@@ -1,0 +1,9 @@
+node_modules/
+public/
+.generated/
+resources/
+.hugo_build.lock
+.wrangler/
+.dev.vars
+.continuum/
+worker/worker-configuration.d.ts

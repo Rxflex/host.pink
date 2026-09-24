@@ -1,0 +1,10 @@
+{{ define "main" }}
+<div class="wrap" style="padding-top:2.5rem; padding-bottom:2rem">
+  <article class="article" style="max-width:64rem">
+    <h1>{{ .Title }}</h1>
+    <p class="lede" style="max-width:var(--measure)">{{ .Params.lede }}</p>
+    <div style="margin:2rem 0 1rem">{{ partial "tools-list.html" . }}</div>
+    <div class="prose" style="max-width:var(--measure)">{{ .Content }}</div>
+  </article>
+</div>
+{{ end }}

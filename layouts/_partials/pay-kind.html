@@ -1,0 +1,2 @@
+{{- $map := dict "white" "белая" "grey" "серая" "crypto" "крипта" "telegram" "Telegram" "other" "другое" }}
+{{- index $map . | default "—" -}}

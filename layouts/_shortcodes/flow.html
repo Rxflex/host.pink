@@ -1,0 +1,17 @@
+{{- /* Цепочка узлов со стрелками. Строка = узел; «Узел | подпись» — подпись на стрелке, ведущей в узел; «!» в начале — выделить узел.
+{{< flow caption="..." >}}
+Браузер
+Cloudflare | HTTPS
+!nginx | HTTP до 127.0.0.1
+{{< /flow >}} */ -}}
+{{- $lines := slice }}{{ range split (trim .Inner "\n") "\n" }}{{ with trim . " \t\r" }}{{ $lines = $lines | append . }}{{ end }}{{ end }}
+<figure class="dg dg-flow">
+  <ol>
+    {{- range $i, $l := $lines }}
+    {{- $p := split $l "|" }}{{ $name := trim (index $p 0) " " }}{{ $hot := hasPrefix $name "!" }}{{ $name = strings.TrimPrefix "!" $name }}
+    {{- if $i }}<li class="dg-arrow" aria-hidden="true"><span>{{ with index $p 1 }}{{ trim . " " | markdownify }}{{ end }}</span><svg viewBox="0 0 44 12" preserveAspectRatio="none"><path d="M1 6H36" stroke="currentColor" stroke-width="2" fill="none"/><path d="M34 1.5 43 6l-9 4.5z" fill="currentColor"/></svg></li>{{ end }}
+    <li class="dg-node{{ if $hot }} hot{{ end }}">{{ $name | markdownify }}</li>
+    {{- end }}
+  </ol>
+  {{ with .Get "caption" }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
+</figure>

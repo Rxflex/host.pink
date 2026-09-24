@@ -1,0 +1,37 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "host-pink",
+  "main": "worker/src/index.ts",
+  "compatibility_date": "2026-09-23",
+  "assets": {
+    "directory": "./public/",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none",
+    "run_worker_first": ["/", "/help", "/tui", "/tui.sh", "/tui.ps1"]
+  },
+  "ratelimits": [
+    { "name": "RL_TOOLS", "namespace_id": "1001", "simple": { "limit": 30, "period": 60 } },
+    { "name": "RL_AI", "namespace_id": "1002", "simple": { "limit": 3, "period": 60 } }
+  ],
+  "d1_databases": [
+    { "binding": "DB", "database_name": "host-pink", "database_id": "1210931b-ad87-43c2-80f7-fe0d0bcf9ae5" }
+  ],
+  "ai": { "binding": "AI", "remote": true },
+  "routes": [{ "pattern": "host.pink", "custom_domain": true }],
+  "vars": { "AI_MODEL": "@cf/meta/llama-4-scout-17b-16e-instruct" },
+  "observability": { "enabled": true, "head_sampling_rate": 0.1 },
+  // Локальная разработка без аккаунта Cloudflare: всё, кроме ИИ (он бывает только удалённым)
+  "env": {
+    "local": {
+      "d1_databases": [
+        { "binding": "DB", "database_name": "host-pink", "database_id": "1210931b-ad87-43c2-80f7-fe0d0bcf9ae5" }
+      ],
+      "ratelimits": [
+        { "name": "RL_TOOLS", "namespace_id": "1001", "simple": { "limit": 30, "period": 60 } },
+        { "name": "RL_AI", "namespace_id": "1002", "simple": { "limit": 3, "period": 60 } }
+      ],
+      "vars": { "AI_MODEL": "@cf/meta/llama-4-scout-17b-16e-instruct" }
+    }
+  }
+}

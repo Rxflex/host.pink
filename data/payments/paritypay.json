@@ -1,0 +1,43 @@
+{
+  "id": "paritypay",
+  "name": "ParityPay",
+  "aliases": [],
+  "kind": "grey",
+  "summary": "Платёжка, упоминаемая в чате мельком. В июле 2026 подключила Telegram Stars; хвалят за быстрое устранение сбоев.",
+  "status": {
+    "state": "ok",
+    "note": "По отзыву, сбои решает за ~20 минут",
+    "date": "13.08.2026",
+    "proof": "https://t.me/c/2941121338/1105592"
+  },
+  "methods": [
+    "Stars"
+  ],
+  "bedolaga": {
+    "state": "unknown",
+    "note": "В базе упоминаний интеграции нет"
+  },
+  "fees": [],
+  "requirements": [],
+  "pros": [
+    {
+      "text": "Сбой у них решается примерно за 20 минут",
+      "date": "13.08.2026",
+      "proof": "https://t.me/c/2941121338/1105592"
+    }
+  ],
+  "cons": [],
+  "timeline": [
+    {
+      "date": "2026-07-29",
+      "text": "Подключила приём Telegram Stars",
+      "proof": "https://t.me/c/2941121338/994070"
+    }
+  ],
+  "data": "thin",
+  "sources": [
+    "/baza/platezhki/profili-platezhek/#paritypay",
+    "/baza/platezhki/komissii/",
+    "/baza/hronologiya/2026-07/"
+  ]
+}

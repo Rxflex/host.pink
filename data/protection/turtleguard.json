@@ -1,0 +1,36 @@
+{
+  "id": "turtleguard",
+  "name": "TurtleGuard",
+  "aliases": ["Turtle Guard", "Turtle", "Туртл"],
+  "site": "https://turtleguard.cloud/",
+  "kind": "proxy",
+  "levels": [],
+  "summary": "Анти-DDoS-сервис, в базе упоминается трижды: в списке цен на защиту, в разборе атаки «Ивана» 31.07.2026 и в сводке публичных обходов защиты. Спонсор host.pink; в карточке только факты из базы.",
+  "ru_access": {
+    "state": "unknown",
+    "note": "Данных о том, открываются ли ресурсы за TurtleGuard из РФ, в базе нет."
+  },
+  "good_for": [],
+  "avoid_for": [],
+  "prices": [
+    { "text": "От 10 $", "date": "07.08.2026", "proof": "https://t.me/c/2941121338/1060389" }
+  ],
+  "pros": [
+    { "text": "Самый дешёвый из платных вариантов в списке цен на защиту (от 10 $)", "date": "07.08.2026", "proof": "https://t.me/c/2941121338/1060389" }
+  ],
+  "cons": [
+    { "text": "В чате сообщали о публично выложенных обходах защиты Turtle Guard; вектор — юзерагент Happ", "date": "19.08.2026", "proof": "https://t.me/c/2941121338/1145716" }
+  ],
+  "timeline": [
+    { "date": "2026-07-31", "text": "DDoS «Ивана»: после фильтрации на pletx до Turtle доходил остаточный SYN ~200 Мбит/с с ~20 тыс. IP", "proof": "https://t.me/c/2941121338/1005651" },
+    { "date": "2026-08-19", "text": "Публично выложены обходы защиты Turtle Guard", "proof": "https://t.me/c/2941121338/1145716" }
+  ],
+  "sponsor": true,
+  "data": "thin",
+  "sources": [
+    "/baza/set/firewall-ddos/",
+    "/baza/platezhki/ekonomika-hostinga/",
+    "/baza/hronologiya/2026-07/",
+    "/baza/hronologiya/2026-08/"
+  ]
+}

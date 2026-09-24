@@ -1,0 +1,18 @@
+{{- /* Горизонтальные полосы, одна серия. Строка: «Подпись | число»; «!» в начале — выделить.
+{{< bars caption="..." unit="мс" >}}
+Москва | 29
+{{< /bars >}} */ -}}
+{{- $rows := slice }}{{ $max := 0.0 }}
+{{- range split (trim .Inner "\n") "\n" }}{{ with trim . " \t\r" }}
+  {{- $p := split . "|" }}{{ $n := trim (index $p 0) " " }}{{ $v := float (trim (index $p 1) " ") }}
+  {{- $rows = $rows | append (dict "n" (strings.TrimPrefix "!" $n) "v" $v "hot" (hasPrefix $n "!")) }}{{ if gt $v $max }}{{ $max = $v }}{{ end }}
+{{- end }}{{ end }}
+{{- $unit := .Get "unit" | default "" }}
+<figure class="dg dg-bars">
+  <div role="table" aria-label="{{ .Get "caption" | default "График" | plainify }}">
+    {{- range $rows }}
+    <div class="dg-bars-row{{ if .hot }} hot{{ end }}" role="row"><span class="dg-bars-n" role="rowheader">{{ .n }}</span><span class="dg-bars-t" role="cell"><i style="width:max(3px, {{ mul (div .v $max) 100 }}%)"></i></span><span class="dg-bars-v" role="cell">{{ .v }} {{ $unit }}</span></div>
+    {{- end }}
+  </div>
+  {{ with .Get "caption" }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
+</figure>

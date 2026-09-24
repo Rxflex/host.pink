@@ -1,0 +1,50 @@
+{{ define "main" }}
+{{- $all := .RegularPages }}
+{{- $countries := hugo.Data.countries }}
+<div class="wrap tool" style="padding-top:2.5rem;padding-bottom:1rem">
+  <div class="article" style="max-width:84rem">
+    {{ partial "crumbs.html" . }}
+    <h1>{{ .Title }}</h1>
+    <p class="lede" style="max-width:var(--measure)">{{ .Params.lede }}</p>
+
+    <div class="hcat">
+      {{- /* фильтры без JS: радиокнопки + :has() */ -}}
+      <input type="radio" name="hg" id="hg-all" checked><input type="radio" name="hg" id="hg-foreign"><input type="radio" name="hg" id="hg-ru">
+      <input type="radio" name="ha" id="ha-all" checked><input type="radio" name="ha" id="ha-ok"><input type="radio" name="ha" id="ha-partial"><input type="radio" name="ha" id="ha-blocked">
+      <div class="hfilters">
+        <div role="group" aria-label="Где хостер">
+          <label for="hg-all">Все <span>{{ len $all }}</span></label>
+          <label for="hg-foreign">Зарубежные <span>{{ len (where $all "Params.h.group" "foreign") }}</span></label>
+          <label for="hg-ru">Российские <span>{{ len (where $all "Params.h.group" "ru") }}</span></label>
+        </div>
+        <div role="group" aria-label="Доступность из РФ">
+          <label for="ha-all">Любая доступность</label>
+          <label for="ha-ok">{{ partial "hoster-status.html" "ok" }}</label>
+          <label for="ha-partial">{{ partial "hoster-status.html" "partial" }}</label>
+          <label for="ha-blocked">{{ partial "hoster-status.html" "blocked" }}</label>
+        </div>
+      </div>
+
+      <div class="table hlist" role="region" aria-label="Каталог хостеров" tabindex="0"><table>
+        <thead><tr><th>Хостер</th><th>Из РФ</th><th>Страны</th><th>Для чего</th><th>Цены</th><th>Данные на</th></tr></thead>
+        <tbody>
+        {{- range sort $all "Title" }}
+        {{- $h := .Params.h }}
+        <tr class="hrow" data-g="{{ $h.group }}" data-a="{{ $h.ru_access.state | default "unknown" }}">
+          <td><a href="{{ .RelPermalink }}"><b>{{ $h.name }}</b></a>{{ if eq $h.data "thin" }} <small class="thin" title="В базе мало упоминаний">мало данных</small>{{ end }}</td>
+          <td>{{ partial "hoster-status.html" ($h.ru_access.state | default "unknown") }}</td>
+          <td class="hc">{{ range $i, $c := $h.countries }}{{ if $i }}, {{ end }}<span title="{{ index $countries $c | default $c }}">{{ $c }}</span>{{ end }}</td>
+          <td>{{ range $h.good_for }}<span class="chip">{{ . }}</span>{{ end }}</td>
+          <td class="hp">{{ with index $h.prices 0 }}{{ .text }}{{ end }}</td>
+          <td class="hd">{{ with $h.ru_access.date }}{{ . }}{{ end }}</td>
+        </tr>
+        {{- end }}
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="callout callout-note" role="note" style="max-width:var(--measure)"><p class="callout-t">Это не рейтинг и не реклама</p><p>Карточки собраны из сообщений в чате сообщества и пересказаны без эмоций. Доступность из РФ меняется за недели, поэтому смотри на даты и проверяй сам: в каждой карточке есть досье AS хостера и проверка из разных стран. Сырые цитаты лежат в <a href="/baza/hosting/">архиве раздела «Хостинги»</a>.</p></div>
+    {{ partial "adslot.html" (dict "slot" "hosting" "v" "wide") }}
+  </div>
+</div>
+{{ end }}

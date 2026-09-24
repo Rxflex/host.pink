@@ -1,0 +1,10 @@
+{{ define "main" }}
+<div class="wrap" style="padding-top:2.5rem; padding-bottom:2rem">
+  <article class="article" style="max-width:{{ .Params.width | default "var(--measure)" }}">
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.lede }}<p class="lede">{{ . }}</p>{{ end }}
+    <div class="prose">{{ .Content }}</div>
+    {{ block "extra" . }}{{ end }}
+  </article>
+</div>
+{{ end }}

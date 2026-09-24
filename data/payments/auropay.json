@@ -1,0 +1,70 @@
+{
+  "id": "auropay",
+  "name": "AuroPay",
+  "aliases": [
+    "Aura",
+    "AuraPay",
+    "Аурапей",
+    "aurapay.tech"
+  ],
+  "kind": "grey",
+  "site": "https://aurapay.tech",
+  "summary": "Серая платёжка (бывшая Aura), в чате её относят к рынку серых платёжек. По словам участника, работает на одном платёжном шлюзе с Anore. В Bedolaga интеграция есть под именем AuraPay.",
+  "status": {
+    "state": "ok",
+    "note": "Числится в списке действующих серых платёжек",
+    "date": "21.08.2026",
+    "proof": "https://t.me/c/2941121338/1158994"
+  },
+  "methods": [
+    "карты РФ",
+    "СБП"
+  ],
+  "bedolaga": {
+    "state": "yes",
+    "note": "AuraPay в боте с v3.49.0 (карты, СБП, HMAC-SHA256, официальный партнёр), иконка в кабинете v1.47.0",
+    "date": "18.04.2026",
+    "proof": "https://t.me/c/2941121338/371909"
+  },
+  "fees": [
+    {
+      "text": "Курс конвертации как у Lava +1₽; деньги хранятся в рублях, конвертация при выплате",
+      "date": "20.08.2026",
+      "proof": "https://t.me/c/2941121338/1155113"
+    }
+  ],
+  "requirements": [],
+  "pros": [
+    {
+      "text": "Выплаты проходят нормально даже в выходные, вывод около часа",
+      "date": "20.08.2026",
+      "proof": "https://t.me/c/2941121338/1155130"
+    }
+  ],
+  "cons": [],
+  "timeline": [
+    {
+      "date": "2026-04-18",
+      "text": "Интеграция AuraPay в Bedolaga v3.49.0 + Cabinet v1.47.0",
+      "proof": "https://t.me/c/2941121338/371909"
+    },
+    {
+      "date": "2026-08-20",
+      "text": "Представитель Anore: «Аурапей и Anore находятся на одном платёжном шлюзе»",
+      "proof": "https://t.me/c/2941121338/1155139"
+    },
+    {
+      "date": "2026-08-21",
+      "text": "Упомянута в списке серых платёжек как AuroPay (бывшая Aura)",
+      "proof": "https://t.me/c/2941121338/1158994"
+    }
+  ],
+  "data": "thin",
+  "sources": [
+    "/baza/platezhki/profili-platezhek/#auropay-бывшая-aura",
+    "/baza/platezhki/komissii/",
+    "/baza/platezhki/vehi/",
+    "/baza/paneli/relizy/",
+    "/baza/hronologiya/2026-08/"
+  ]
+}

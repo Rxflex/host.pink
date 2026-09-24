@@ -1,0 +1,24 @@
+{
+  "id": "path-net",
+  "name": "Path.net",
+  "aliases": ["Path"],
+  "site": "",
+  "kind": "network",
+  "levels": [],
+  "summary": "Сетевая анти-DDoS-защита. В базе одно упоминание: Path.net открывает список «нормальных» анти-DDoS.",
+  "ru_access": {
+    "state": "unknown",
+    "note": "Данных о том, открываются ли ресурсы за Path.net из РФ, в базе нет."
+  },
+  "good_for": [],
+  "avoid_for": [],
+  "prices": [],
+  "pros": [
+    { "text": "В списке «нормальных» анти-DDoS наряду с Voxility, DDoS-Guard, StormWall и Qrator", "date": "12.08.2026", "proof": "https://t.me/c/2941121338/1103095" }
+  ],
+  "cons": [],
+  "timeline": [],
+  "sponsor": false,
+  "data": "thin",
+  "sources": ["/baza/tspu/metody-obhoda/"]
+}

@@ -1,0 +1,47 @@
+{
+  "id": "stormwall",
+  "name": "StormWall",
+  "aliases": ["Stormwall", "шторм"],
+  "site": "",
+  "kind": "proxy",
+  "levels": [],
+  "summary": "Анти-DDoS-сервис, который в чате называли аналогом Cloudflare для РФ и вносили в список «нормальных» защит. Отзывы расходятся: говорили, что он «держит 8 Тбит», но во время атаки «Ивана» 31.07.2026 спуфинг с миллионов IP его пробивал, а в августе выкладывали публичные обходы.",
+  "ru_access": {
+    "state": "ok",
+    "note": "В чате его называли аналогом Cloudflare для РФ; о блокировках его адресов в базе данных нет.",
+    "date": "16.06.2026",
+    "proof": "https://t.me/c/2941121338/701383"
+  },
+  "good_for": [],
+  "avoid_for": [],
+  "prices": [
+    { "text": "От 80 $", "date": "07.08.2026", "proof": "https://t.me/c/2941121338/1060389" }
+  ],
+  "pros": [
+    { "text": "В чате называли аналогом Cloudflare для РФ", "date": "16.06.2026", "proof": "https://t.me/c/2941121338/701383" },
+    { "text": "В списке «нормальных» анти-DDoS наряду с Path.net, Voxility, DDoS-Guard и Qrator", "date": "12.08.2026", "proof": "https://t.me/c/2941121338/1103095" },
+    { "text": "В чате писали: «шторм 8 Тбит держит»", "date": "17.08.2026", "proof": "https://t.me/c/2941121338/1136516" }
+  ],
+  "cons": [
+    { "text": "Во время атаки «Ивана» спуфинг с миллионов IP пробивал Stormwall", "date": "31.07.2026", "proof": "https://t.me/c/2941121338/1004675" },
+    { "text": "В чате сообщали о публично выложенных обходах защиты Stormwall (VoxiProxy, ~150 тыс. юзеров); вектор — юзерагент Happ", "date": "19.08.2026", "proof": "https://t.me/c/2941121338/1145716" }
+  ],
+  "timeline": [
+    { "date": "2026-01-13", "text": "Stormwall обсуждали среди вариантов DDoS-защиты вместе с fail2ban и CrowdSec", "proof": "https://t.me/c/2941121338/167161" },
+    { "date": "2026-06-16", "text": "Назван аналогом Cloudflare для РФ", "proof": "https://t.me/c/2941121338/701383" },
+    { "date": "2026-07-31", "text": "DDoS «Ивана»: спуфинг с миллионов IP пробивал Stormwall", "proof": "https://t.me/c/2941121338/1004675" },
+    { "date": "2026-08-19", "text": "Публично выложены обходы защиты Stormwall", "proof": "https://t.me/c/2941121338/1145716" }
+  ],
+  "sponsor": false,
+  "data": "ok",
+  "sources": [
+    "/baza/set/firewall-ddos/",
+    "/baza/platezhki/ekonomika-hostinga/",
+    "/baza/tspu/metody-obhoda/",
+    "/baza/hosting/hronologiya/",
+    "/baza/hronologiya/2026-01/",
+    "/baza/hronologiya/2026-06/",
+    "/baza/hronologiya/2026-07/",
+    "/baza/hronologiya/2026-08/"
+  ]
+}

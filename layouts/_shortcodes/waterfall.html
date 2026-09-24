@@ -1,0 +1,24 @@
+{{- /* Водопад фаз по времени. Строка: «Фаза | начало | длительность».
+{{< waterfall caption="..." unit="мс" >}}
+DNS | 0 | 36
+TCP | 36 | 2
+{{< /waterfall >}} */ -}}
+{{- $rows := slice }}{{ $end := 0.0 }}
+{{- range split (trim .Inner "\n") "\n" }}{{ with trim . " \t\r" }}
+  {{- $p := split . "|" }}{{ $s := float (trim (index $p 1) " ") }}{{ $d := float (trim (index $p 2) " ") }}
+  {{- $rows = $rows | append (dict "n" (trim (index $p 0) " ") "s" $s "d" $d) }}{{ if gt (add $s $d) $end }}{{ $end = add $s $d }}{{ end }}
+{{- end }}{{ end }}
+{{- $unit := .Get "unit" | default "мс" }}
+<figure class="dg dg-wf">
+  <div class="dg-wf-grid" role="table" aria-label="{{ .Get "caption" | default "Фазы по времени" | plainify }}">
+    {{- range $i, $r := $rows }}
+    <div class="dg-wf-row" role="row" title="{{ $r.n }}: с {{ $r.s }} до {{ add $r.s $r.d }} {{ $unit }}">
+      <span class="dg-wf-name" role="rowheader">{{ $r.n }}</span>
+      <span class="dg-wf-track" role="cell"><i class="c{{ add (mod $i 5) 1 }}" style="margin-left:{{ mul (div $r.s $end) 100 }}%;width:max(3px, {{ mul (div $r.d $end) 100 }}%)"></i></span>
+      <span class="dg-wf-val" role="cell">{{ $r.d }} {{ $unit }}</span>
+    </div>
+    {{- end }}
+    <div class="dg-wf-row dg-wf-total"><span class="dg-wf-name">Всего</span><span class="dg-wf-track"><i style="width:100%"></i></span><span class="dg-wf-val">{{ $end }} {{ $unit }}</span></div>
+  </div>
+  {{ with .Get "caption" }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
+</figure>

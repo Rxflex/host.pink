@@ -1,0 +1,12 @@
+{{- /* Страница на каждую платёжку из data/payments/*.json */ -}}
+{{- range $id, $p := hugo.Data.payments }}
+  {{- if not (hasPrefix $id "_") }}
+  {{- $.AddPage (dict
+      "kind" "page"
+      "path" $p.id
+      "title" $p.name
+      "content" (dict "mediaType" "text/markdown" "value" ($p.summary | default ""))
+      "params" (dict "p" $p "lede" $p.summary)
+  ) }}
+  {{- end }}
+{{- end }}

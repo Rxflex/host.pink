@@ -1,0 +1,5 @@
+{{- /* статус доступности из РФ: точка + подпись */ -}}
+{{- $s := . | default "unknown" }}
+{{- $map := dict "ok" (slice "up" "из РФ работает") "partial" (slice "slow" "из РФ частично") "blocked" (slice "down" "из РФ в блоке") "unknown" (slice "none" "нет данных") }}
+{{- $v := index $map $s | default (index $map "unknown") }}
+<span class="hst"><span class="st st-{{ index $v 0 }}"></span>{{ index $v 1 }}</span>

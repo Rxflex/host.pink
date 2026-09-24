@@ -1,0 +1,32 @@
+- name: MCP для агентов
+  href: /mcp
+  example: https://host.pink/mcp
+  blurb: Все тулзы и база знаний в Claude, Cursor и любом MCP-агенте. Одна ссылка, без ключей.
+- name: Досье хоста
+  href: /cloudflare.com
+  example: host.pink/example.com
+  blurb: DNS, TCP-пинг, HTTP, владелец IP и доступность из РФ на одной странице.
+- name: Мой IP
+  href: /ip
+  example: curl host.pink/ip
+  blurb: Адрес, ASN, страна и через какой дата-центр Cloudflare ты пришёл.
+- name: DNS
+  href: /dns/cloudflare.com
+  example: host.pink/dns/example.com
+  blurb: A, AAAA, MX, TXT, NS, CAA, HTTPS через DoH 1.1.1.1.
+- name: TCP-пинг
+  href: /ping/8.8.8.8
+  example: host.pink/ping/8.8.8.8:53
+  blurb: Время TCP-рукопожатия с эджа Cloudflare. Не ICMP, и мы этого не скрываем.
+- name: Проверка из разных стран
+  href: /check/cloudflare.com
+  example: host.pink/check/example.com
+  blurb: HTTP, ping, TCP, DNS и MTR с проб Globalping, включая домашних провайдеров РФ.
+- name: Калькулятор подсетей
+  href: /calc/10.0.0.0/22
+  example: host.pink/calc/10.0.0.0/22
+  blurb: Маска, broadcast, диапазон хостов, деление пополам. IPv4 и IPv6, без запросов наружу.
+- name: ASN и префиксы
+  href: /AS13335
+  example: host.pink/AS13335
+  blurb: Кто владеет, что анонсирует, апстримы и RPKI. Данные RIPEstat и bgp.tools.

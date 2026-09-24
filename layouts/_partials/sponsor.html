@@ -1,0 +1,30 @@
+{{- /* Один спонсор в фирменном стиле. Вызов: partial "sponsor.html" (dict "s" спонсор "v" "banner|card" "c" "кампания") */ -}}
+{{- $s := .s }}{{ $v := .v | default "card" }}
+{{- $href := printf "%s?utm_source=host.pink&utm_medium=sponsor&utm_campaign=%s" $s.url (.c | default $v) }}
+{{- $label := printf "Реклама · %s" $s.name }}
+{{- $logo := partial "sponsor-logo.html" $s.id }}
+<aside class="sp sp-{{ $v }} sp-{{ $s.id }}" aria-label="{{ $label }}">
+  <a href="{{ $href }}" rel="sponsored noopener">
+  {{- if eq $s.id "redstone" }}
+    <span class="sp-body">
+      <span class="sp-brand">{{ $logo }}{{ $s.name }}</span>
+      <span class="rs-tag"><i></i>{{ $s.tag }}</span>
+      <span class="sp-h">{{ index $s.headline 0 }} {{ index $s.headline 1 }}</span>
+      <span class="sp-t">{{ $s.text }}</span>
+      <span class="sp-f">{{ range $s.features }}<span>{{ . }}</span>{{ end }}</span>
+      <span class="rs-steps">{{ range $i, $st := $s.steps }}<span><b>{{ add $i 1 | printf "%02d" }}</b>{{ $st }}</span>{{ end }}</span>
+      <span class="sp-cta">{{ $s.cta }}</span>
+    </span>
+  {{- else }}
+    <span class="sp-body">
+      <span class="sp-brand">{{ $logo }}{{ $s.name }}</span>
+      <span class="sp-h">{{ index $s.headline 0 }}<br><em>{{ index $s.headline 1 }}</em></span>
+      <span class="sp-t">{{ $s.text }}</span>
+      <span class="sp-f">{{ range $s.features }}<span>{{ . }}</span>{{ end }}</span>
+      <span class="sp-cta">{{ $s.cta }}</span>
+    </span>
+    <span class="sp-art" aria-hidden="true">{{ $logo }}</span>
+  {{- end }}
+  </a>
+  <small class="sp-label">{{ $label }}</small>
+</aside>

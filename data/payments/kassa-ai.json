@@ -1,0 +1,43 @@
+{
+  "id": "kassa-ai",
+  "name": "Kassa.ai",
+  "aliases": ["KassaAI", "Kassa AI", "Касса AI"],
+  "kind": "grey",
+  "site": null,
+  "summary": "Платёжка с приёмом по СБП, картам и SberPay, встроена в Bedolaga с января 2026. По выборке из мая 2026, её используют несколько крупных VPN-сервисов. Об условиях подключения в базе почти ничего нет.",
+  "status": {
+    "state": "unknown",
+    "note": "Свежих отзывов о работе платёжки в базе нет; последнее упоминание — обновление интеграции в Bedolaga в мае 2026."
+  },
+  "methods": ["СБП", "карты РФ"],
+  "bedolaga": {
+    "state": "yes",
+    "note": "Добавлена в Bedolaga Bot v3.1.3; в v3.33.0 появились варианты СБП и карта, в v3.44.0 — SberPay.",
+    "date": "23.01.2026",
+    "proof": "https://t.me/c/2941121338/191423"
+  },
+  "fees": [
+    { "text": "Разброс по отзывам: у одного 4% в сумме, у другого 15%", "date": "14.01.2026", "proof": "https://t.me/c/2941121338/172386" }
+  ],
+  "requirements": [],
+  "pros": [
+    { "text": "По выборке из 30 крупных VPN (50 тыс.+ пользователей), Kassa.ai стоит у нескольких из них", "date": "05.05.2026", "proof": "https://t.me/c/2941121338/457720" }
+  ],
+  "cons": [
+    { "text": "Если в .env оставить пустым KASSA_AI_SHOP_ID, бот не запускается — строку нужно заполнить или закомментировать", "date": "08.05.2026", "proof": "https://t.me/c/2941121338/470047" }
+  ],
+  "timeline": [
+    { "date": "2026-01-23", "text": "Bedolaga Bot v3.1.3: добавлена Kassa.ai", "proof": "https://t.me/c/2941121338/191423" },
+    { "date": "2026-01-27", "text": "Bedolaga Bot v3.2.0: исправления Kassa ai", "proof": "https://t.me/c/2941121338/197164" },
+    { "date": "2026-03-18", "text": "Bedolaga Bot v3.33.0: в KassaAI появились варианты СБП и карта", "proof": "https://t.me/c/2941121338/277027" },
+    { "date": "2026-04-02", "text": "Bedolaga Bot v3.44.0: SberPay через KassaAI", "proof": "https://t.me/c/2941121338/314970" },
+    { "date": "2026-05-28", "text": "Bedolaga Bot v3.57.0: доработки Kassa.ai", "proof": "https://t.me/c/2941121338/598893" }
+  ],
+  "data": "thin",
+  "sources": [
+    "/baza/paneli/relizy/",
+    "/baza/hosting/ekonomika/",
+    "/baza/hronologiya/2026-01/",
+    "/baza/hronologiya/2026-05/"
+  ]
+}

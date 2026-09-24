@@ -1,0 +1,49 @@
+{
+  "id": "cloudcore",
+  "name": "cloudcore.ru",
+  "aliases": [
+    "cloudcore"
+  ],
+  "group": "ru",
+  "site": "https://cloudcore.ru",
+  "countries": [
+    "RU"
+  ],
+  "asn": [],
+  "summary": "Очень дешёвый российский VPS за 59 ₽/мес. В чате жаловались на медленный диск, IP, которые определяются как иранские, и подмену DNS.",
+  "ru_access": {
+    "state": "unknown",
+    "note": "Данных о доступности мало; жаловались на сильный ТСПУ",
+    "date": "12.08.2026",
+    "proof": "https://t.me/c/2941121338/1100912"
+  },
+  "prices": [
+    {
+      "text": "1 ГБ ОЗУ, IPv4 — 59 ₽/мес, оплата СБП",
+      "date": "04.08.2026",
+      "proof": "https://t.me/c/2941121338/1041850"
+    }
+  ],
+  "good_for": [],
+  "avoid_for": [],
+  "pros": [
+    {
+      "text": "Очень низкая цена, оплата через СБП",
+      "date": "04.08.2026",
+      "proof": "https://t.me/c/2941121338/1041850"
+    }
+  ],
+  "cons": [
+    {
+      "text": "Диск ~1 МБ IOPS, IP определяются как иранские, сильный ТСПУ, подменяет DNS-ответы",
+      "date": "12.08.2026",
+      "proof": "https://t.me/c/2941121338/1100912"
+    }
+  ],
+  "timeline": [],
+  "data": "thin",
+  "sources": [
+    "/baza/hosting/rf-hostery/",
+    "/baza/platezhki/ekonomika-hostinga/"
+  ]
+}

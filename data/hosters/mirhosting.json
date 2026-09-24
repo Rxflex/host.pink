@@ -1,0 +1,27 @@
+{
+  "id": "mirhosting",
+  "name": "MIRhosting",
+  "aliases": ["MIR hosting", "WorkTitans", "Stark Industries"],
+  "group": "foreign",
+  "site": "",
+  "countries": ["NL", "DE"],
+  "asn": [],
+  "summary": "Хостинг-провайдер со стойками в дата-центре nLighten, на которых работали многие мелкие хостеры с русскоязычной аудиторией (VDSina, mchost, UFO, The.Hosting и другие). В начале июня 2026 nLighten обесточил и отключил его оборудование в Нидерландах и Германии, а в чате сообщали об изъятии более 800 серверов налоговой полицией FIOD.",
+  "ru_access": { "state": "unknown", "note": "После отключения оборудования в июне 2026 данных о работе нет.", "date": "08.06.2026", "proof": "https://t.me/c/2941121338/653866" },
+  "prices": [],
+  "good_for": [],
+  "avoid_for": [],
+  "pros": [],
+  "cons": [
+    { "text": "ДЦ nLighten обесточил его стойки — легли VDSina, mchost, MS Host, UFO, The.Hosting и другие", "date": "02.06.2026", "proof": "https://t.me/c/2941121338/623319" },
+    { "text": "В чате сообщали, что FIOD изъяла 800+ серверов (обвинения в обходе санкций и кибератаках)", "date": "03.06.2026", "proof": "https://t.me/c/2941121338/628372" },
+    { "text": "nLighten без предупреждения отключила оборудование в NL и DE — упали десятки VPN-сервисов", "date": "08.06.2026", "proof": "https://t.me/c/2941121338/653866" }
+  ],
+  "timeline": [
+    { "date": "2026-06-02", "text": "nLighten обесточил стойки MIRhosting; легли VDSina, mchost, MS Host, UFO, The.Hosting, hip hosting и др.", "proof": "https://t.me/c/2941121338/623319" },
+    { "date": "2026-06-03", "text": "В чате сообщали об изъятии FIOD 800+ серверов MIRhosting (aka WorkTitans/Stark Industries)", "proof": "https://t.me/c/2941121338/628372" },
+    { "date": "2026-06-08", "text": "nLighten отключила оборудование MIRhosting в Нидерландах и Германии", "proof": "https://t.me/c/2941121338/653866" }
+  ],
+  "data": "thin",
+  "sources": ["/baza/hronologiya/2026-05/", "/baza/hronologiya/2026-06/", "/baza/hosting/hronologiya/", "/baza/tspu/hronologiya/"]
+}

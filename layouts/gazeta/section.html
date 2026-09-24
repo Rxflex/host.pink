@@ -1,0 +1,23 @@
+{{ define "main" }}
+<div class="gz-wrap">
+  <div class="gz-bar">
+    <ol class="crumbs" aria-label="Путь"><li><a href="/baza/hronologiya/">Хронология</a></li></ol>
+  </div>
+  <header class="gz-mast gz-mast-arch">
+    <p class="gz-name">{{ .Title }}</p>
+    <p class="gz-motto">Подшивка за год · {{ len .RegularPages }} выпусков · выходит по мере блокировок</p>
+  </header>
+  <p class="gz-arch-lede">{{ .Params.lede }} Та же хронология списком без шуток: <a href="/baza/hronologiya/">классический режим</a>.</p>
+  <ol class="gz-arch">
+    {{- range .RegularPages.ByWeight.Reverse }}{{ $g := .Params.g }}
+    <li><a href="{{ .RelPermalink }}">
+      <span class="gz-arch-top"><span>№{{ $g.issue }}</span><span>{{ $g.title }}</span></span>
+      <span class="gz-arch-name">Розовый вестник</span>
+      {{ with $g.lead.kicker }}<span class="gz-kicker">{{ . }}</span>{{ end }}
+      <span class="gz-arch-h">{{ $g.lead.headline }}</span>
+      <span class="gz-arch-d">{{ $g.lead.dek }}</span>
+    </a></li>
+    {{- end }}
+  </ol>
+</div>
+{{ end }}

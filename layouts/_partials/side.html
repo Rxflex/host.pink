@@ -1,0 +1,83 @@
+{{- $cur := . }}
+{{- $root := site.GetPage (printf "/%s" .Section) }}
+<nav class="side" id="side" popover aria-label="Разделы">
+  <div class="side-nav">
+    <a href="/baza/">База</a><a href="/hostery/">Хостеры</a><a href="/platezhki/">Платёжки</a><a href="/zashchita/">Защита</a><a href="/gaidy/">Гайды</a><a href="/slovar/">Словарь</a><a href="/tools/">Тулзы</a><a href="/ask">Спросить ИИ</a><a href="/donate/">Донат</a>
+  </div>
+  {{- with $root }}
+  {{- if .Sections }}
+    {{- range .Sections.ByWeight }}
+    <details{{ if or ($cur.IsDescendant .) (eq $cur .) }} open{{ end }}>
+      <summary>{{ with .Params.key }}<span>{{ . }}</span>{{ end }}{{ .Title }}</summary>
+      <ul>
+        <li><a href="{{ .RelPermalink }}"{{ if eq $cur . }} aria-current="page"{{ end }}>Обзор раздела</a></li>
+        {{- range .RegularPages.ByWeight }}
+        <li><a href="{{ .RelPermalink }}"{{ if eq $cur . }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
+        {{- end }}
+      </ul>
+    </details>
+    {{- end }}
+    {{- range .RegularPages.ByWeight }}
+    <ul style="padding:0"><li><a href="{{ .RelPermalink }}"{{ if eq $cur . }} aria-current="page"{{ end }}>{{ .Title }}</a></li></ul>
+    {{- end }}
+  {{- else if eq .Section "hostery" }}
+    {{- $pages := .RegularPages }}
+    {{- range slice (slice "foreign" "Зарубежные") (slice "ru" "Российские") }}{{ $g := index . 0 }}
+    {{- with where $pages "Params.h.group" $g }}
+    <details{{ if or (not $cur.Params.h) (eq $cur.Params.h.group $g) }} open{{ end }}>
+      <summary>{{ cond (eq $g "ru") "Российские" "Зарубежные" }}</summary>
+      <ul>
+        {{- range sort . "Title" }}
+        <li><a href="{{ .RelPermalink }}"{{ if eq $cur . }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
+        {{- end }}
+      </ul>
+    </details>
+    {{- end }}{{ end }}
+  {{- else if eq .Section "platezhki" }}
+    {{- $pages := .RegularPages }}
+    {{- range slice (slice "white" "Белые") (slice "grey" "Серые") (slice "crypto" "Крипта") (slice "telegram" "Telegram") (slice "other" "Другие") }}{{ $k := index . 0 }}{{ $t := index . 1 }}
+    {{- with where $pages "Params.p.kind" $k }}
+    <details{{ if or (not $cur.Params.p) (eq $cur.Params.p.kind $k) }} open{{ end }}>
+      <summary>{{ $t }}</summary>
+      <ul>
+        {{- range sort . "Title" }}
+        <li><a href="{{ .RelPermalink }}"{{ if eq $cur . }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
+        {{- end }}
+      </ul>
+    </details>
+    {{- end }}{{ end }}
+  {{- else if eq .Section "zashchita" }}
+    {{- $pages := .RegularPages }}
+    {{- range slice (slice "proxy" "Прокси L7") (slice "network" "Сеть L3/L4") (slice "hosting" "Хостинг с защитой") }}{{ $k := index . 0 }}{{ $t := index . 1 }}
+    {{- with where $pages "Params.z.kind" $k }}
+    <details open>
+      <summary>{{ $t }}</summary>
+      <ul>
+        {{- range sort . "Title" }}
+        <li><a href="{{ .RelPermalink }}"{{ if eq $cur . }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
+        {{- end }}
+      </ul>
+    </details>
+    {{- end }}{{ end }}
+  {{- else if eq .Section "gaidy" }}
+    {{- $pages := .RegularPages }}
+    {{- range hugo.Data.guide_categories }}{{ $cat := . }}
+    {{- with where $pages "Params.category" $cat.id }}
+    <details{{ if eq $cur.Params.category $cat.id }} open{{ end }}>
+      <summary><span>{{ $cat.key }}</span>{{ $cat.title }}</summary>
+      <ul>
+        {{- range .ByWeight }}
+        <li><a href="{{ .RelPermalink }}"{{ if eq $cur . }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
+        {{- end }}
+      </ul>
+    </details>
+    {{- end }}{{ end }}
+  {{- else }}
+    <ul style="padding:0">
+      {{- range .RegularPages.ByWeight }}
+      <li><a href="{{ .RelPermalink }}"{{ if eq $cur . }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
+      {{- end }}
+    </ul>
+  {{- end }}
+  {{- end }}
+</nav>

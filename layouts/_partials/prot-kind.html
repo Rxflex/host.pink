@@ -1,0 +1,2 @@
+{{- $map := dict "proxy" "прокси L7" "network" "сеть L3/L4" "hosting" "хостинг с защитой" }}
+{{- index $map . | default "—" -}}

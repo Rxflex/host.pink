@@ -1,0 +1,39 @@
+{{ define "main" }}
+<div class="progress" aria-hidden="true"></div>
+<div class="wrap" style="padding-top:2.5rem">
+  <article class="article" style="max-width:60rem">
+    <h1>{{ .Title }}</h1>
+    <p class="lede">{{ .Params.lede }}</p>
+    <div class="swatches">
+      {{- range slice "paper" "paper-2" "ink" "ink-2" "dye" "dye-ink" "rule" "up" "slow" "down" }}
+      <div class="swatch"><i style="--s:var(--{{ . }})"></i><span>--{{ . }}</span></div>
+      {{- end }}
+    </div>
+    <div class="prose" style="max-width:var(--measure); margin-top:2rem">{{ .Content }}</div>
+
+    <h2 style="margin-top:3rem">Досье хоста</h2>
+    <div class="report" style="max-width:var(--measure)">
+      <section class="card is-up">
+        <h2><span class="st st-up"></span>DNS <small>1.1.1.1, 18 мс</small></h2>
+        <dl class="kv"><dt>A</dt><dd>104.16.132.229, 104.16.133.229</dd><dt>AAAA</dt><dd>2606:4700::6810:84e5</dd><dt>NS</dt><dd>ns3.cloudflare.com, ns4.cloudflare.com</dd></dl>
+      </section>
+      <section class="card is-slow">
+        <h2><span class="st st-slow"></span>TCP-пинг :443 <small>с эджа FRA</small></h2>
+        <dl class="kv"><dt>мин / ср / макс</dt><dd>41 / 57 / 112 мс</dd><dt>потери</dt><dd>0 из 4</dd></dl>
+        <span class="bar" style="--w:57%; --c:var(--slow)"><i></i></span>
+      </section>
+      <section class="card is-down">
+        <h2><span class="st st-down"></span>Доступность из РФ <small>Globalping, 5 проб</small></h2>
+        <dl class="kv"><dt>Москва</dt><dd>таймаут</dd><dt>Санкт-Петербург</dt><dd>таймаут</dd><dt>Екатеринбург</dt><dd>200 OK, 212 мс</dd></dl>
+        <details><summary>Сырой ответ</summary><pre>RU Moscow Rostelecom: connect ETIMEDOUT</pre></details>
+      </section>
+      <section class="card">
+        <h2><span class="st st-none"></span>BGP <small class="pending">ждём RIPEstat</small></h2>
+      </section>
+    </div>
+
+    <h2 style="margin-top:3rem">Статусы</h2>
+    <p><span class="st st-up"></span>работает <span class="st st-slow" style="margin-left:1.5rem"></span>медленно <span class="st st-down" style="margin-left:1.5rem"></span>лежит <span class="st st-none" style="margin-left:1.5rem"></span>нет данных</p>
+  </article>
+</div>
+{{ end }}

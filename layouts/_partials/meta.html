@@ -1,0 +1,8 @@
+<div class="meta">
+  {{- with .Params.period }}<span>Период: {{ . }}</span>{{ end }}
+  {{- with .Params.proofs }}<span>Пруфов: {{ . }}</span>{{ end }}
+  {{- with .Params.actual }}<span>Актуально для {{ . }}</span>{{ end }}
+  {{- if not .Lastmod.IsZero }}<span>Обновлено {{ .Lastmod.Format "02.01.2006" }}</span>{{ end }}
+  {{- with .Params.source }}<span><a href="{{ . }}">Исходник</a></span>{{ end }}
+  <span>{{ .ReadingTime }} мин чтения</span>
+</div>

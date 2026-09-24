@@ -1,0 +1,108 @@
+{
+  "id": "cloudpayments",
+  "name": "CloudPayments",
+  "aliases": [
+    "Cloudpayments"
+  ],
+  "kind": "white",
+  "summary": "Легальный эквайринг, который VPN-проекты подключают по договору; интегрирован в Bedolaga с конца 2025 года. По условиям для самозанятых в базе есть расхождения.",
+  "status": {
+    "state": "ok",
+    "note": "Подключает мерчантов; в августе жаловались на неделю без ответа поддержки",
+    "date": "22.08.2026",
+    "proof": "https://t.me/c/2941121338/1168613"
+  },
+  "methods": [
+    "СБП"
+  ],
+  "bedolaga": {
+    "state": "yes",
+    "note": "В боте с v2.9.4: серверные заказы /orders/create, вебхуки HMAC-SHA256",
+    "date": "30.12.2025",
+    "proof": "https://t.me/c/2941121338/143268"
+  },
+  "fees": [
+    {
+      "text": "Стандарт 4%; у одного мерчанта 0% (без юрлица)",
+      "date": "22.08.2026",
+      "proof": "https://t.me/c/2941121338/1168613"
+    },
+    {
+      "text": "Для самозанятых называли 2.6%",
+      "date": "22.08.2026",
+      "proof": "https://t.me/c/2941121338/1168986"
+    },
+    {
+      "text": "Вывод на СБП, курс рапира +2%",
+      "date": "22.08.2026",
+      "proof": "https://t.me/c/2941121338/1168986"
+    }
+  ],
+  "requirements": [
+    {
+      "text": "СБП подключают без самозанятости",
+      "date": "22.08.2026",
+      "proof": "https://t.me/c/2941121338/1168986"
+    }
+  ],
+  "pros": [
+    {
+      "text": "Интегрирована в Bedolaga: серверные заказы и HMAC-SHA256 вебхуки",
+      "date": "30.12.2025",
+      "proof": "https://t.me/c/2941121338/143268"
+    },
+    {
+      "text": "Низкие ставки у части мерчантов: 4% стандарт, у одного 0%",
+      "date": "22.08.2026",
+      "proof": "https://t.me/c/2941121338/1168613"
+    }
+  ],
+  "cons": [
+    {
+      "text": "В январе 2026 писали, что самозанятым CloudPayments не работает (в отличие от ЮKassa)",
+      "date": "01.2026",
+      "proof": "https://t.me/c/2941121338/199467"
+    },
+    {
+      "text": "Не отвечает неделю",
+      "date": "12.08.2026",
+      "proof": "https://t.me/c/2941121338/1099958"
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2025-12-30",
+      "text": "Интеграция в Bedolaga v2.9.4",
+      "proof": "https://t.me/c/2941121338/143268"
+    },
+    {
+      "date": "2026-01-27",
+      "text": "Bedolaga v3.2.0: фиксы интеграции CloudPayments",
+      "proof": "https://t.me/c/2941121338/197164"
+    },
+    {
+      "date": "2026-03-08",
+      "text": "Bedolaga: CloudPayments process_referral_topup",
+      "proof": "https://t.me/c/2941121338/260119"
+    },
+    {
+      "date": "2026-08-12",
+      "text": "Жалоба: платёжка не отвечает неделю",
+      "proof": "https://t.me/c/2941121338/1099958"
+    },
+    {
+      "date": "2026-08-22",
+      "text": "Озвучены условия: 4% стандарт, у одного мерчанта 0%",
+      "proof": "https://t.me/c/2941121338/1168613"
+    }
+  ],
+  "data": "ok",
+  "sources": [
+    "/baza/platezhki/profili-platezhek/#cloudpayments",
+    "/baza/platezhki/komissii/",
+    "/baza/paneli/relizy/",
+    "/baza/hronologiya/2026-01/",
+    "/baza/hronologiya/2026-08/",
+    "/baza/hronologiya/2025-08/"
+  ]
+}

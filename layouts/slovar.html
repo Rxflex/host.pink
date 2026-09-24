@@ -1,0 +1,27 @@
+{{ define "main" }}
+{{- $g := hugo.Data.glossary }}
+<div class="wrap" style="padding-top:2.5rem; padding-bottom:2rem">
+  <article class="article gls-page">
+    <h1>{{ .Title }}</h1>
+    <p class="lede">{{ .Params.lede }}</p>
+    <nav class="quick gls-cats" aria-label="Разделы словаря">
+      {{- range $g.cats }}<a href="#{{ .id }}">{{ .title }}</a>{{ end }}
+    </nav>
+    <div class="callout callout-tip" role="note"><p class="callout-t">С чего начать</p><p>Если непонятно, почему «пинг есть, а ничего не работает», прочитай <a href="/gaidy/tspu-na-paltsah/">ТСПУ на пальцах</a>: там на схемах, как устроена фильтрация, какие бывают блокировки и как отличить одну от другой.</p></div>
+    {{- range $g.cats }}{{ $c := . }}
+    <h2 id="{{ $c.id }}">{{ $c.title }}</h2>
+    <dl class="gls">
+      {{- range where $g.terms "cat" $c.id }}
+      <div class="gls-i" id="{{ .id }}">
+        <dt><a href="#{{ .id }}">{{ .term }}</a>{{ with .also }} <small>{{ . }}</small>{{ end }}</dt>
+        <dd>
+          {{- if .body }}{{ .body | markdownify }}{{ else }}<p>{{ .short }}</p>{{ end }}
+          {{- with .link }}<p class="gls-more"><a href="{{ . }}">Подробнее</a></p>{{ end }}
+        </dd>
+      </div>
+      {{- end }}
+    </dl>
+    {{- end }}
+  </article>
+</div>
+{{ end }}

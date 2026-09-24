@@ -1,0 +1,41 @@
+{{ define "main" }}
+<div class="doc">
+  {{ partial "side.html" . }}
+  <article class="article" style="grid-column: 2 / -1; max-width: 60rem">
+    {{ partial "crumbs.html" . }}
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.lede }}<p class="lede">{{ . }}</p>{{ end }}
+    {{- if eq .RelPermalink "/baza/hosting/" }}<div class="callout callout-tip" role="note" style="max-width:60rem"><p class="callout-t">Сначала загляни в каталог</p><p>Ниже — архив цитат из чата. Сводка по каждому хостеру с датами и пруфами: <a href="/hostery/">каталог хостеров</a>.</p></div>{{ end }}
+    {{- if eq .RelPermalink "/baza/platezhki/" }}<div class="callout callout-tip" role="note" style="max-width:60rem"><p class="callout-t">Сначала загляни в каталог</p><p>Ниже — архив цитат из чата. Сводка по каждой платёжке с датами и пруфами: <a href="/platezhki/">каталог платёжек</a>.</p></div>{{ end }}
+    {{- if eq .RelPermalink "/baza/hronologiya/" }}{{ with site.GetPage "/gazeta" }}{{ with .RegularPages.ByWeight.Reverse }}{{ $last := index . 0 }}
+    <a class="gz-promo" href="/gazeta/" style="max-width:60rem"><span class="gz-promo-name">Розовый вестник</span><span class="gz-promo-t">Та же хронология в формате газеты: главное за месяц, заголовки и цифры месяца. Свежий выпуск №{{ $last.Params.g.issue }}: «{{ $last.Params.g.lead.headline }}»</span><span class="gz-promo-go">Читать газету</span></a>
+    {{- end }}{{ end }}{{ end }}
+    {{- with index hugo.Data.adslots.sections (index (split (strings.TrimPrefix "/" .RelPermalink) "/") 1) }}{{ if eq . "payments" }}<div class="slot-top" style="max-width:60rem">{{ partial "adslot.html" (dict "slot" . "v" "wide") }}</div>{{ end }}{{ end }}
+    {{ with .Content }}<div class="prose" style="max-width: var(--measure)">{{ . }}</div>{{ end }}
+    {{ with .Sections }}
+    <ol class="index" style="margin-top:2rem">
+      {{- range .ByWeight }}
+      <li><a href="{{ .RelPermalink }}">
+        <span class="i-key">{{ .Params.key }}</span>
+        <span class="i-name">{{ .Title }}</span>
+        <span class="i-count">{{ len .RegularPages }} док.</span>
+        <span class="i-blurb">{{ .Params.lede }}</span>
+      </a></li>
+      {{- end }}
+    </ol>
+    {{ end }}
+    {{ with .RegularPages }}
+    <ol class="index" style="margin-top:2rem">
+      {{- range $i, $p := .ByWeight }}
+      <li><a href="{{ $p.RelPermalink }}">
+        <span class="i-key">{{ add $i 1 | printf "%02d" }}</span>
+        <span class="i-name">{{ $p.Title }}</span>
+        <span class="i-count">{{ with $p.Params.proofs }}{{ . }} пруф.{{ end }}</span>
+        <span class="i-blurb">{{ $p.Params.lede }}</span>
+      </a></li>
+      {{- end }}
+    </ol>
+    {{ end }}
+  </article>
+</div>
+{{ end }}

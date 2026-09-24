@@ -1,0 +1,36 @@
+{{ define "main" }}
+{{- $plugins := slice }}{{ range $id, $p := hugo.Data.plugins }}{{ $plugins = $plugins | append $p }}{{ end }}
+<div class="wrap" style="padding-top:2.5rem; padding-bottom:2rem">
+  <article class="article tui-page">
+    <h1>{{ .Title }}</h1>
+    <p class="lede">{{ .Params.lede }}</p>
+
+    <div class="tui-install">
+      <div><p class="tui-os">Linux, macOS, FreeBSD</p><code class="tui-cmd">curl -fsSL host.pink/tui | sh</code></div>
+      <div><p class="tui-os">Windows PowerShell</p><code class="tui-cmd">irm host.pink/tui | iex</code></div>
+    </div>
+    <p class="tui-note">Установщик определяет систему, скачивает бинарник с host.pink, сверяет SHA-256 и запускает. Скрипты можно прочитать до запуска: <a href="/tui.sh">tui.sh</a>, <a href="/tui.ps1">tui.ps1</a>. Бинарники и контрольные суммы: <a href="/dl/SHA256SUMS">/dl/SHA256SUMS</a>.</p>
+
+    <div class="prose">{{ .Content }}</div>
+
+    <h2 id="plugins">Плагины в каталоге</h2>
+    <p>Официальный реестр <a href="https://github.com/Rxflex/hostpink-registry">Rxflex/hostpink-registry</a>, {{ len $plugins }} плагинов. У каждого указан автор: код остаётся в его репозитории и на его условиях.</p>
+    <div class="table hlist" role="region" aria-label="Плагины hostpink" tabindex="0"><table>
+      <thead><tr><th>Плагин</th><th>Что делает</th><th>Автор</th><th>Где</th><th>Запуск</th></tr></thead>
+      <tbody>
+      {{- range sort $plugins "category" }}
+      <tr>
+        <td><b>{{ .title }}</b><br><small class="thin" style="border:0;padding:0">{{ .category }}</small></td>
+        <td style="min-width:18rem">{{ .description }}{{ if .fetches_latest }} <small class="thin" title="Скрипт при запуске докачивает свежий код из своей ветки">докачивает код</small>{{ end }}</td>
+        <td><a href="https://github.com/{{ .repo }}/tree/{{ .ref }}" rel="nofollow noopener">{{ .author }}</a></td>
+        <td class="hc">{{ delimit .platforms ", " }}{{ if .needs_root }}<br><span style="color:var(--slow)">root</span>{{ end }}</td>
+        <td><code>hostpink run {{ .id }}</code></td>
+      </tr>
+      {{- end }}
+      </tbody>
+    </table></div>
+
+    <p class="more">Код hostpink и реестра распространяется под <a href="https://github.com/Rxflex/host.pink/blob/main/LICENSE.md">PolyForm Noncommercial 1.0.0</a>: пользоваться, менять и делиться можно бесплатно и в некоммерческих целях, с указанием авторства. Коммерческое использование запрещено.</p>
+  </article>
+</div>
+{{ end }}

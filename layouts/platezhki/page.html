@@ -1,0 +1,66 @@
+{{ define "main" }}
+{{- $p := .Params.p }}
+{{- $kinds := dict "white" "Белые" "grey" "Серые" "crypto" "Крипта" "telegram" "Telegram" "other" "Другие" }}
+<div class="doc">
+  {{ partial "side.html" . }}
+  <div class="aside"><div class="rail">{{ partial "adslot.html" (dict "slot" "payments" "v" "card") }}</div></div>
+  <article class="article hcard">
+    <ol class="crumbs" aria-label="Путь"><li><a href="/platezhki/">Платёжки</a></li><li>{{ index $kinds $p.kind | default "Прочие" }}</li></ol>
+    <h1>{{ $p.name }}</h1>
+    {{ with $p.aliases }}<p class="haka">Ещё называют: {{ delimit . ", " }}</p>{{ end }}
+    <p class="lede">{{ $p.summary }}</p>
+
+    <div class="hfacts">
+      <div><span>Статус</span>{{ partial "pay-status.html" ($p.status.state | default "unknown") }}</div>
+      <div><span>Тип</span><span><span class="pk pk-{{ $p.kind }}">{{ partial "pay-kind.html" $p.kind }}</span></span></div>
+      <div><span>В Bedolaga</span>{{ with $p.bedolaga }}{{ if eq .state "yes" }}есть интеграция{{ else if eq .state "no" }}нет{{ else }}нет данных{{ end }}{{ else }}нет данных{{ end }}</div>
+      {{ with $p.site }}<div><span>Сайт</span><a href="{{ . }}" rel="nofollow noopener">{{ strings.TrimSuffix "/" (strings.TrimPrefix "http://" (strings.TrimPrefix "https://" .)) }}</a></div>{{ end }}
+    </div>
+
+    {{ with $p.status }}{{ if .note }}
+    <div class="callout {{ if eq .state "dead" }}callout-warning{{ else if eq .state "ok" }}callout-tip{{ else }}callout-note{{ end }}" role="note">
+      <p class="callout-t">Что с ней сейчас</p>
+      <p>{{ .note }} {{ partial "proof.html" . }}</p>
+    </div>
+    {{ end }}{{ end }}
+
+    {{ if or $p.methods (and $p.bedolaga $p.bedolaga.note) }}
+    <div class="hfor">
+      {{ with $p.methods }}<p><b>Принимает:</b> {{ range . }}<span class="chip">{{ . }}</span>{{ end }}</p>{{ end }}
+      {{ with $p.bedolaga }}{{ if .note }}<p><b>В боте:</b> {{ .note }} {{ partial "proof.html" . }}</p>{{ end }}{{ end }}
+    </div>
+    {{ end }}
+
+    <div class="dg-cmp hpc">
+      <div class="good"><p class="dg-cmp-t">Хвалят</p>{{ with $p.pros }}<ul>{{ range . }}<li>{{ .text }} {{ partial "proof.html" . }}</li>{{ end }}</ul>{{ else }}<p>Ничего конкретного.</p>{{ end }}</div>
+      <div class="bad"><p class="dg-cmp-t">Ругают</p>{{ with $p.cons }}<ul>{{ range . }}<li>{{ .text }} {{ partial "proof.html" . }}</li>{{ end }}</ul>{{ else }}<p>Ничего конкретного.</p>{{ end }}</div>
+    </div>
+
+    {{ with $p.fees }}
+    <h2 id="komissii">Комиссии и выплаты</h2>
+    <ul class="hlist-plain">{{ range . }}<li>{{ .text }} {{ partial "proof.html" . }}</li>{{ end }}</ul>
+    {{ end }}
+
+    {{ with $p.requirements }}
+    <h2 id="podklyuchenie">Что требуют при подключении</h2>
+    <ul class="hlist-plain">{{ range . }}<li>{{ .text }} {{ partial "proof.html" . }}</li>{{ end }}</ul>
+    {{ end }}
+
+    {{ with $p.timeline }}
+    <h2 id="hronologiya">Что случалось</h2>
+    <ol class="htl">{{ range . }}<li><time>{{ .date }}</time><span>{{ .text }} {{ partial "proof.html" (dict "proof" .proof "date" "пруф") }}</span></li>{{ end }}</ol>
+    {{ end }}
+
+    <h2 id="dalshe">Что почитать</h2>
+    <nav class="quick">
+      <a href="/baza/platezhki/komissii/">Комиссии всех платёжек</a>
+      <a href="/baza/platezhki/env-vebhuki/">Вебхуки и env в боте</a>
+      <a href="/baza/platezhki/riski-skam/">Риски и скам</a>
+      <a href="/baza/platezhki/yunit-ekonomika/">Юнит-экономика</a>
+    </nav>
+
+    <p class="more">Пересказ сообщений чата сообщества, а не оценка редакции: даты важнее выводов.{{ with $p.sources }} Первоисточники в базе: {{ range $i, $s := . }}{{ if $i }} · {{ end }}<a href="{{ $s }}">{{ $s }}</a>{{ end }}.{{ end }}</p>
+    <div class="rail-end">{{ partial "adslot.html" (dict "slot" "payments" "v" "wide") }}</div>
+  </article>
+</div>
+{{ end }}

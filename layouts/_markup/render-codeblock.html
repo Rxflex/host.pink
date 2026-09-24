@@ -1,0 +1,11 @@
+{{- $name := .Attributes.name | default .Attributes.title }}
+{{- $lang := .Type | default "text" }}
+{{- $oneLine := and (in (slice "sh" "bash" "shell" "console" "zsh") $lang) (not (strings.Contains (strings.TrimSpace .Inner) "\n")) }}
+{{- $hl := transform.Highlight .Inner $lang (.Options | default "") }}
+{{- if $name }}
+<div class="code"><div class="code-name"><span>{{ $name }}</span><span>{{ $lang }}</span></div>{{ $hl }}</div>
+{{- else if $oneLine }}
+<div class="code cmd" title="Клик выделяет всю команду">{{ $hl }}</div>
+{{- else }}
+<div class="code">{{ $hl }}</div>
+{{- end }}
