@@ -13,6 +13,7 @@ var (
 	cPink2  = lipgloss.Color("#E6007A")
 	cViolet = lipgloss.Color("#9C6EEA")
 	cDim    = lipgloss.Color("#9A8497")
+	cRule   = lipgloss.Color("#6E5A6C")
 	cOK     = lipgloss.Color("#3DDC97")
 	cWarn   = lipgloss.Color("#FFB547")
 	cBad    = lipgloss.Color("#FF6B5E")

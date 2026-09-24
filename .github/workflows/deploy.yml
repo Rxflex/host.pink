@@ -12,6 +12,9 @@ concurrency: deploy
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      # без секретов Cloudflare (форки, первый пуш) собираем и тестируем, но не деплоим
+      HAS_CF: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -40,12 +43,14 @@ jobs:
       - run: CI=1 npm run types && npx tsc -p worker
 
       - name: Обновить поисковый индекс в D1
+        if: env.HAS_CF == 'true'
         run: npm run search:remote
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
       - name: Деплой
+        if: env.HAS_CF == 'true'
         run: npx wrangler deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

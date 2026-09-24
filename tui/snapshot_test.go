@@ -20,30 +20,55 @@ func TestSnapshots(t *testing.T) {
 	save := func(name string, m *app) {
 		_ = os.WriteFile(filepath.Join(dir, name+".ans"), []byte(m.View().Content), 0o644)
 	}
-	m := newApp(false)
-	m.Update(tea.WindowSizeMsg{Width: 100, Height: 34})
+	settle := func(m *app) {
+		m.tSp, m.fSp, m.lSp = spring{pos: float64(m.tSel)}, spring{pos: float64(m.fSel)}, spring{pos: float64(m.lSel)}
+	}
+	cat := loadCatalog()
+	me := &myIP{IP: "203.0.113.7", ASN: 64500, Country: "NL"}
+	mk := func(w, h int) *app {
+		m := newApp(false)
+		m.Update(tea.WindowSizeMsg{Width: w, Height: h})
+		m.me, m.cat, m.scr = me, &cat, sHome
+		m.omni.Focus()
+		return m
+	}
+
+	m := mk(110, 36)
 	m.start = time.Now().Add(-700 * time.Millisecond)
-	m.frame = 40
+	m.scr, m.frame = sSplash, 40
 	save("1-splash", m)
 
-	m.me = &myIP{IP: "203.0.113.7", ASN: 64500, Country: "NL"}
-	m.toMenu()
-	m.sel, m.pos, m.frame = 2, 2, 80
-	save("2-menu", m)
+	m = mk(110, 36)
+	m.frame = 80
+	m.omni.SetValue("решала")
+	save("2-home-omni", m)
 
-	small := newApp(false)
-	small.Update(tea.WindowSizeMsg{Width: 80, Height: 24})
-	small.me, small.scr, small.sel, small.pos = m.me, sMenu, 4, 4
-	save("2b-menu-80x24", small)
+	m = mk(110, 30)
+	m.zone, m.fSel, m.frame = zFeat, 1, 80
+	m.omni.Blur()
+	settle(m)
+	save("2b-home-feat", m)
 
-	c := loadCatalog()
-	m.cat = &c
-	m.scr, m.pSel, m.ppos = sPlugins, 2, 2
+	m = mk(80, 24)
+	m.zone, m.tSel = zTools, 2
+	m.omni.Blur()
+	settle(m)
+	save("2c-home-80x24", m)
+
+	m = mk(120, 32)
+	m.scr, m.lSel, m.frame = sPlugins, 1, 80
+	settle(m)
 	save("3-plugins", m)
 
-	p, _ := findPlugin(c, "reshala")
-	m.plug, m.scr = p, sPlugin
-	save("4-plugin", m)
+	m.filter.SetValue("бэкап")
+	m.lSel = 0
+	settle(m)
+	save("3b-plugins-filter", m)
+
+	m.filter.SetValue("")
+	m.pFocus, m.lSel = 1, 0
+	settle(m)
+	save("4-plugin-actions", m)
 
 	req, _ := http.NewRequest("GET", "https://host.pink/1.1.1.1?text", nil)
 	req.Header.Set("User-Agent", "curl/8.5")
@@ -53,12 +78,14 @@ func TestSnapshots(t *testing.T) {
 	}
 	b, _ := io.ReadAll(resp.Body)
 	resp.Body.Close()
+	m = mk(110, 32)
 	m.Update(textMsg{title: "Досье · 1.1.1.1", body: string(b)})
-	m.scr, m.back, m.cur = sResult, sMenu, menu[1]
+	m.scr, m.back, m.cur = sResult, sHome, tools[0]
 	save("5-result", m)
 
-	m.cur, m.inMode = menu[1], "tool"
-	m.in.Placeholder = menu[1].placeholder
+	m = mk(110, 32)
+	m.cur, m.inMode = tools[0], "tool"
+	m.in.Placeholder = tools[0].placeholder
 	m.scr = sInput
 	m.in.Focus()
 	save("6-input", m)

@@ -46,6 +46,8 @@ type Plugin struct {
 	Files         []PFile  `json:"files" toml:"files"`
 	Actions       []Action `json:"actions" toml:"actions"`
 	Source        string   `json:"source,omitempty" toml:"source"`
+	Featured      bool     `json:"featured,omitempty" toml:"-"`
+	Group         string   `json:"-" toml:"-"` // группа в списке клиента: «Рекомендуем», категория…
 
 	// заполняется клиентом
 	Registry string `json:"registry,omitempty" toml:"-"` // откуда плагин: host.pink, id реестра или git
