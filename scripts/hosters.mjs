@@ -16,7 +16,7 @@ export function loadHosters(root) {
     .sort((a, b) => a.name.localeCompare(b.name, "ru"));
 }
 
-const item = (x) => `- ${x.text}${x.date ? ` (${x.date}${x.proof ? `, [пруф](${x.proof})` : ""})` : ""}${checkMark(x)}`;
+const item = (x) => `- ${x.text}${x.date ? ` (${x.date}${x.proof ? `, [пруф](${x.proof})` : x.via ? `, ${x.via}` : ""})` : ""}${checkMark(x)}`;
 
 export function hosterMarkdown(h, site = "https://host.pink") {
   const a = h.ru_access ?? {};

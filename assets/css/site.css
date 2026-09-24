@@ -269,7 +269,7 @@ kbd { border: 1px solid var(--rule); border-bottom-width: 2px; border-radius: va
 .prose :not(pre) > code { padding: .1em .3em; border-radius: var(--r); background: var(--paper-2); overflow-wrap: anywhere; }
 
 /* пруфы на сообщения из чата */
-a.src { display: inline-block; padding: 0 .35em; border: 1px solid var(--rule); border-radius: 1em; font-size: .6875rem; line-height: 1.55; color: var(--ink-2); text-decoration: none; vertical-align: .15em; white-space: nowrap; font-variant-numeric: tabular-nums; }
+a.src, span.src { display: inline-block; padding: 0 .35em; border: 1px solid var(--rule); border-radius: 1em; font-size: .6875rem; line-height: 1.55; color: var(--ink-2); text-decoration: none; vertical-align: .15em; white-space: nowrap; font-variant-numeric: tabular-nums; }
 a.src:hover { color: var(--dye-ink); border-color: var(--dye); }
 
 /* код */

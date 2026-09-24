@@ -15,7 +15,7 @@ export function loadProtection(root) {
     .sort((a, b) => a.name.localeCompare(b.name, "ru"));
 }
 
-const item = (x) => `- ${x.text}${x.date ? ` (${x.date}${x.proof ? `, [пруф](${x.proof})` : ""})` : ""}${checkMark(x)}`;
+const item = (x) => `- ${x.text}${x.date ? ` (${x.date}${x.proof ? `, [пруф](${x.proof})` : x.via ? `, ${x.via}` : ""})` : ""}${checkMark(x)}`;
 const list = (title, arr) => (arr?.length ? `## ${title}\n\n${arr.map(item).join("\n")}\n` : "");
 
 export function protectionMarkdown(p) {
