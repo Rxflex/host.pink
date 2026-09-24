@@ -31,11 +31,11 @@
         {{- range sort $all "Title" }}
         {{- $h := .Params.h }}
         <tr class="hrow" data-g="{{ $h.group }}" data-a="{{ $h.ru_access.state | default "unknown" }}">
-          <td><a href="{{ .RelPermalink }}"><b>{{ $h.name }}</b></a>{{ if eq $h.data "thin" }} <small class="thin" title="В базе мало упоминаний">мало данных</small>{{ end }}</td>
+          <td><a href="{{ .RelPermalink }}"><b>{{ $h.name }}</b></a>{{ if eq $h.data "thin" }} <small class="thin" title="В базе мало упоминаний">мало данных</small>{{ end }}{{ with $h.review }}{{ if ne .fresh "ok" }} <span class="ck ck-old">{{ if eq .fresh "dead" }}не работает{{ else }}устарело{{ end }}</span>{{ end }}{{ with .verdict }}<small class="rv-row">{{ . }}</small>{{ end }}{{ end }}</td>
           <td>{{ partial "hoster-status.html" ($h.ru_access.state | default "unknown") }}</td>
           <td class="hc">{{ range $i, $c := $h.countries }}{{ if $i }}, {{ end }}<span title="{{ index $countries $c | default $c }}">{{ $c }}</span>{{ end }}</td>
           <td>{{ range $h.good_for }}<span class="chip">{{ . }}</span>{{ end }}</td>
-          <td class="hp">{{ with index $h.prices 0 }}{{ .text }}{{ end }}</td>
+          <td class="hp">{{ with where $h.prices "check" "!=" "outdated" }}{{ with index . 0 }}{{ .text }}{{ end }}{{ end }}</td>
           <td class="hd">{{ with $h.ru_access.date }}{{ . }}{{ end }}</td>
         </tr>
         {{- end }}

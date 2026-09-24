@@ -13,6 +13,7 @@
     <div class="hfacts">
       <div><span>Статус</span>{{ partial "pay-status.html" ($p.status.state | default "unknown") }}</div>
       <div><span>Тип</span><span><span class="pk pk-{{ $p.kind }}">{{ partial "pay-kind.html" $p.kind }}</span></span></div>
+      <div><span>Рекурренты</span>{{ with $p.recurring }}{{ if eq .state "yes" }}<span style="color:var(--up)">есть</span>{{ else if eq .state "no" }}нет{{ else }}нет данных{{ end }}{{ else }}нет данных{{ end }}</div>
       <div><span>В Bedolaga</span>{{ with $p.bedolaga }}{{ if eq .state "yes" }}есть интеграция{{ else if eq .state "no" }}нет{{ else }}нет данных{{ end }}{{ else }}нет данных{{ end }}</div>
       {{ with $p.site }}<div><span>Сайт</span><a href="{{ . }}" rel="nofollow noopener">{{ strings.TrimSuffix "/" (strings.TrimPrefix "http://" (strings.TrimPrefix "https://" .)) }}</a></div>{{ end }}
     </div>
@@ -24,31 +25,34 @@
     </div>
     {{ end }}{{ end }}
 
-    {{ if or $p.methods (and $p.bedolaga $p.bedolaga.note) }}
+    {{ partial "review.html" (dict "r" $p.review "o" $p.official) }}
+
+    {{ if or $p.methods (and $p.bedolaga $p.bedolaga.note) $p.recurring }}
     <div class="hfor">
       {{ with $p.methods }}<p><b>Принимает:</b> {{ range . }}<span class="chip">{{ . }}</span>{{ end }}</p>{{ end }}
       {{ with $p.bedolaga }}{{ if .note }}<p><b>В боте:</b> {{ .note }} {{ partial "proof.html" . }}</p>{{ end }}{{ end }}
+      {{ with $p.recurring }}{{ if .note }}<p><b>Рекурренты:</b> {{ .note }}{{ with .source }} <a class="src" href="{{ . }}" rel="nofollow noopener" target="_blank">{{ $.Params.p.recurring.date | default "источник" }}</a>{{ end }}</p>{{ end }}{{ end }}
     </div>
     {{ end }}
 
     <div class="dg-cmp hpc">
-      <div class="good"><p class="dg-cmp-t">Хвалят</p>{{ with $p.pros }}<ul>{{ range . }}<li>{{ .text }} {{ partial "proof.html" . }}</li>{{ end }}</ul>{{ else }}<p>Ничего конкретного.</p>{{ end }}</div>
-      <div class="bad"><p class="dg-cmp-t">Ругают</p>{{ with $p.cons }}<ul>{{ range . }}<li>{{ .text }} {{ partial "proof.html" . }}</li>{{ end }}</ul>{{ else }}<p>Ничего конкретного.</p>{{ end }}</div>
+      <div class="good"><p class="dg-cmp-t">Хвалят</p>{{ with $p.pros }}<ul>{{ range . }}<li{{ if eq .check "outdated" }} class="is-old"{{ end }}>{{ .text }} {{ partial "proof.html" . }}{{ partial "check.html" . }}</li>{{ end }}</ul>{{ else }}<p>Ничего конкретного.</p>{{ end }}</div>
+      <div class="bad"><p class="dg-cmp-t">Ругают</p>{{ with $p.cons }}<ul>{{ range . }}<li{{ if eq .check "outdated" }} class="is-old"{{ end }}>{{ .text }} {{ partial "proof.html" . }}{{ partial "check.html" . }}</li>{{ end }}</ul>{{ else }}<p>Ничего конкретного.</p>{{ end }}</div>
     </div>
 
     {{ with $p.fees }}
     <h2 id="komissii">Комиссии и выплаты</h2>
-    <ul class="hlist-plain">{{ range . }}<li>{{ .text }} {{ partial "proof.html" . }}</li>{{ end }}</ul>
+    <ul class="hlist-plain">{{ range . }}<li{{ if eq .check "outdated" }} class="is-old"{{ end }}>{{ .text }} {{ partial "proof.html" . }}{{ partial "check.html" . }}</li>{{ end }}</ul>
     {{ end }}
 
     {{ with $p.requirements }}
     <h2 id="podklyuchenie">Что требуют при подключении</h2>
-    <ul class="hlist-plain">{{ range . }}<li>{{ .text }} {{ partial "proof.html" . }}</li>{{ end }}</ul>
+    <ul class="hlist-plain">{{ range . }}<li{{ if eq .check "outdated" }} class="is-old"{{ end }}>{{ .text }} {{ partial "proof.html" . }}{{ partial "check.html" . }}</li>{{ end }}</ul>
     {{ end }}
 
     {{ with $p.timeline }}
     <h2 id="hronologiya">Что случалось</h2>
-    <ol class="htl">{{ range . }}<li><time>{{ .date }}</time><span>{{ .text }} {{ partial "proof.html" (dict "proof" .proof "date" "пруф") }}</span></li>{{ end }}</ol>
+    <ol class="htl">{{ range . }}<li{{ if eq .check "outdated" }} class="is-old"{{ end }}><time>{{ .date }}</time><span>{{ .text }} {{ partial "proof.html" (dict "proof" .proof "date" "пруф") }}{{ partial "check.html" . }}</span></li>{{ end }}</ol>
     {{ end }}
 
     <h2 id="dalshe">Что почитать</h2>

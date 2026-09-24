@@ -17,6 +17,12 @@
   "methods": [
     "крипта"
   ],
+  "recurring": {
+    "state": "no",
+    "note": "В Pay API только разовые инвойсы, чеки, выплаты и выводы; подписок и автосписаний в документации нет",
+    "source": "https://docs.xrocket.exchange/api/pay/reference/pay-rest-api",
+    "date": "24.09.2026"
+  },
   "bedolaga": {
     "state": "unknown",
     "note": "Отдельной интеграции в Bedolaga в базе нет",
@@ -28,24 +34,32 @@
     {
       "text": "KYC не нужен",
       "date": "02.06.2026",
-      "proof": "https://t.me/c/2941121338/624676"
+      "proof": "https://t.me/c/2941121338/624676",
+      "check": "unverified",
+      "check_note": "Одно сообщение 02.06"
     }
   ],
   "pros": [
     {
       "text": "Без KYC",
       "date": "02.06.2026",
-      "proof": "https://t.me/c/2941121338/624676"
+      "proof": "https://t.me/c/2941121338/624676",
+      "check": "unverified",
+      "check_note": "Одно сообщение 02.06"
     },
     {
       "text": "Чеки создаются инлайн-командой: @xrocket <сумма> или @xrocket 1 @user",
       "date": "07.08.2026",
-      "proof": "https://t.me/c/2941121338/1064678"
+      "proof": "https://t.me/c/2941121338/1064678",
+      "check": "confirmed",
+      "check_note": "Чеки есть в Pay API xRocket"
     },
     {
       "text": "RollyPay принимает оплату через XRocket",
       "date": "23.08.2026",
-      "proof": "https://t.me/c/2941121338/1174749"
+      "proof": "https://t.me/c/2941121338/1174749",
+      "check": "confirmed",
+      "check_note": "Также в списке способов оплаты RollyPay 13.06 (684162)"
     }
   ],
   "cons": [],
@@ -53,12 +67,15 @@
     {
       "date": "2026-06-02",
       "text": "В чате: для xrocket KYC не нужен",
-      "proof": "https://t.me/c/2941121338/624676"
+      "proof": "https://t.me/c/2941121338/624676",
+      "check": "unverified",
+      "check_note": "Одно сообщение"
     },
     {
       "date": "2026-08-23",
       "text": "RollyPay x Bedolaga: среди способов оплаты — XRocket",
-      "proof": "https://t.me/c/2941121338/1174749"
+      "proof": "https://t.me/c/2941121338/1174749",
+      "check": "confirmed"
     }
   ],
   "data": "thin",
@@ -66,5 +83,45 @@
     "/baza/platezhki/komissii/",
     "/baza/platezhki/profili-platezhek/#rollypay-серая",
     "/baza/hronologiya/2026-06/"
-  ]
+  ],
+  "official": {
+    "checked": "2026-09-24",
+    "url": "https://xrocket.exchange/",
+    "facts": [
+      {
+        "text": "Сейчас называют себя CEX и SocialFi-платформой в Telegram; на главной обещают комиссию 1,5%",
+        "url": "https://xrocket.exchange/"
+      },
+      {
+        "text": "docs.xrocket.tg редиректит на docs.xrocket.exchange; pay.xrocket.tg/api подписан как Legacy API",
+        "url": "https://pay.xrocket.tg/api/"
+      },
+      {
+        "text": "Pay API: инвойсы, чеки, выплаты, массовые выплаты, вывод на внешние кошельки, курсы; подписок нет",
+        "url": "https://docs.xrocket.exchange/api/pay/reference/pay-rest-api"
+      },
+      {
+        "text": "Комиссии за вывод по активу и сети отдаются через эндпоинт квот, в доках цифр нет",
+        "url": "https://docs.xrocket.exchange/api/pay/reference/pay-rest-api"
+      },
+      {
+        "text": "Вебхуки подписаны; перед продом советуют тестнет",
+        "url": "https://docs.xrocket.exchange/api/pay/pay-api-overview"
+      }
+    ]
+  },
+  "review": {
+    "checked": "2026-09-24",
+    "fresh": "ok",
+    "verdict": "Криптокошелёк и биржа в Telegram с Pay API на инвойсах и чеках. Для крипты удобно, подписок нет.",
+    "text": "xRocket в базе упоминается мимоходом: в июне писали, что KYC не нужен, в августе показывали, как делать чеки инлайном (@xrocket и сумма), а RollyPay в партнёрском посте перечисляла XRocket среди способов оплаты. Отдельной интеграции в Bedolaga нет.\n\nСейчас xRocket называет себя CEX и SocialFi-платформой в Telegram, документация переехала на docs.xrocket.exchange, старый pay.xrocket.tg помечен как Legacy API. В Pay API есть инвойсы, чеки, выплаты, массовые выплаты и вывод на внешние кошельки, вебхуки подписаны. Подписок и автосписаний в API нет. Комиссии за вывод отдаются через эндпоинт квот, на главной обещают 1,5% без расшифровки.\n\nЯ бы использовал xRocket как кошелёк для крипты или как способ оплаты внутри другого агрегатора. Своей кассой под VPN он не станет: рекуррентов нет, а про KYC есть только одно сообщение.",
+    "for": [
+      "Кто принимает крипту и хочет чеки прямо в Telegram",
+      "Как способ оплаты через RollyPay"
+    ],
+    "against": [
+      "Кому нужны карты и СБП",
+      "Кому нужны автосписания"
+    ]
+  }
 }

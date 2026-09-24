@@ -1,6 +1,7 @@
 // Карточки платёжек (data/payments/*.json) для поиска, llms.txt и markdown-копий
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { checkMark, reviewMd, reviewPlain } from "./review-md.mjs";
 
 export const KIND = { white: "белая", grey: "серая", crypto: "крипта", telegram: "Telegram", other: "другое" };
 export const STATE = { ok: "работает", issues: "работает с проблемами", dead: "не работает", unknown: "нет данных" };
@@ -15,7 +16,7 @@ export function loadPayments(root) {
     .sort((a, b) => a.name.localeCompare(b.name, "ru"));
 }
 
-const item = (x) => `- ${x.text}${x.date ? ` (${x.date}${x.proof ? `, [пруф](${x.proof})` : ""})` : ""}`;
+const item = (x) => `- ${x.text}${x.date ? ` (${x.date}${x.proof ? `, [пруф](${x.proof})` : ""})` : ""}${checkMark(x)}`;
 const list = (title, arr) => (arr?.length ? `## ${title}\n\n${arr.map(item).join("\n")}\n` : "");
 
 export function paymentMarkdown(p) {
@@ -37,8 +38,9 @@ export function paymentMarkdown(p) {
     list("Ругают", p.cons),
     list("Комиссии и выплаты", p.fees),
     list("Что требуют при подключении", p.requirements),
-    p.timeline?.length ? `## Что случалось\n\n${p.timeline.map((t) => `- ${t.date}: ${t.text}${t.proof ? ` ([пруф](${t.proof}))` : ""}`).join("\n")}\n` : "",
-    "Пересказ сообщений чата сообщества Bedolaga Social Club, а не оценка редакции: даты важнее выводов.",
+    p.timeline?.length ? `## Что случалось\n\n${p.timeline.map((t) => `- ${t.date}: ${t.text}${t.proof ? ` ([пруф](${t.proof}))` : ""}${checkMark(t)}`).join("\n")}\n` : "",
+    reviewMd(p.review, p.official),
+    "Пункты выше — пересказ сообщений чата сообщества Bedolaga Social Club с пометками проверки; разбор — мнение редакции host.pink.",
   ]
     .filter((l) => l !== "")
     .join("\n");
@@ -46,7 +48,7 @@ export function paymentMarkdown(p) {
 
 // для поиска: без ссылок и служебных строк
 export function paymentPlain(p) {
-  return [p.name, (p.aliases ?? []).join(" "), p.summary, p.status?.note, p.bedolaga?.note, ...["pros", "cons", "fees", "requirements"].flatMap((k) => (p[k] ?? []).map((x) => x.text)), ...(p.timeline ?? []).map((x) => `${x.date} ${x.text}`)]
+  return [p.name, (p.aliases ?? []).join(" "), p.summary, p.status?.note, p.bedolaga?.note, ...["pros", "cons", "fees", "requirements"].flatMap((k) => (p[k] ?? []).map((x) => x.text)), ...(p.timeline ?? []).map((x) => `${x.date} ${x.text}`), reviewPlain(p.review, p.official)]
     .filter(Boolean)
     .join("\n");
 }

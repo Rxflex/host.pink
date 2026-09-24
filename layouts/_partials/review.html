@@ -1,0 +1,23 @@
+{{- /* Разбор host.pink и факты с официального сайта. Вызов: partial "review.html" (dict "r" .review "o" .official) */ -}}
+{{- with .r }}
+<section class="rv" aria-labelledby="razbor">
+  <h2 id="razbor">Разбор host.pink</h2>
+  {{ with .verdict }}<p class="rv-verdict">{{ . }}</p>{{ end }}
+  {{ with .text }}<div class="rv-text">{{ . | markdownify }}</div>{{ end }}
+  {{ if or .for .against }}
+  <div class="rv-cols">
+    {{ with .for }}<div class="rv-for"><p class="rv-t">Кому подходит</p><ul>{{ range . }}<li>{{ . }}</li>{{ end }}</ul></div>{{ end }}
+    {{ with .against }}<div class="rv-against"><p class="rv-t">Кому не стоит</p><ul>{{ range . }}<li>{{ . }}</li>{{ end }}</ul></div>{{ end }}
+  </div>
+  {{ end }}
+  <p class="rv-meta">Разбор от {{ (time.AsTime .checked).Format "02.01.2006" }}.{{ if eq .fresh "stale" }} <span class="ck ck-old">часть данных устарела</span>{{ else if eq .fresh "dead" }} <span class="ck ck-old">похоже, сервис не работает</span>{{ end }} Мнение редакции по фактам из чата сообщества и с сайта сервиса. Пометки у пунктов ниже показывают, что подтвердилось, а что устарело.</p>
+</section>
+{{- end }}
+{{- with .o }}
+<section class="rv-site" aria-labelledby="sayt">
+  <h2 id="sayt">С официального сайта</h2>
+  {{ with .facts }}<ul class="hlist-plain">{{ range . }}<li>{{ .text }} <a class="src" href="{{ .url }}" rel="nofollow noopener" target="_blank" title="Страница, где это написано">сайт</a></li>{{ end }}</ul>{{ end }}
+  {{ with .unavailable }}<p class="rv-meta">Сайт проверить не удалось: {{ . }}</p>{{ end }}
+  <p class="rv-meta">Проверено {{ (time.AsTime .checked).Format "02.01.2006" }}{{ with .url }} на <a href="{{ . }}" rel="nofollow noopener">{{ strings.TrimSuffix "/" (strings.TrimPrefix "www." (strings.TrimPrefix "http://" (strings.TrimPrefix "https://" .))) }}</a>{{ end }}. Цены и правила меняются, перед оплатой сверься с сайтом.</p>
+</section>
+{{- end }}

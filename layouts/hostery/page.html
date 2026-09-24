@@ -24,6 +24,8 @@
     </div>
     {{ end }}{{ end }}
 
+    {{ partial "review.html" (dict "r" $h.review "o" $h.official) }}
+
     {{ if or $h.good_for $h.avoid_for }}
     <div class="hfor">
       {{ with $h.good_for }}<p><b>Берут под:</b> {{ range . }}<span class="chip good">{{ . }}</span>{{ end }}</p>{{ end }}
@@ -32,18 +34,18 @@
     {{ end }}
 
     <div class="dg-cmp hpc">
-      <div class="good"><p class="dg-cmp-t">Хвалят</p>{{ with $h.pros }}<ul>{{ range . }}<li>{{ .text }} {{ partial "proof.html" . }}</li>{{ end }}</ul>{{ else }}<p>Ничего конкретного.</p>{{ end }}</div>
-      <div class="bad"><p class="dg-cmp-t">Ругают</p>{{ with $h.cons }}<ul>{{ range . }}<li>{{ .text }} {{ partial "proof.html" . }}</li>{{ end }}</ul>{{ else }}<p>Ничего конкретного.</p>{{ end }}</div>
+      <div class="good"><p class="dg-cmp-t">Хвалят</p>{{ with $h.pros }}<ul>{{ range . }}<li{{ if eq .check "outdated" }} class="is-old"{{ end }}>{{ .text }} {{ partial "proof.html" . }}{{ partial "check.html" . }}</li>{{ end }}</ul>{{ else }}<p>Ничего конкретного.</p>{{ end }}</div>
+      <div class="bad"><p class="dg-cmp-t">Ругают</p>{{ with $h.cons }}<ul>{{ range . }}<li{{ if eq .check "outdated" }} class="is-old"{{ end }}>{{ .text }} {{ partial "proof.html" . }}{{ partial "check.html" . }}</li>{{ end }}</ul>{{ else }}<p>Ничего конкретного.</p>{{ end }}</div>
     </div>
 
     {{ with $h.prices }}
     <h2 id="ceny">Цены, которые называли</h2>
-    <ul class="hlist-plain">{{ range . }}<li>{{ .text }} {{ partial "proof.html" . }}</li>{{ end }}</ul>
+    <ul class="hlist-plain">{{ range . }}<li{{ if eq .check "outdated" }} class="is-old"{{ end }}>{{ .text }} {{ partial "proof.html" . }}{{ partial "check.html" . }}</li>{{ end }}</ul>
     {{ end }}
 
     {{ with $h.timeline }}
     <h2 id="hronologiya">Что случалось</h2>
-    <ol class="htl">{{ range . }}<li><time>{{ .date }}</time><span>{{ .text }} {{ partial "proof.html" (dict "proof" .proof "date" "пруф") }}</span></li>{{ end }}</ol>
+    <ol class="htl">{{ range . }}<li{{ if eq .check "outdated" }} class="is-old"{{ end }}><time>{{ .date }}</time><span>{{ .text }} {{ partial "proof.html" (dict "proof" .proof "date" "пруф") }}{{ partial "check.html" . }}</span></li>{{ end }}</ol>
     {{ end }}
 
     <h2 id="proverit">Проверить самому</h2>

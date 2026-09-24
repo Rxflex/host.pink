@@ -18,6 +18,12 @@
   "methods": [
     "крипта"
   ],
+  "recurring": {
+    "state": "no",
+    "note": "Crypto Pay даёт разовые инвойсы, подписки в CryptoBot только для закрытых каналов и групп. В базе рекуррентов нет. Доки API (help.send.tg) не открылись",
+    "source": "https://help.crypt.bot/faq",
+    "date": "24.09.2026"
+  },
   "bedolaga": {
     "state": "yes",
     "note": "Есть в боте из коробки с v2.2.5 (09.09.2025): CRYPTOBOT_* в env, вебхук /cryptobot-webhook",
@@ -28,7 +34,9 @@
     {
       "text": "Курс USD/RUB бот берёт с ЦБ РФ + exchangerate-api.com, кеш 1 час",
       "date": "09.09.2025",
-      "proof": "https://t.me/c/2941121338/4757"
+      "proof": "https://t.me/c/2941121338/4757",
+      "check": "confirmed",
+      "check_note": "Это логика бота, не тариф CryptoBot"
     }
   ],
   "requirements": [],
@@ -36,91 +44,114 @@
     {
       "text": "Много монет: USDT, TON, BTC, ETH, LTC, BNB, TRX, USDC",
       "date": "09.09.2025",
-      "proof": "https://t.me/c/2941121338/4757"
+      "proof": "https://t.me/c/2941121338/4757",
+      "check": "confirmed",
+      "check_note": "FAQ CryptoBot: USDT (ERC20/TRC20/BEP20), TON, BTC, LTC, ETH, BNB, TRX, USDC"
     },
     {
       "text": "Появилась оплата по QR",
       "date": "04.12.2025",
-      "proof": "https://t.me/c/2941121338/88926"
+      "proof": "https://t.me/c/2941121338/88926",
+      "check": "unverified",
+      "check_note": "Одно сообщение"
     },
     {
       "text": "Работает для подарочных подписок в Bedolaga",
       "date": "09.03.2026",
-      "proof": "https://t.me/c/2941121338/262329"
+      "proof": "https://t.me/c/2941121338/262329",
+      "check": "confirmed"
     },
     {
       "text": "В кабинете Bedolaga CryptoBot доступен как способ вывода",
       "date": "03.08.2026",
-      "proof": "https://t.me/c/2941121338/1033881"
+      "proof": "https://t.me/c/2941121338/1033881",
+      "check": "confirmed"
     }
   ],
   "cons": [
     {
       "text": "Интеграция в боте часто ломалась в 2025: 404 на вебхуке, ошибки подписи, greenlet_spawn",
       "date": "13.11.2025",
-      "proof": "https://t.me/c/2941121338/66583"
+      "proof": "https://t.me/c/2941121338/66583",
+      "check": "confirmed"
     },
     {
       "text": "Подпись вебхуков пришлось переделывать (3 стратегии) в v3.34.1",
       "date": "18.03.2026",
-      "proof": "https://t.me/c/2941121338/278457"
+      "proof": "https://t.me/c/2941121338/278457",
+      "check": "confirmed"
     },
     {
       "text": "В чате сообщали, что CryptoBot заблокировал аккаунт после возврата лишних денег",
       "date": "29.07.2026",
-      "proof": "https://t.me/c/2941121338/995323"
+      "proof": "https://t.me/c/2941121338/995323",
+      "check": "unverified",
+      "check_note": "Одно сообщение; риск описан в FAQ: кошелёк привязан к Telegram-аккаунту"
     }
   ],
   "timeline": [
     {
       "date": "2025-09-09",
       "text": "Bedolaga v2.2.5: интеграция CryptoBot",
-      "proof": "https://t.me/c/2941121338/4757"
+      "proof": "https://t.me/c/2941121338/4757",
+      "check": "confirmed"
     },
     {
       "date": "2025-11-10",
       "text": "Bedolaga v2.6.2: фикс округления CryptoBot",
-      "proof": "https://t.me/c/2941121338/59851"
+      "proof": "https://t.me/c/2941121338/59851",
+      "check": "confirmed"
     },
     {
       "date": "2025-11-13",
       "text": "Баг: вебхук CryptoBot отдаёт 404 в Bedolaga 2.6.2",
-      "proof": "https://t.me/c/2941121338/66583"
+      "proof": "https://t.me/c/2941121338/66583",
+      "check": "confirmed"
     },
     {
       "date": "2025-12-04",
       "text": "В CryptoBot появилась QR-оплата",
-      "proof": "https://t.me/c/2941121338/88926"
+      "proof": "https://t.me/c/2941121338/88926",
+      "check": "unverified",
+      "check_note": "Одно сообщение"
     },
     {
       "date": "2026-03-09",
       "text": "Подарочные подписки в Bedolaga с оплатой через CryptoBot",
-      "proof": "https://t.me/c/2941121338/262329"
+      "proof": "https://t.me/c/2941121338/262329",
+      "check": "confirmed"
     },
     {
       "date": "2026-03-18",
       "text": "Bedolaga v3.34.1: переделана проверка подписи вебхуков CryptoBot",
-      "proof": "https://t.me/c/2941121338/278457"
+      "proof": "https://t.me/c/2941121338/278457",
+      "check": "confirmed"
     },
     {
       "date": "2026-05-13",
       "text": "Cabinet v1.52.0: Telegram deep-link guard для CryptoBot/Stars",
-      "proof": "https://t.me/c/2941121338/500486"
+      "proof": "https://t.me/c/2941121338/500486",
+      "check": "confirmed"
     },
     {
       "date": "2026-06-01",
       "text": "Bedolaga v3.58.0: фикс CryptoBot",
-      "proof": "https://t.me/c/2941121338/619476"
+      "proof": "https://t.me/c/2941121338/619476",
+      "check": "confirmed"
     },
     {
       "date": "2026-07-29",
       "text": "В чате сообщили о блокировке аккаунта в CryptoBot",
-      "proof": "https://t.me/c/2941121338/995323"
+      "proof": "https://t.me/c/2941121338/995323",
+      "check": "unverified",
+      "check_note": "Одно сообщение"
     },
     {
       "date": "2026-08-23",
       "text": "RollyPay в партнёрстве с Bedolaga принимает оплату через криптобот",
-      "proof": "https://t.me/c/2941121338/1174749"
+      "proof": "https://t.me/c/2941121338/1174749",
+      "check": "confirmed",
+      "check_note": "Партнёрство RollyPay с Bedolaga упоминалось и 13.06.2026"
     }
   ],
   "data": "ok",
@@ -131,5 +162,47 @@
     "/baza/paneli/relizy/",
     "/baza/hronologiya/2025-11/",
     "/baza/hronologiya/2026-07/"
-  ]
+  ],
+  "official": {
+    "checked": "2026-09-24",
+    "url": "https://help.crypt.bot/faq",
+    "facts": [
+      {
+        "text": "Монеты: USDT (ERC20, TRC20, BEP20), TON, BTC, LTC, ETH, BNB, TRX, USDC и др.",
+        "url": "https://help.crypt.bot/faq"
+      },
+      {
+        "text": "Кошелёк кастодиальный, привязан к Telegram-аккаунту, экспортировать его нельзя",
+        "url": "https://help.crypt.bot/faq"
+      },
+      {
+        "text": "Оплаченные инвойсы не возвращают, претензии направляются получателю платежа",
+        "url": "https://help.crypt.bot/faq"
+      },
+      {
+        "text": "Депозиты со следами незаконной активности блокируются по AML-политике",
+        "url": "https://help.crypt.bot/faq"
+      },
+      {
+        "text": "Подписки в CryptoBot есть только для закрытых каналов и групп",
+        "url": "https://help.crypt.bot/faq"
+      }
+    ]
+  },
+  "review": {
+    "checked": "2026-09-24",
+    "fresh": "ok",
+    "verdict": "Самый простой способ брать крипту прямо в Telegram. Кошелёк кастодиальный, автосписаний нет",
+    "text": "CryptoBot стоит в Bedolaga с сентября 2025 и за год стал привычным вторым методом оплаты: USDT, TON, BTC, ETH и ещё несколько монет, курс к рублю бот считает сам по ЦБ. В 2025 интеграция ломалась регулярно (404 на вебхуке, ошибки подписи), в марте 2026 проверку подписи переписали, и с тех пор серьёзных жалоб на связку в базе нет.\n\nПомни, что это кастодиальный кошелёк, привязанный к твоему Telegram-аккаунту, так прямо написано в их FAQ. Заблокируют аккаунт, и деньги застрянут вместе с ним. В июле один человек рассказал в чате, что его заблокировали после возврата лишних денег. Подтверждений нет, но риск сам по себе реальный. В январской заметке базы CryptoBot вообще назвали «mega scam» с комиссией около 3%, тоже без подробностей.\n\nАвтопродления тут нет: подписки в CryptoBot сделаны для закрытых каналов, а инвойс клиент каждый раз оплачивает сам. Документация Crypto Pay API переехала на help.send.tg, из моей сети этот домен не резолвился, поэтому комиссию на инвойсы я на сайте не проверил. Я бы держал CryptoBot дополнительным методом и регулярно выводил остаток.",
+    "for": [
+      "Клиентам удобно платить, не выходя из Telegram",
+      "Нужен простой крипто-метод в Bedolaga",
+      "Аудитория вне РФ"
+    ],
+    "against": [
+      "Нужно автопродление",
+      "Хочешь держать выручку на балансе месяцами",
+      "Нужны рубли на счёт"
+    ]
+  }
 }

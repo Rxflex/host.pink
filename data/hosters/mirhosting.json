@@ -1,27 +1,118 @@
 {
   "id": "mirhosting",
   "name": "MIRhosting",
-  "aliases": ["MIR hosting", "WorkTitans", "Stark Industries"],
+  "aliases": [
+    "MIR hosting",
+    "WorkTitans",
+    "Stark Industries"
+  ],
   "group": "foreign",
   "site": "",
-  "countries": ["NL", "DE"],
+  "countries": [
+    "NL",
+    "DE"
+  ],
   "asn": [],
   "summary": "Хостинг-провайдер со стойками в дата-центре nLighten, на которых работали многие мелкие хостеры с русскоязычной аудиторией (VDSina, mchost, UFO, The.Hosting и другие). В начале июня 2026 nLighten обесточил и отключил его оборудование в Нидерландах и Германии, а в чате сообщали об изъятии более 800 серверов налоговой полицией FIOD.",
-  "ru_access": { "state": "unknown", "note": "После отключения оборудования в июне 2026 данных о работе нет.", "date": "08.06.2026", "proof": "https://t.me/c/2941121338/653866" },
+  "ru_access": {
+    "state": "unknown",
+    "note": "После отключения оборудования в июне 2026 данных о работе нет.",
+    "date": "08.06.2026",
+    "proof": "https://t.me/c/2941121338/653866"
+  },
   "prices": [],
   "good_for": [],
   "avoid_for": [],
   "pros": [],
   "cons": [
-    { "text": "ДЦ nLighten обесточил его стойки — легли VDSina, mchost, MS Host, UFO, The.Hosting и другие", "date": "02.06.2026", "proof": "https://t.me/c/2941121338/623319" },
-    { "text": "В чате сообщали, что FIOD изъяла 800+ серверов (обвинения в обходе санкций и кибератаках)", "date": "03.06.2026", "proof": "https://t.me/c/2941121338/628372" },
-    { "text": "nLighten без предупреждения отключила оборудование в NL и DE — упали десятки VPN-сервисов", "date": "08.06.2026", "proof": "https://t.me/c/2941121338/653866" }
+    {
+      "text": "ДЦ nLighten обесточил его стойки — легли VDSina, mchost, MS Host, UFO, The.Hosting и другие",
+      "date": "02.06.2026",
+      "proof": "https://t.me/c/2941121338/623319",
+      "check": "confirmed",
+      "check_note": "Много сообщений 31.05–08.06 о падении хостеров на его стойках"
+    },
+    {
+      "text": "В чате сообщали, что FIOD изъяла 800+ серверов (обвинения в обходе санкций и кибератаках)",
+      "date": "03.06.2026",
+      "proof": "https://t.me/c/2941121338/628372",
+      "check": "disputed",
+      "check_note": "MIRhosting 22.05 на сайте отрицает активное участие и пишет о сотрудничестве с властями; приговора нет"
+    },
+    {
+      "text": "nLighten без предупреждения отключила оборудование в NL и DE — упали десятки VPN-сервисов",
+      "date": "08.06.2026",
+      "proof": "https://t.me/c/2941121338/653866",
+      "check": "confirmed",
+      "check_note": "Несколько сообщений 08–09.06"
+    }
   ],
   "timeline": [
-    { "date": "2026-06-02", "text": "nLighten обесточил стойки MIRhosting; легли VDSina, mchost, MS Host, UFO, The.Hosting, hip hosting и др.", "proof": "https://t.me/c/2941121338/623319" },
-    { "date": "2026-06-03", "text": "В чате сообщали об изъятии FIOD 800+ серверов MIRhosting (aka WorkTitans/Stark Industries)", "proof": "https://t.me/c/2941121338/628372" },
-    { "date": "2026-06-08", "text": "nLighten отключила оборудование MIRhosting в Нидерландах и Германии", "proof": "https://t.me/c/2941121338/653866" }
+    {
+      "date": "2026-06-02",
+      "text": "nLighten обесточил стойки MIRhosting; легли VDSina, mchost, MS Host, UFO, The.Hosting, hip hosting и др.",
+      "proof": "https://t.me/c/2941121338/623319",
+      "check": "confirmed"
+    },
+    {
+      "date": "2026-06-03",
+      "text": "В чате сообщали об изъятии FIOD 800+ серверов MIRhosting (aka WorkTitans/Stark Industries)",
+      "proof": "https://t.me/c/2941121338/628372",
+      "check": "disputed",
+      "check_note": "По базе изъятие было в мае, 03.06 — дата сообщения; по заявлению MIRhosting, Work Titans — его клиент, а не другое имя"
+    },
+    {
+      "date": "2026-06-08",
+      "text": "nLighten отключила оборудование MIRhosting в Нидерландах и Германии",
+      "proof": "https://t.me/c/2941121338/653866",
+      "check": "confirmed"
+    }
   ],
   "data": "thin",
-  "sources": ["/baza/hronologiya/2026-05/", "/baza/hronologiya/2026-06/", "/baza/hosting/hronologiya/", "/baza/tspu/hronologiya/"]
+  "sources": [
+    "/baza/hronologiya/2026-05/",
+    "/baza/hronologiya/2026-06/",
+    "/baza/hosting/hronologiya/",
+    "/baza/tspu/hronologiya/"
+  ],
+  "official": {
+    "checked": "2026-09-24",
+    "url": "https://mirhosting.com",
+    "facts": [
+      {
+        "text": "Сайт работает: колокейшн, облако, bare metal, IP transit, DDoS-защита; штаб в Алмере (NL), «с 2004 года»",
+        "url": "https://mirhosting.com/"
+      },
+      {
+        "text": "22.05.2026 заявление по публикациям СМИ: отрицает активную роль в обходе санкций и атаках на выборы в Дании, сотрудничает с властями",
+        "url": "https://mirhosting.com/verklaring-mirhosting-naar-aanleiding-van-recente-mediapublicaties"
+      },
+      {
+        "text": "В том же заявлении: услуги колокейшн-клиенту Work Titans временно приостановлены, остальным клиентам обслуживание «полностью сохранено»",
+        "url": "https://mirhosting.com/verklaring-mirhosting-naar-aanleiding-van-recente-mediapublicaties"
+      },
+      {
+        "text": "02.06.2026 статья с разбором своих данных мониторинга по атакам на выборы в Дании в ноябре 2025",
+        "url": "https://mirhosting.com/the-november-2025-danish-election-attacks-what-our-own-network-data-shows"
+      },
+      {
+        "text": "В ленте новостей после 02.06.2026 ничего нет: ни про nLighten, ни про восстановление",
+        "url": "https://mirhosting.com/news"
+      }
+    ]
+  },
+  "review": {
+    "checked": "2026-09-24",
+    "fresh": "stale",
+    "verdict": "Это не хостер для тебя, а стойки под твоим хостером. После июньского отключения nLighten про восстановление ничего не слышно.",
+    "text": "MIRhosting для чата невидимый слой: колокейшн, на котором сидели VDSina, mchost, UFO, The.Hosting и ещё с десяток мелких хостеров с русскоязычной аудиторией. Второго июня дата-центр nLighten обесточил его стойки в Нидерландах, восьмого отключил оборудование ещё и в Германии, и у кучи VPN-сервисов разом легли серверы. В чате параллельно писали, что голландская налоговая полиция FIOD изъяла 800+ серверов, а MIRhosting называли «aka WorkTitans/Stark Industries».\n\nСайт MIRhosting работает и рисует другую картину. 22 мая компания опубликовала заявление: активную роль отрицает, с властями сотрудничает, услуги колокейшн-клиенту Work Titans приостановила, у остальных клиентов всё работает. То есть Work Titans там клиент, а не второе имя. 2 июня вышел разбор их данных по атакам на выборы в Дании. После этого в новостях тишина, про nLighten и восстановление ни слова.\n\nНапрямую у MIRhosting из чата никто не покупал, так что практический вывод другой: спрашивай у своего хостера, в чьих стойках стоит железо. Июнь показал, что один колокейшн-провайдер может утащить за собой десяток брендов за один день.",
+    "for": [
+      "тем, кто разбирается, почему в июне легли их хостеры",
+      "проверке апстрима у нового хостера"
+    ],
+    "against": [
+      "выбору хостинга под ноду: это колокейшн, а не VPS-хостер",
+      "тем, кому нужна стабильность без политических рисков"
+    ]
+  }
 }

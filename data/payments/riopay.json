@@ -12,6 +12,12 @@
     "proof": null
   },
   "methods": [],
+  "recurring": {
+    "state": "unknown",
+    "note": "На riopay.online про автосписания ничего, в базе тоже; в доках Bedolaga автоплатежей RioPay нет",
+    "source": "https://riopay.online/",
+    "date": "24.09.2026"
+  },
   "bedolaga": {
     "state": "yes",
     "note": "Интеграция в боте с 10.03.2026, в кабинете с v3.33.0",
@@ -25,34 +31,76 @@
     {
       "text": "В интеграции был баг 403 из-за регистра заголовка X-Api-Token, исправлен в v3.34.1",
       "date": "18.03.2026",
-      "proof": "https://t.me/c/2941121338/278457"
+      "proof": "https://t.me/c/2941121338/278457",
+      "check": "outdated",
+      "check_note": "Баг исправлен в Bedolaga v3.34.1 (18.03.2026)"
     }
   ],
   "timeline": [
     {
       "date": "2026-03-10",
       "text": "Релиз Bedolaga: интеграция RioPay через вебхуки",
-      "proof": "https://t.me/c/2941121338/264151"
+      "proof": "https://t.me/c/2941121338/264151",
+      "check": "confirmed"
     },
     {
       "date": "2026-03-18",
       "text": "Bedolaga v3.33.0: RioPay в кабинете",
-      "proof": "https://t.me/c/2941121338/277027"
+      "proof": "https://t.me/c/2941121338/277027",
+      "check": "confirmed"
     },
     {
       "date": "2026-03-18",
       "text": "RioPay добавлена в REAL_PAYMENT_METHODS",
-      "proof": "https://t.me/c/2941121338/277199"
+      "proof": "https://t.me/c/2941121338/277199",
+      "check": "confirmed"
     },
     {
       "date": "2026-03-18",
       "text": "Bedolaga v3.34.1: фикс RioPay 403 (x-api-token → X-Api-Token)",
-      "proof": "https://t.me/c/2941121338/278457"
+      "proof": "https://t.me/c/2941121338/278457",
+      "check": "confirmed"
     }
   ],
   "data": "thin",
   "sources": [
     "/baza/hronologiya/2026-03/",
     "/baza/paneli/relizy/"
-  ]
+  ],
+  "official": {
+    "checked": "2026-09-24",
+    "url": "https://riopay.online/",
+    "facts": [
+      {
+        "text": "Позиционируют себя как шлюз для «middle risk вертикалей», 37+ стран",
+        "url": "https://riopay.online/"
+      },
+      {
+        "text": "Ниши: e-commerce, цифровые сервисы, подписки, 18+, игры, беттинг; VPN в списке не назван",
+        "url": "https://riopay.online/"
+      },
+      {
+        "text": "Методы: Apple Pay, Google Pay, Open Banking, СБП, карты и локальные методы",
+        "url": "https://riopay.online/"
+      },
+      {
+        "text": "Выплаты в USDT и фиате на карты, счета и криптокошельки; тарифы не опубликованы",
+        "url": "https://riopay.online/"
+      }
+    ]
+  },
+  "review": {
+    "checked": "2026-09-24",
+    "fresh": "stale",
+    "verdict": "Интеграция в Bedolaga есть с марта, отзывов нет. Сайт про middle-risk и 18+, про VPN молчит.",
+    "text": "RioPay добавили в Bedolaga 10 марта 2026, в кабинет в v3.33.0, через неделю чинили 403 из-за регистра заголовка X-Api-Token (с v3.34.1 работает). Всё, что есть в базе, это релизы бота. Ни ставок, ни отзывов, ни одного «подключил, работает».\n\nСайт riopay.online, судя по всему, их: шлюз для «middle risk вертикалей», 37+ стран, СБП, карты, Apple Pay, Google Pay, выплаты в USDT и фиате. В списке ниш есть подписки, 18+, игры и беттинг, VPN не назван. Тарифов на сайте нет, про автосписания тоже.\n\nЯ бы относился к RioPay как к кассе, под которую уже готов код, и не больше. Если зайдёшь, напиши в чат про ставку и первый вывод: пока база о ней ничего не знает.",
+    "for": [
+      "Кому нужен приём не только из РФ: заявлено 37+ стран",
+      "Кто на Bedolaga и хочет кассу про запас"
+    ],
+    "against": [
+      "Кто выбирает по отзывам",
+      "Кому нужны рекурренты"
+    ]
+  }
 }

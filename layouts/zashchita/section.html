@@ -36,12 +36,12 @@
         {{- range sort $all "Title" }}
         {{- $p := .Params.z }}
         <tr class="hrow" data-k="{{ $p.kind }}" data-a="{{ $p.ru_access.state | default "unknown" }}">
-          <td><a href="{{ .RelPermalink }}"><b>{{ $p.name }}</b></a>{{ if $p.sponsor }} <small class="spon" title="Спонсор host.pink">спонсор</small>{{ end }}{{ if eq $p.data "thin" }} <small class="thin" title="В базе мало упоминаний">мало данных</small>{{ end }}</td>
+          <td><a href="{{ .RelPermalink }}"><b>{{ $p.name }}</b></a>{{ if $p.sponsor }} <small class="spon" title="Спонсор host.pink">спонсор</small>{{ end }}{{ if eq $p.data "thin" }} <small class="thin" title="В базе мало упоминаний">мало данных</small>{{ end }}{{ with $p.review }}{{ if ne .fresh "ok" }} <span class="ck ck-old">{{ if eq .fresh "dead" }}не работает{{ else }}устарело{{ end }}</span>{{ end }}{{ with .verdict }}<small class="rv-row">{{ . }}</small>{{ end }}{{ end }}</td>
           <td><span class="pk pk-z{{ $p.kind }}">{{ partial "prot-kind.html" $p.kind }}</span></td>
           <td>{{ partial "hoster-status.html" ($p.ru_access.state | default "unknown") }}</td>
           <td class="hc">{{ delimit ($p.levels | default (slice "—")) " " }}</td>
           <td>{{ range $p.good_for }}<span class="chip">{{ . }}</span>{{ end }}</td>
-          <td class="hp">{{ with index $p.prices 0 }}{{ .text }}{{ end }}</td>
+          <td class="hp">{{ with where $p.prices "check" "!=" "outdated" }}{{ with index . 0 }}{{ .text }}{{ end }}{{ end }}</td>
           <td class="hd">{{ with $p.ru_access.date }}{{ . }}{{ end }}</td>
         </tr>
         {{- end }}

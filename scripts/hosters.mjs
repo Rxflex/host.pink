@@ -1,6 +1,7 @@
 // Карточки хостеров (data/hosters/*.json) для поиска, llms.txt и markdown-копий
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { checkMark, reviewMd, reviewPlain } from "./review-md.mjs";
 
 const STATE = { ok: "из РФ работает", partial: "из РФ частично", blocked: "из РФ в блоке", unknown: "нет данных" };
 
@@ -15,7 +16,7 @@ export function loadHosters(root) {
     .sort((a, b) => a.name.localeCompare(b.name, "ru"));
 }
 
-const item = (x) => `- ${x.text}${x.date ? ` (${x.date}${x.proof ? `, [пруф](${x.proof})` : ""})` : ""}`;
+const item = (x) => `- ${x.text}${x.date ? ` (${x.date}${x.proof ? `, [пруф](${x.proof})` : ""})` : ""}${checkMark(x)}`;
 
 export function hosterMarkdown(h, site = "https://host.pink") {
   const a = h.ru_access ?? {};
@@ -36,8 +37,9 @@ export function hosterMarkdown(h, site = "https://host.pink") {
     h.pros?.length ? `## Хвалят\n\n${h.pros.map(item).join("\n")}\n` : "",
     h.cons?.length ? `## Ругают\n\n${h.cons.map(item).join("\n")}\n` : "",
     h.prices?.length ? `## Цены, которые называли\n\n${h.prices.map(item).join("\n")}\n` : "",
-    h.timeline?.length ? `## Что случалось\n\n${h.timeline.map((t) => `- ${t.date}: ${t.text}${t.proof ? ` ([пруф](${t.proof}))` : ""}`).join("\n")}\n` : "",
-    "Пересказ сообщений чата сообщества Bedolaga Social Club, а не оценка редакции: даты важнее выводов.",
+    h.timeline?.length ? `## Что случалось\n\n${h.timeline.map((t) => `- ${t.date}: ${t.text}${t.proof ? ` ([пруф](${t.proof}))` : ""}${checkMark(t)}`).join("\n")}\n` : "",
+    reviewMd(h.review, h.official),
+    "Пункты выше — пересказ сообщений чата сообщества Bedolaga Social Club с пометками проверки; разбор — мнение редакции host.pink.",
   ]
     .filter((l) => l !== "")
     .join("\n");
@@ -45,7 +47,7 @@ export function hosterMarkdown(h, site = "https://host.pink") {
 
 // для поиска: без ссылок и служебных строк
 export function hosterPlain(h) {
-  return [h.name, (h.aliases ?? []).join(" "), h.summary, h.ru_access?.note, ...(h.pros ?? []).map((x) => x.text), ...(h.cons ?? []).map((x) => x.text), ...(h.prices ?? []).map((x) => x.text), ...(h.timeline ?? []).map((x) => `${x.date} ${x.text}`)]
+  return [h.name, (h.aliases ?? []).join(" "), h.summary, h.ru_access?.note, ...(h.pros ?? []).map((x) => x.text), ...(h.cons ?? []).map((x) => x.text), ...(h.prices ?? []).map((x) => x.text), ...(h.timeline ?? []).map((x) => `${x.date} ${x.text}`), reviewPlain(h.review, h.official)]
     .filter(Boolean)
     .join("\n");
 }

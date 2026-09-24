@@ -30,11 +30,11 @@
         {{- range sort $all "Title" }}
         {{- $p := .Params.p }}
         <tr class="hrow" data-k="{{ $p.kind }}" data-s="{{ $p.status.state | default "unknown" }}">
-          <td><a href="{{ .RelPermalink }}"><b>{{ $p.name }}</b></a>{{ if eq $p.data "thin" }} <small class="thin" title="В базе мало упоминаний">мало данных</small>{{ end }}</td>
+          <td><a href="{{ .RelPermalink }}"><b>{{ $p.name }}</b></a>{{ if eq $p.data "thin" }} <small class="thin" title="В базе мало упоминаний">мало данных</small>{{ end }}{{ with $p.review }}{{ if ne .fresh "ok" }} <span class="ck ck-old">{{ if eq .fresh "dead" }}не работает{{ else }}устарело{{ end }}</span>{{ end }}{{ with .verdict }}<small class="rv-row">{{ . }}</small>{{ end }}{{ end }}</td>
           <td><span class="pk pk-{{ $p.kind }}">{{ partial "pay-kind.html" $p.kind }}</span></td>
           <td>{{ partial "pay-status.html" ($p.status.state | default "unknown") }}</td>
           <td>{{ range $p.methods }}<span class="chip">{{ . }}</span>{{ end }}</td>
-          <td class="hp">{{ with index $p.fees 0 }}{{ .text }}{{ end }}</td>
+          <td class="hp">{{ with where $p.fees "check" "!=" "outdated" }}{{ with index . 0 }}{{ .text }}{{ end }}{{ end }}</td>
           <td class="hd">{{ with $p.bedolaga }}{{ if eq .state "yes" }}есть{{ else if eq .state "no" }}нет{{ else }}—{{ end }}{{ else }}—{{ end }}</td>
           <td class="hd">{{ with $p.status.date }}{{ . }}{{ end }}</td>
         </tr>

@@ -881,6 +881,28 @@ a.gl:is(:hover, :focus-visible)::after { opacity: 1; visibility: visible; transl
   .gz { border: 0; box-shadow: none; background: #fff; }
 }
 
+/* ---------- разбор host.pink и пометки проверки ---------- */
+.rv { margin: 2rem 0 1.5rem; padding: 1.1rem 1.25rem 1rem; border: 1px solid var(--rule); border-left: 3px solid var(--dye); border-radius: 0 10px 10px 0; background: color-mix(in srgb, var(--dye) 4%, transparent); }
+.rv h2 { margin: 0 0 .6rem; font-size: var(--t-md); }
+.rv-verdict { margin: 0 0 .8rem; font-size: 1.125rem; font-weight: 650; line-height: 1.45; }
+.rv-text p { margin: 0 0 .75rem; }
+.rv-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .5rem 1.5rem; margin-top: .6rem; }
+.rv-cols ul { margin: .25rem 0 0; padding-left: 1.1rem; }
+.rv-cols li + li { margin-top: .25rem; }
+.rv-t { margin: 0; font-weight: 650; font-size: .875rem; }
+.rv-for .rv-t { color: var(--up); }
+.rv-against .rv-t { color: var(--down); }
+.rv-meta { margin: .8rem 0 0; font-size: .8125rem; color: var(--ink-2); }
+.rv-site { margin: 1.5rem 0; }
+.rv-row { display: block; margin-top: .15rem; font-size: .75rem; line-height: 1.35; color: var(--ink-2); max-width: 26rem; }
+.ck { display: inline-block; padding: 0 .4rem; border-radius: 1rem; font-size: .6875rem; line-height: 1.55; vertical-align: .1em; white-space: nowrap; border: 1px solid; }
+.ck-old { color: var(--slow); border-color: color-mix(in srgb, var(--slow) 50%, transparent); }
+.ck-disp { color: var(--c4); border-color: color-mix(in srgb, var(--c4) 50%, transparent); }
+.ck-un { color: var(--ink-2); border-color: var(--rule); border-style: dashed; }
+.ck-note { font-size: .8125rem; color: var(--ink-2); }
+li.is-old { color: var(--ink-2); }
+li.is-old > :first-child, .htl li.is-old span { text-decoration: none; }
+
 /* ---------- hostpink TUI ---------- */
 .article.tui-page { max-width: 72rem; }
 .tui-page > .lede, .tui-page > .prose, .tui-page > p { max-width: var(--measure); }

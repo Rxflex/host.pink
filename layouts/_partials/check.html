@@ -1,0 +1,6 @@
+{{- /* пометка проверки у пункта карточки: устарело / спорно / не подтверждено */ -}}
+{{- $n := .check_note | default "" }}
+{{- if eq .check "outdated" }} <span class="ck ck-old" title="{{ $n }}">устарело</span>{{ with $n }} <span class="ck-note">{{ . }}</span>{{ end }}
+{{- else if eq .check "disputed" }} <span class="ck ck-disp" title="{{ $n }}">спорно</span>{{ with $n }} <span class="ck-note">{{ . }}</span>{{ end }}
+{{- else if eq .check "unverified" }} <span class="ck ck-un" title="{{ $n | default "одно сообщение, подтвердить нечем" }}">не подтверждено</span>
+{{- end }}
