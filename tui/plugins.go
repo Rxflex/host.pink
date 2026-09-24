@@ -77,7 +77,8 @@ type Registry struct {
 	Repo        string `json:"repo,omitempty"` // owner/name на GitHub
 	URL         string `json:"url,omitempty"`  // или прямой адрес JSON
 	Description string `json:"description,omitempty"`
-	Official    bool   `json:"-"`
+	Official    bool   `json:"-"` // подключён через корневой реестр, а не пользователем
+	Via         string `json:"-"` // какой реестр на него сослался
 }
 
 func (r Registry) fileURL() string {
@@ -91,10 +92,14 @@ func (r Registry) fileURL() string {
 const officialRegistryURL = "https://raw.githubusercontent.com/Rxflex/hostpink-registry/HEAD/hostpink-registry.json"
 
 type registryFile struct {
-	Version int      `json:"version"`
-	Name    string   `json:"name"`
-	Plugins []Plugin `json:"plugins"`
+	Version    int        `json:"version"`
+	Name       string     `json:"name"`
+	Plugins    []Plugin   `json:"plugins"`
+	Registries []Registry `json:"registries,omitempty"` // на какие реестры ссылается этот
 }
+
+// maxDepth: корень → его реестры → их реестры. Дальше не идём, чтобы цепочка ссылок не росла бесконечно.
+const maxDepth = 3
 
 func configDir() string {
 	d, err := os.UserConfigDir()
@@ -200,86 +205,125 @@ type Catalog struct {
 	Notes      []string // что не загрузилось
 }
 
-// allRegistries: официальные реестры с host.pink плюс подключённые пользователем.
-func allRegistries() []Registry {
-	var list struct {
-		Registries []Registry `json:"registries"`
+// fetchRoot берёт корневой реестр: host.pink/plugins.json (Worker отдаёт свежий GitHub с кэшем
+// 5 минут и работает там, где GitHub режется), затем GitHub напрямую, затем копию с диска.
+func fetchRoot() (registryFile, string) {
+	var f registryFile
+	cachePath := filepath.Join(cacheDir(), "plugins.json")
+	err := getJSON(site+"/plugins.json", &f)
+	if err != nil {
+		err = getJSON(officialRegistryURL, &f)
 	}
-	_ = getJSON(site+"/registries.json", &list)
+	if err != nil {
+		if b, e := os.ReadFile(cachePath); e == nil && json.Unmarshal(b, &f) == nil {
+			return f, "каталог host.pink недоступен, показываю сохранённую копию"
+		}
+		return f, "каталог host.pink недоступен: " + err.Error()
+	}
+	if b, e := json.Marshal(f); e == nil {
+		_ = os.MkdirAll(cacheDir(), 0o755)
+		_ = os.WriteFile(cachePath, b, 0o644)
+	}
+	return f, ""
+}
+
+// allRegistries: реестры, на которые ссылается корневой (первый уровень), и подключённые пользователем.
+func allRegistries() []Registry {
+	root, _ := fetchRoot()
 	var out []Registry
-	for _, r := range list.Registries {
-		r.Official = true
+	for _, r := range root.Registries {
+		r.Official, r.Via = true, "host.pink"
 		out = append(out, r)
 	}
 	return append(out, userRegistries()...)
 }
 
-// loadCatalog собирает плагины из каталога host.pink, официальных реестров, реестров
-// пользователя и плагинов, добавленных из git напрямую. Недоступный источник не ломает остальные.
+// loadCatalog обходит реестры в ширину: корневой → те, на которые он ссылается → их ссылки
+// (до maxDepth), плюс реестры и плагины пользователя. Каждый адрес читается один раз,
+// недоступный реестр не ломает остальные.
 func loadCatalog() Catalog {
 	var c Catalog
-	var mu sync.Mutex
-	add := func(ps []Plugin) {
-		mu.Lock()
-		c.Plugins = append(c.Plugins, ps...)
-		mu.Unlock()
+	root, n := fetchRoot()
+	if n != "" {
+		c.Notes = append(c.Notes, n)
 	}
-	note := func(s string) {
-		mu.Lock()
-		c.Notes = append(c.Notes, s)
-		mu.Unlock()
+	seen := map[string]bool{}
+	var plugins []Plugin
+	for _, p := range root.Plugins {
+		p.Registry, p.Trust = "host.pink", "official"
+		plugins = append(plugins, p)
 	}
 
-	var official registryFile
-	cachePath := filepath.Join(cacheDir(), "plugins.json")
-	err := getJSON(site+"/plugins.json", &official)
-	if err != nil {
-		// зеркало на host.pink недоступно — идём прямо в реестр на GitHub
-		err = getJSON(officialRegistryURL, &official)
+	type job struct {
+		r     Registry
+		depth int
 	}
-	if err != nil {
-		if b, e := os.ReadFile(cachePath); e == nil && json.Unmarshal(b, &official) == nil {
-			note("каталог host.pink недоступен, показываю сохранённую копию")
-		} else {
-			note("каталог host.pink недоступен: " + err.Error())
-		}
-	} else if b, e := json.Marshal(official); e == nil {
-		_ = os.MkdirAll(cacheDir(), 0o755)
-		_ = os.WriteFile(cachePath, b, 0o644)
+	var level []job
+	for _, r := range root.Registries {
+		r.Official, r.Via = true, "host.pink"
+		level = append(level, job{r, 1})
 	}
-	for i := range official.Plugins {
-		official.Plugins[i].Registry, official.Plugins[i].Trust = "host.pink", "official"
+	for _, r := range userRegistries() {
+		r.Via = "ты"
+		level = append(level, job{r, 1})
 	}
-	add(official.Plugins)
+	seen[officialRegistryURL] = true
 
-	regs := allRegistries()
-	c.Registries = regs
-
-	var wg sync.WaitGroup
-	for _, r := range regs {
-		wg.Add(1)
-		go func(r Registry) {
-			defer wg.Done()
-			var f registryFile
-			if err := getJSON(r.fileURL(), &f); err != nil {
-				note(fmt.Sprintf("реестр %s недоступен", r.Name))
-				return
+	for len(level) > 0 {
+		var next []job
+		var mu sync.Mutex
+		var wg sync.WaitGroup
+		for _, j := range level {
+			if j.r.ID == "" || (j.r.Repo == "" && j.r.URL == "") || seen[j.r.fileURL()] {
+				continue
 			}
-			var ok []Plugin
-			for _, p := range f.Plugins {
-				if err := validPlugin(p); err != nil {
-					note(fmt.Sprintf("%s/%s пропущен: %v", r.ID, p.ID, err))
-					continue
+			seen[j.r.fileURL()] = true
+			c.Registries = append(c.Registries, j.r)
+			wg.Add(1)
+			go func(j job) {
+				defer wg.Done()
+				var f registryFile
+				if err := getJSON(j.r.fileURL(), &f); err != nil {
+					mu.Lock()
+					c.Notes = append(c.Notes, fmt.Sprintf("реестр %s недоступен", j.r.Name))
+					mu.Unlock()
+					return
 				}
-				p.Registry, p.Trust = r.ID, "registry"
-				ok = append(ok, p)
-			}
-			add(ok)
-		}(r)
+				var ok []Plugin
+				var notes []string
+				for _, p := range f.Plugins {
+					if err := validPlugin(p); err != nil {
+						notes = append(notes, fmt.Sprintf("%s/%s пропущен: %v", j.r.ID, p.ID, err))
+						continue
+					}
+					p.Registry, p.Trust = j.r.ID, "registry"
+					ok = append(ok, p)
+				}
+				mu.Lock()
+				defer mu.Unlock()
+				plugins = append(plugins, ok...)
+				c.Notes = append(c.Notes, notes...)
+				if j.depth < maxDepth {
+					for _, r := range f.Registries {
+						r.Official, r.Via = j.r.Official, j.r.ID
+						next = append(next, job{r, j.depth + 1})
+					}
+				}
+			}(j)
+		}
+		wg.Wait()
+		level = next
 	}
-	wg.Wait()
-	add(userPlugins())
+	plugins = append(plugins, userPlugins()...)
 
+	// один и тот же плагин мог прийти из двух реестров: оставляем первый
+	dup := map[string]bool{}
+	for _, p := range plugins {
+		if !dup[p.Key()] {
+			dup[p.Key()] = true
+			c.Plugins = append(c.Plugins, p)
+		}
+	}
 	sort.SliceStable(c.Plugins, func(i, j int) bool {
 		a, b := c.Plugins[i], c.Plugins[j]
 		if rank(a) != rank(b) {

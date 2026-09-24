@@ -1,7 +1,7 @@
 // Зеркало реестра плагинов hostpink на host.pink.
 // Источник — подмодуль vendor/hostpink-registry (github.com/Rxflex/hostpink-registry).
 // Из РФ GitHub открывается не везде, поэтому клиент сначала берёт host.pink/plugins.json.
-import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -21,5 +21,4 @@ for (const p of reg.plugins) {
 }
 mkdirSync(OUT, { recursive: true });
 writeFileSync(join(OUT, "plugins.json"), JSON.stringify(reg) + "\n");
-copyFileSync(join(ROOT, "data", "registries.json"), join(OUT, "registries.json"));
 console.log(`plugins: зеркало реестра, ${reg.plugins.length} плагинов`);

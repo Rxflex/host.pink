@@ -22,6 +22,3 @@
 /plugins.json
   Content-Type: application/json; charset=utf-8
   Cache-Control: public, max-age=300
-/registries.json
-  Content-Type: application/json; charset=utf-8
-  Cache-Control: public, max-age=300

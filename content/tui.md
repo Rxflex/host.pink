@@ -54,4 +54,4 @@ title = "Установить"
 run = "bash install.sh"
 ```
 
-Любой сможет поставить его командой `hostpink add github.com/you/repo`: плагин закрепится на текущем коммите, а хэши файлов запомнятся. Чтобы попасть в общий каталог, открой pull request в [hostpink-registry](https://github.com/Rxflex/hostpink-registry). Свой реестр — это любой репозиторий с файлом `hostpink-registry.json` в корне.
+Любой сможет поставить его командой `hostpink add github.com/you/repo`: плагин закрепится на текущем коммите, а хэши файлов запомнятся. Чтобы попасть в общий каталог, открой pull request в [hostpink-registry](https://github.com/Rxflex/hostpink-registry). Свой реестр — это любой репозиторий с файлом `hostpink-registry.json` в корне. Его можно подключить себе командой `hostpink registry add`, а если корневой реестр сошлётся на него в своём `registries.json`, он появится у всех пользователей через несколько минут, без обновления hostpink.

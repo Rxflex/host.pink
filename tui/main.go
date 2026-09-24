@@ -152,7 +152,7 @@ func cli(args []string) error {
 			for _, r := range allRegistries() {
 				kind := "свой"
 				if r.Official {
-					kind = "официальный"
+					kind = "корневой→" + r.Via
 				}
 				fmt.Printf("%-16s %-12s %s\n", r.ID, kind, r.Repo+r.URL)
 			}

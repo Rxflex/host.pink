@@ -1288,13 +1288,16 @@ func (m *app) pluginKeys() string {
 func (m *app) viewRegistries() string {
 	regs := m.registries()
 	var b strings.Builder
-	b.WriteString(badge("host.pink", cOK) + sDim.Render("  официальный реестр Rxflex/hostpink-registry, всегда включён") + "\n\n")
+	b.WriteString(badge("host.pink", cOK) + sDim.Render("  корневой реестр Rxflex/hostpink-registry: его плагины и реестры, на которые он ссылается") + "\n\n")
 	for i, r := range regs {
 		mark := "  "
 		if i == m.rSel {
 			mark = sPink.Render("▶ ")
 		}
-		kind := sChip.Render("официальный")
+		kind := sChip.Render("из корневого реестра")
+		if r.Via != "" && r.Via != "host.pink" && r.Via != "ты" {
+			kind = sChip.Render("через " + r.Via)
+		}
 		if !r.Official {
 			kind = sWarn.Render("твой")
 		}

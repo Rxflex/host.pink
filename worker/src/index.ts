@@ -49,6 +49,25 @@ async function route(req: Request, env: Env, ctx: ExecutionContext): Promise<Res
 
   if (req.method !== "GET" && req.method !== "HEAD") return new Response("Method not allowed", { status: 405 });
 
+  // реестр плагинов hostpink: свежий с GitHub (кэш 5 минут на эдже), при сбое — копия из сборки.
+  // Так правка в Rxflex/hostpink-registry доходит до клиентов без пересборки и деплоя сайта,
+  // а пользователи из РФ, у которых GitHub режется, получают её через Cloudflare.
+  if (path === "/plugins.json") {
+    try {
+      const r = await fetch("https://raw.githubusercontent.com/Rxflex/hostpink-registry/HEAD/hostpink-registry.json", {
+        cf: { cacheTtl: 300, cacheEverything: true },
+        headers: { "user-agent": "host.pink" },
+      });
+      if (r.ok) {
+        const body = await r.text();
+        JSON.parse(body); // битый JSON не отдаём
+        return new Response(body, { headers: { "content-type": "application/json; charset=utf-8", "cache-control": "public, max-age=300", "x-hp-registry": "github" } });
+      }
+    } catch {}
+    const res = await env.ASSETS.fetch(new Request(new URL("/plugins.json", url)));
+    return new Response(res.body, { status: res.status, headers: { "content-type": "application/json; charset=utf-8", "cache-control": "public, max-age=60", "x-hp-registry": "mirror" } });
+  }
+
   // установщик hostpink: curl | sh получает sh-скрипт, irm | iex — PowerShell, браузер — страницу про TUI
   if (path === "/tui" || path === "/tui.sh" || path === "/tui.ps1") {
     const ua = req.headers.get("user-agent") ?? "";
