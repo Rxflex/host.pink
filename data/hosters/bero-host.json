@@ -1,0 +1,115 @@
+{
+  "id": "bero-host",
+  "name": "BERO HOST",
+  "aliases": [
+    "bero-host.de",
+    "Bero-host",
+    "Bero Host",
+    "BeroHost",
+    "Беро"
+  ],
+  "group": "foreign",
+  "site": "https://bero-host.de",
+  "countries": [
+    "DE"
+  ],
+  "asn": [],
+  "summary": "Немецкий prepaid-хостер с 2016 года: KVM-серверы, Ryzen VPS, игровые и TeamSpeak-серверы, всё в одном ДЦ во Франкфурте. Оплата на 30 дней вперёд без автопродления. В чате упоминался один раз, в ноябре 2025.",
+  "ru_access": {
+    "state": "unknown",
+    "note": "Сайт 24.09 открывался из домашних сетей и ДЦ РФ; адреса самих VPS не проверялись, данных о доступности нод из РФ нет",
+    "date": "24.09.2026",
+    "proof": "https://host.pink/check/bero-host.de",
+    "via": "проверка host.pink 24.09.2026"
+  },
+  "prices": [
+    {
+      "text": "KVM prepaid в Германии — 2,4 €/мес, порт 5 Гбит/с",
+      "date": "08.11.2025",
+      "proof": "https://t.me/c/2941121338/58021",
+      "check": "outdated",
+      "check_note": "На 24.09.2026 самый дешёвый KVM 4,95 € за 30 дней, vServer за 3,70 € снят с продажи"
+    },
+    {
+      "text": "KVM Paket 3k: 1 ядро / 3 ГБ / 20 ГБ NVMe, IPv4 + IPv6 /64 — 4,95 € за 30 дней",
+      "date": "24.09.2026",
+      "via": "сайт bero-host.de",
+      "check": "confirmed"
+    },
+    {
+      "text": "Ryzen VPS Basic: 2 ядра Ryzen 9 9950X / 6 ГБ / 50 ГБ NVMe, 20 ТБ fair use, аплинк 10 Гбит — 5,90 € за 30 дней",
+      "date": "24.09.2026",
+      "via": "сайт bero-host.de",
+      "check": "confirmed"
+    }
+  ],
+  "good_for": [],
+  "avoid_for": [],
+  "pros": [],
+  "cons": [],
+  "timeline": [
+    {
+      "date": "2025-11-08",
+      "text": "В чате: Bero-host — только Германия, KVM prepaid за 2,4 €/мес с портом 5 Гбит/с",
+      "proof": "https://t.me/c/2941121338/58021",
+      "check": "outdated",
+      "check_note": "Цены на сайте выросли: от 4,95 € за KVM и 5,90 € за Ryzen"
+    }
+  ],
+  "data": "thin",
+  "sources": [
+    "/baza/hronologiya/2025-11/"
+  ],
+  "official": {
+    "checked": "2026-09-24",
+    "url": "https://bero-host.de",
+    "facts": [
+      {
+        "text": "Исполнитель по AGB — GbR (товарищество) из Гельнхаузена, Германия; в подвале сайта BERO HOST назван брендом частного лица",
+        "url": "https://bero-host.de/rechtliches/AGB.pdf"
+      },
+      {
+        "text": "Все серверы в одном ДЦ во Франкфурте-на-Майне",
+        "url": "https://bero-host.de/informationen/rechenzentrum"
+      },
+      {
+        "text": "KVM Rootserver от 4,95 € за 30 дней (1 ядро, 3 ГБ, 20 ГБ NVMe), до 44,95 € (12 ядер, 48 ГБ); трафик fair use",
+        "url": "https://bero-host.de/server/prepaid-kvm-rootserver-mieten"
+      },
+      {
+        "text": "Ryzen VPS на 9950X, 10 Гбит аплинк: от 5,90 € (2 ядра, 6 ГБ, 20 ТБ fair use); старшие тарифы на 24.09 «Ausverkauft»",
+        "url": "https://bero-host.de/server/prepaid-ryzen-vserver-mieten"
+      },
+      {
+        "text": "AGB: если не оговорено иное, допустим 1 ТБ трафика, трафик по принципу fair use; запрещены спам, DDoS и открытые релеи. VPN, прокси и Tor не упомянуты",
+        "url": "https://bero-host.de/rechtliches/AGB.pdf"
+      },
+      {
+        "text": "Оплата: PayPal, Klarna, Paysafecard, карты, Google Pay, Apple Pay, Giropay, банковский перевод; крипты нет",
+        "url": "https://bero-host.de"
+      },
+      {
+        "text": "DDoS-защита на всех продуктах, заявлено до 750 Гбит/с (Netscout Arbor)",
+        "url": "https://bero-host.de"
+      },
+      {
+        "text": "Сайт размещён в сети SYNLINQ (AS44486), своей AS у хостера не видно",
+        "url": "https://host.pink/bero-host.de"
+      }
+    ]
+  },
+  "review": {
+    "checked": "2026-09-24",
+    "fresh": "stale",
+    "verdict": "Франкфурт с Ryzen 9950X от 5,90 €, но платить из РФ нечем: только PayPal, карты и Paysafecard",
+    "text": "Bero Host в чате вспомнили один раз, в ноябре 2025: «Германия only, KVM prepaid 2.4 €, 5 гигабит». С тех пор цены подросли. Сейчас самый дешёвый KVM стоит 4,95 € за 30 дней (1 ядро, 3 ГБ), а интереснее Ryzen VPS на 9950X с 10-гигабитным аплинком за 5,90 € и 20 ТБ трафика по fair use. Старшие Ryzen-тарифы при этом распроданы. Всё живёт в одном ДЦ во Франкфурте, это немецкий хостер для геймеров и тимспика, работает с 2016 года.\n\nПро VPN в AGB ни слова, запрещены только спам, DDoS и открытые релеи. Настоящая проблема в оплате: PayPal, Klarna, Paysafecard, европейские карты, никакой крипты. Без зарубежной карты заказать не выйдет. Если карта есть, это нормальный вариант под немецкую ноду; prepaid без автопродления даже удобен, лишнего не спишут.",
+    "for": [
+      "Нода или мост во Франкфурте, если есть европейская карта или PayPal",
+      "Бот или сайт на быстром Ryzen за 6 €"
+    ],
+    "against": [
+      "Тем, кто платит только российской картой или криптой",
+      "Кому нужна география: локация одна"
+    ]
+  }
+}

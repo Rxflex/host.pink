@@ -1,0 +1,156 @@
+{
+  "id": "leaseweb",
+  "name": "Leaseweb",
+  "aliases": [
+    "LeaseWeb",
+    "leaseweb.com",
+    "Leaseweb Netherlands B.V.",
+    "Лисвеб",
+    "Лизвеб"
+  ],
+  "group": "foreign",
+  "site": "https://www.leaseweb.com",
+  "countries": [
+    "NL",
+    "DE",
+    "GB",
+    "US",
+    "CA",
+    "JP",
+    "SG",
+    "AU"
+  ],
+  "asn": [
+    60781
+  ],
+  "summary": "Крупный нидерландский провайдер (Leaseweb Netherlands B.V.) с дата-центрами в Европе, США и Азии: VPS, облако, выделенные серверы. В чате в мае 2026 упоминали VPS за 3,6 €/мес с портом 10 Гбит/с.",
+  "ru_access": {
+    "state": "unknown",
+    "note": "Сайт 24.09 открывался из домашних сетей и ДЦ РФ; про доступность самих VPS из РФ в базе данных нет",
+    "date": "24.09.2026",
+    "proof": "https://host.pink/check/www.leaseweb.com",
+    "via": "проверка host.pink 24.09.2026"
+  },
+  "prices": [
+    {
+      "text": "VPS с портом 10 Гбит/с — 3,6 €/мес",
+      "date": "24.05.2026",
+      "proof": "https://t.me/c/2941121338/575853",
+      "check": "outdated",
+      "check_note": "С 01.08.2026 для новых договоров VPS 1 в Нидерландах стоит 4,99 € (блог Leaseweb от 28.07)"
+    },
+    {
+      "text": "VPS 1 (Нидерланды) для новых договоров с 01.08.2026 — 4,99 €/мес; VPS 6 — 69,99 €/мес",
+      "date": "24.09.2026",
+      "via": "сайт leaseweb.com",
+      "check": "confirmed"
+    },
+    {
+      "text": "VPS 1 в других регионах: Великобритания 4,99 £, США 6,99 $, Канада 7,99 C$, Япония 1300 ¥",
+      "date": "24.09.2026",
+      "via": "сайт leaseweb.com",
+      "check": "confirmed"
+    }
+  ],
+  "good_for": [],
+  "avoid_for": [],
+  "pros": [
+    {
+      "text": "В чате приводили VPS с портом 10 Гбит/с за 3,6 €/мес",
+      "date": "24.05.2026",
+      "proof": "https://t.me/c/2941121338/575853",
+      "check": "outdated",
+      "check_note": "Цена для новых договоров с 01.08 выше — от 4,99 € в NL; скорость порта на сайте сверить не удалось"
+    },
+    {
+      "text": "VPN-провайдеров правила не запрещают: они прописаны отдельно, с требованиями к PTR, whois и абуз-контакту",
+      "date": "24.09.2026",
+      "proof": "https://nl.object-storage.io/leaseweb-download/legal-security/2025/LSW_NL_B2B_Sales_Contract_Schedule%20_v1February2025_Policies.pdf",
+      "via": "сайт leaseweb.com",
+      "check": "confirmed"
+    }
+  ],
+  "cons": [
+    {
+      "text": "Для VPN-сервиса нужны реквизиты компании и абуз-почта на сайте, пользовательское соглашение и PTR-записи с данными клиента на всех адресах",
+      "date": "24.09.2026",
+      "proof": "https://nl.object-storage.io/leaseweb-download/legal-security/2025/LSW_NL_B2B_Sales_Contract_Schedule%20_v1February2025_Policies.pdf",
+      "via": "сайт leaseweb.com",
+      "check": "confirmed"
+    },
+    {
+      "text": "KYC на усмотрение Leaseweb, включая проверку по санкциям и экспортному контролю; при сомнениях услугу могут сразу приостановить",
+      "date": "24.09.2026",
+      "proof": "https://nl.object-storage.io/leaseweb-download/legal-security/2025/LSW_NL_B2B_Sales_Contract_Schedule%20_v1February2025_Policies.pdf",
+      "via": "сайт leaseweb.com",
+      "check": "confirmed"
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2026-05-24",
+      "text": "В чате упомянули VPS Leaseweb за 3,6 €/мес с портом 10 Гбит/с",
+      "proof": "https://t.me/c/2941121338/575853",
+      "check": "outdated",
+      "check_note": "Цена для новых договоров выросла с 01.08.2026"
+    },
+    {
+      "date": "2026-08-01",
+      "text": "Подорожание VPS для новых договоров: в среднем +20%, в NL и DE +16%, в США +41%; действующие договоры не затронуты",
+      "proof": "https://blog.leaseweb.com/2026/07/28/vps-price-increases-are-coming-for-new-contracts-in-2026/",
+      "via": "блог Leaseweb",
+      "check": "confirmed"
+    }
+  ],
+  "data": "thin",
+  "sources": [
+    "/baza/hronologiya/2026-05/"
+  ],
+  "official": {
+    "checked": "2026-09-24",
+    "url": "https://www.leaseweb.com",
+    "facts": [
+      {
+        "text": "С 01.08.2026 VPS для новых договоров подорожали: NL VPS 1 — 4,99 €, VPS 6 — 69,99 €; UK от 4,99 £, US от 6,99 $, CA от 7,99 C$, JP от 1300 ¥; старые договоры по старым ценам",
+        "url": "https://blog.leaseweb.com/2026/07/28/vps-price-increases-are-coming-for-new-contracts-in-2026/"
+      },
+      {
+        "text": "Регионы VPS: Нидерланды, Германия, Великобритания, США, Канада, Япония, Сингапур, Австралия",
+        "url": "https://blog.leaseweb.com/2026/07/28/vps-price-increases-are-coming-for-new-contracts-in-2026/"
+      },
+      {
+        "text": "Правила NL п. 12.6: VPN- и прокси-провайдер обязан показать на сайте реквизиты и абуз-почту, иметь соглашение с юзерами, держать PTR с данными клиента на всех адресах VPN и давать данные для rWHOIS",
+        "url": "https://nl.object-storage.io/leaseweb-download/legal-security/2025/LSW_NL_B2B_Sales_Contract_Schedule%20_v1February2025_Policies.pdf"
+      },
+      {
+        "text": "П. 12.7: операторы выходных узлов Tor обязаны закрывать порты, связанные с нарушениями, по списку Leaseweb",
+        "url": "https://nl.object-storage.io/leaseweb-download/legal-security/2025/LSW_NL_B2B_Sales_Contract_Schedule%20_v1February2025_Policies.pdf"
+      },
+      {
+        "text": "Клиент проходит KYC по требованиям Leaseweb, включая санкции и экспортный контроль; при обоснованных сомнениях услугу вправе сразу приостановить",
+        "url": "https://nl.object-storage.io/leaseweb-download/legal-security/2025/LSW_NL_B2B_Sales_Contract_Schedule%20_v1February2025_Policies.pdf"
+      },
+      {
+        "text": "Нидерландская сеть — AS60781 (LeaseWeb Netherlands B.V.)",
+        "url": "https://stat.ripe.net/data/as-overview/data.json?resource=AS60781"
+      }
+    ],
+    "unavailable": "Страница тарифов VPS на leaseweb.com — SPA, WebFetch видит пустой шаблон, а магазинный API 24.09 отвечал 429; цены взяты из официального блога"
+  },
+  "review": {
+    "checked": "2026-09-24",
+    "fresh": "ok",
+    "verdict": "Большой голландец: VPN разрешён, но по-взрослому, с PTR, реквизитами и KYC. Для анонимной ноды не вариант",
+    "text": "Leaseweb — большой нидерландский провайдер с дата-центрами от Амстердама до Токио. В чате его вспомнили один раз, 24 мая: VPS за 3,6 € с портом 10 Гбит/с. С 1 августа эта цена для новых клиентов в прошлом: NL VPS 1 теперь 4,99 €, в США 6,99 $. Кто успел заключить договор раньше, тот платит по-старому.\n\nС VPN у Leaseweb всё прописано, и в этом есть плюс и минус. VPN-сервис не запрещён. Но на сайте должны висеть реквизиты и абуз-почта, с пользователями нужно соглашение, а на всех адресах, откуда идёт VPN, PTR-записи с данными клиента. Сверху KYC с проверкой по санкциям: при сомнениях сервер гасят сразу.\n\nДля VPN с юрлицом за рубежом это нормальный вариант. Если у тебя ноунейм-проект на физлицо из РФ, я бы сюда не шёл: проверку, скорее всего, не пройдёшь, а если пройдёшь, первый абуз закончится вопросами. Как адреса Leaseweb живут под ТСПУ, в базе данных нет.",
+    "for": [
+      "VPN-сервис с зарубежным юрлицом и нормальными документами",
+      "Сайты и бэкенды, которым нужна стабильная сеть",
+      "Старые клиенты с договором до 01.08.2026"
+    ],
+    "against": [
+      "Анонимные ноды без юрлица",
+      "Клиенты из РФ, которые не пройдут санкционный KYC",
+      "Кто ищет VPS дешевле 5 €"
+    ]
+  }
+}

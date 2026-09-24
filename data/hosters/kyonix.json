@@ -1,0 +1,173 @@
+{
+  "id": "kyonix",
+  "name": "Kyonix",
+  "aliases": [
+    "kyonix.com",
+    "Kyonix Networks",
+    "Kyonix Hosting",
+    "KYONIX"
+  ],
+  "group": "foreign",
+  "site": "https://kyonix.com",
+  "countries": [
+    "DE"
+  ],
+  "asn": [
+    210457
+  ],
+  "summary": "Хостер VPS и игровых серверов (Minecraft) с заказом через Telegram-бота, своя AS210457 (Kyonix Networks Limited), серверы в Германии. В чате упоминался как хост с лёгкой сменой IP под панель.",
+  "ru_access": {
+    "state": "unknown",
+    "note": "Сайт kyonix.com 24.09 из РФ отвечал так же, как из Европы (защита Cloudflare на всех пробах); адреса VPS не проверялись, данных о нодах в базе нет",
+    "date": "24.09.2026",
+    "proof": "https://host.pink/check/kyonix.com",
+    "via": "проверка host.pink 24.09.2026"
+  },
+  "prices": [
+    {
+      "text": "Basic DE1 — 492 ₽/мес (с 01.05.2026, было 278 ₽); Premium PREM-DE1 — 694 ₽/мес",
+      "date": "24.04.2026",
+      "proof": "https://t.me/kyonix_hosting/107",
+      "via": "канал @kyonix_hosting",
+      "check": "unverified",
+      "check_note": "Сайт закрыт защитой, актуальные цены 24.09 не проверить; конфигурации в посте не указаны"
+    }
+  ],
+  "good_for": [],
+  "avoid_for": [],
+  "pros": [
+    {
+      "text": "В мае 2026 Kyonix называли среди хостов, где легко сменить IP под панель",
+      "date": "10.05.2026",
+      "proof": "https://t.me/c/2941121338/488926",
+      "check": "unverified",
+      "check_note": "Одно сообщение"
+    },
+    {
+      "text": "Поддерживается утилитой billing-monitoring: балансы и даты оплаты с напоминаниями в Telegram",
+      "date": "11.08.2026",
+      "proof": "https://t.me/c/2941121338/1092782",
+      "check": "confirmed"
+    }
+  ],
+  "cons": [
+    {
+      "text": "С 1 мая 2026 цены подняли почти вдвое (Basic DE1 278 → 492 ₽), промо сняли с продажи",
+      "date": "24.04.2026",
+      "proof": "https://t.me/kyonix_hosting/107",
+      "via": "канал @kyonix_hosting",
+      "check": "confirmed"
+    },
+    {
+      "text": "В декабре 2025 хостер сообщал о взломе аккаунта поддержки через атаку на сотрудника",
+      "date": "17.12.2025",
+      "proof": "https://t.me/kyonix_hosting/94",
+      "via": "канал @kyonix_hosting",
+      "check": "confirmed",
+      "check_note": "По словам хостера, серверы и аккаунты клиентов не затронуты"
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2025-04-14",
+      "text": "В RIPE зарегистрирована AS210457 KYONIX (Kyonix Networks Limited)",
+      "proof": "https://host.pink/AS210457",
+      "via": "RIPEstat",
+      "check": "confirmed"
+    },
+    {
+      "date": "2025-11-02",
+      "text": "Обновили DDoS-защиту: симметричная фильтрация и профили по портам",
+      "proof": "https://t.me/kyonix_hosting/91",
+      "via": "канал @kyonix_hosting",
+      "check": "confirmed"
+    },
+    {
+      "date": "2025-11-14",
+      "text": "Анонсировали апгрейд сети в дата-центре FirstColo с прицелом на 10G-серверы",
+      "proof": "https://t.me/kyonix_hosting/92",
+      "via": "канал @kyonix_hosting",
+      "check": "confirmed"
+    },
+    {
+      "date": "2025-12-17",
+      "text": "Инцидент: скомпрометирован аккаунт поддержки, завели новый",
+      "proof": "https://t.me/kyonix_hosting/94",
+      "via": "канал @kyonix_hosting",
+      "check": "confirmed"
+    },
+    {
+      "date": "2026-05-01",
+      "text": "Индексация тарифов из-за подорожания RAM и NVMe, Promo выведены из продажи",
+      "proof": "https://t.me/kyonix_hosting/107",
+      "via": "канал @kyonix_hosting",
+      "check": "confirmed"
+    },
+    {
+      "date": "2026-05-10",
+      "text": "В чате назвали Kyonix среди хостов с лёгкой заменой IP под панель",
+      "proof": "https://t.me/c/2941121338/488926",
+      "check": "unverified"
+    },
+    {
+      "date": "2026-08-11",
+      "text": "Вышла утилита billing-monitoring с поддержкой Kyonix",
+      "proof": "https://t.me/c/2941121338/1092782",
+      "check": "confirmed"
+    },
+    {
+      "date": "2026-09-17",
+      "text": "Первый пост в канале почти за полгода: добавили оплату через xRocket",
+      "proof": "https://t.me/kyonix_hosting/108",
+      "via": "канал @kyonix_hosting",
+      "check": "confirmed"
+    }
+  ],
+  "data": "thin",
+  "sources": [
+    "/baza/paneli/marzban-3x-ui/",
+    "/baza/skripty/monitoring/",
+    "/baza/hronologiya/2026-08/"
+  ],
+  "official": {
+    "checked": "2026-09-24",
+    "url": "https://kyonix.com",
+    "facts": [
+      {
+        "text": "Тарифы с 01.05.2026: Basic DE1–DE6 от 492 до 6276 ₽/мес, Premium PREM-DE1–DE6 от 694 до 9968 ₽; старые Basic и Promo (от 148 ₽) продлеваются, новые Promo не продают",
+        "url": "https://t.me/kyonix_hosting/107"
+      },
+      {
+        "text": "Оплата: криптовалюта через Heleket, CryptoBot, с 17.09.2026 — xRocket; заказ и управление через @kyonix_bot",
+        "url": "https://t.me/kyonix_hosting/108"
+      },
+      {
+        "text": "Панель VMmanager 6, вход подтверждается через Telegram (2FA по умолчанию)",
+        "url": "https://t.me/kyonix_hosting/95"
+      },
+      {
+        "text": "Своя DDoS-фильтрация на всех IP, которые анонсирует Kyonix и его даунстримы",
+        "url": "https://t.me/kyonix_hosting/91"
+      },
+      {
+        "text": "AS210457 зарегистрирована на Kyonix Networks Limited в 2025 году, анонсирует около десяти /24 и IPv6",
+        "url": "https://host.pink/AS210457"
+      }
+    ],
+    "unavailable": "kyonix.com и test.kyonix.com 24.09 отдают 403 защиты Cloudflare (curl и WebFetch), главная редиректит в @kyonix_bot; правил (оферты, AUP) в открытом виде не нашёл. Факты выше из официального канала @kyonix_hosting и RIPE"
+  },
+  "review": {
+    "checked": "2026-09-24",
+    "fresh": "stale",
+    "verdict": "Небольшой хостер из Telegram со своей AS в Германии; цены в мае выросли почти вдвое, а правил про VPN в открытом доступе нет",
+    "text": "Kyonix вырос из Minecraft-хостинга: заказ через Telegram-бота, панель VMmanager, своя AS210457 и серверы в Германии, в канале упоминается дата-центр FirstColo. В чате сообщества его вспоминали дважды. В мае назвали среди хостов, где легко сменить IP под панель, в августе он попал в список поддерживаемых утилитой billing-monitoring. Про скорость, блокировки и поддержку отзывов в базе нет.\n\nС 1 мая цены подняли почти вдвое: младший Basic был 278 ₽, стал 492 ₽, Premium от 694 ₽, промо сняли. Конфигурации в посте не расписаны, а сайт закрыт защитой, так что что именно дают за 492 ₽ на 24.09, я не проверил. Из заметного в канале: в декабре 2025 у них увели аккаунт поддержки, хостер пишет, что клиентов это не задело. А потом канал молчал почти полгода, до 17 сентября.\n\nПравил про VPN в открытом доступе я не нашёл, так что запрещено это или нет, неизвестно. Сайт из РФ открывается так же, как из Европы, про адреса серверов данных нет. Я бы спросил поддержку про VPN до оплаты и взял бы месяц на пробу. Лёгкая смена IP под панель звучит полезно, но это одно сообщение, так что проверь сам.",
+    "for": [
+      "Панель или бот, где пригодится быстрая смена IP",
+      "Кому удобно платить криптой и рулить всем из Telegram"
+    ],
+    "against": [
+      "Кому нужны открытые правила и договор до оплаты",
+      "Кто искал дешёвое промо: с мая его нет"
+    ]
+  }
+}

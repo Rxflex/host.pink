@@ -1,0 +1,139 @@
+{
+  "id": "edis",
+  "name": "EDIS Global",
+  "aliases": [
+    "edisglobal.com",
+    "edisglobal",
+    "EDIS",
+    "EDIS GmbH",
+    "EDGBL Ltd"
+  ],
+  "group": "foreign",
+  "site": "https://www.edisglobal.com",
+  "countries": [
+    "AT", "AU", "BE", "BG", "CA", "CH", "CL", "CO", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GB", "GR", "HK", "HR", "HU", "IL", "IS", "IT", "JP", "LT", "LV", "MD", "MK", "NL", "NO", "PL", "RO", "RS", "RU", "SE", "SG", "SI", "AE", "US"
+  ],
+  "asn": [
+    57169
+  ],
+  "summary": "VPS-хостер с доменом с 2011 года, сейчас работает от кипрской EDGBL Ltd (AS на EDIS GmbH): около 50 локаций, включая Хельсинки, Таллин, Москву и Петербург, KVM от 4,99 €. Открыто пишет, что коммерческие VPN-провайдеры желанные клиенты. В чате в сентябре 2025 упоминался как Финляндия и Эстония через RETN.",
+  "ru_access": {
+    "state": "unknown",
+    "note": "Сайт 24.09 открывался из домашних сетей и ДЦ РФ; адреса самих VPS не проверялись, свежих данных о доступности нод нет",
+    "date": "24.09.2026",
+    "proof": "https://host.pink/check/www.edisglobal.com",
+    "via": "проверка host.pink 24.09.2026"
+  },
+  "prices": [
+    {
+      "text": "KVM Smart (Хельсинки, Таллин): 1 vCPU EPYC / 1 ГБ / 15 ГБ NVMe, 1 ТБ трафика, аплинк 2×10 Гбит/с — 4,99 €/мес",
+      "date": "24.09.2026",
+      "via": "сайт edisglobal.com",
+      "check": "confirmed"
+    },
+    {
+      "text": "KVM Starter: 1 vCPU / 2 ГБ / 20 ГБ NVMe, 2 ТБ — 8,49 €/мес",
+      "date": "24.09.2026",
+      "via": "сайт edisglobal.com",
+      "check": "confirmed"
+    },
+    {
+      "text": "Дополнительный IPv4 — 5 €/мес (до 10 на VPS)",
+      "date": "24.09.2026",
+      "via": "сайт edisglobal.com",
+      "check": "confirmed"
+    }
+  ],
+  "good_for": [],
+  "avoid_for": [],
+  "pros": [
+    {
+      "text": "В чате в сентябре 2025 советовали edisglobal для Финляндии и Эстонии: маршрут до РФ через RETN",
+      "date": "30.09.2025",
+      "proof": "https://t.me/c/2941121338/19532",
+      "check": "unverified",
+      "check_note": "Одно упоминание; локации Хельсинки и Таллин на сайте есть, маршрут не проверялся"
+    },
+    {
+      "text": "Прямо разрешает коммерческие VPN: отдельная страница для VPN-провайдеров, скидки за объём, свой VPS и IPv4 на каждого подписчика",
+      "date": "24.09.2026",
+      "proof": "https://www.edisglobal.com/vpn-hosting",
+      "via": "сайт edisglobal.com",
+      "check": "confirmed"
+    }
+  ],
+  "cons": [
+    {
+      "text": "На дешёвых тарифах мало трафика: 1 ТБ на KVM Smart, дальше докупать через Traffic Pool",
+      "date": "24.09.2026",
+      "proof": "https://www.edisglobal.com/vps-hosting/finland-helsinki",
+      "via": "сайт edisglobal.com",
+      "check": "confirmed"
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2026-09-05",
+      "text": "Обновлены Terms of Service: EDGBL Ltd, право Кипра",
+      "proof": "https://www.edisglobal.com/terms",
+      "via": "сайт edisglobal.com",
+      "check": "confirmed"
+    }
+  ],
+  "data": "thin",
+  "sources": [
+    "/baza/hosting/strany-lokacii/"
+  ],
+  "official": {
+    "checked": "2026-09-24",
+    "url": "https://www.edisglobal.com",
+    "facts": [
+      {
+        "text": "Terms of Service EDGBL Ltd «trading under the EDIS Global brand», право Кипра, редакция от 05.09.2026",
+        "url": "https://www.edisglobal.com/terms"
+      },
+      {
+        "text": "Около 50 локаций, в том числе Хельсинки, Таллин, Рига, Вильнюс, Москва, Санкт-Петербург, Стокгольм, Вена",
+        "url": "https://www.edisglobal.com"
+      },
+      {
+        "text": "Хельсинки: KVM Smart 4,99 € (1 vCPU, 1 ГБ, 15 ГБ, 1 ТБ), Starter 8,49 € (2 ГБ, 2 ТБ), аплинк 2×10 Гбит/с; доп. IPv4 5 €",
+        "url": "https://www.edisglobal.com/vps-hosting/finland-helsinki"
+      },
+      {
+        "text": "«Commercial VPN providers are welcome here»: можно держать отдельный VPS со статическим IPv4 на каждого подписчика, abuse-ответ на провайдере VPN",
+        "url": "https://www.edisglobal.com/vpn-hosting"
+      },
+      {
+        "text": "AUP: Tor entry, middle и bridge разрешены, exit и I2P outproxy запрещены; запрещены IPv6-прокси с ротацией адресов и сканирование портов",
+        "url": "https://docs.edisglobal.com/getting-started/acceptable-use-policy"
+      },
+      {
+        "text": "Оплата: карты через Stripe, PayPal, крипта через Cryptomus, Apple Pay, Google Pay, Alipay, перевод от 250 €",
+        "url": "https://www.edisglobal.com"
+      },
+      {
+        "text": "Почасовой оплаты и бесплатного теста нет, возврат возможен при запросе в течение 24 часов",
+        "url": "https://docs.edisglobal.com/llms.txt"
+      },
+      {
+        "text": "AS57169 зарегистрирована на EDIS GmbH",
+        "url": "https://host.pink/AS57169"
+      }
+    ]
+  },
+  "review": {
+    "checked": "2026-09-24",
+    "fresh": "stale",
+    "verdict": "Редкий хостер, который прямо зовёт VPN-провайдеров: 50 локаций от 4,99 €, но трафика на младшем тарифе всего 1 ТБ",
+    "text": "EDIS в чате вспомнили один раз, в сентябре 2025: Финляндия и Эстония у Melbicom и edisglobal идут через RETN. Больше отзывов нет. Домен с 2011 года, AS57169 записана на EDIS GmbH, а условия теперь подписаны кипрской EDGBL Ltd. Локаций около пятидесяти, есть Хельсинки, Таллин, Рига, даже Москва с Петербургом.\n\nГлавное отличие от большинства: на сайте есть отдельная страница для коммерческих VPN-провайдеров. Они прямо пишут, что такие клиенты желанны, дают скидки за объём и разрешают давать каждому подписчику свой VPS и IP. Из запретов только Tor exit, ротация IPv6-прокси и сканирование. Слабое место в трафике: 4,99 € за 1 ГБ и 1 ТБ в месяц, дальше докупаешь пул. Платить можно криптой через Cryptomus. Я бы взял сюда мосты и небольшие ноды в Финляндии или Эстонии, а под толстую ноду посчитал трафик заранее.",
+    "for": [
+      "Коммерческий VPN, которому нужна официальная лояльность хостера",
+      "Мосты и ноды в Финляндии, Эстонии, Прибалтике с оплатой криптой"
+    ],
+    "against": [
+      "Нагруженные ноды на младших тарифах: 1–2 ТБ трафика",
+      "Кому нужна почасовая оплата или тест"
+    ]
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "id": "oneprovider",
+  "name": "OneProvider",
+  "aliases": [
+    "oneprovider",
+    "oneprovider.com",
+    "One Provider",
+    "BrainStorm Network",
+    "OneCloud"
+  ],
+  "group": "foreign",
+  "site": "https://oneprovider.com",
+  "countries": [
+    "LV",
+    "FR",
+    "NL",
+    "DE",
+    "GB",
+    "CA",
+    "US",
+    "JP",
+    "SG",
+    "HK",
+    "AU",
+    "BR"
+  ],
+  "asn": [
+    136258
+  ],
+  "summary": "Продавец выделенных серверов и облачных VPS (BrainStorm Network Inc.) с десятками локаций по миру (облако — в 69), в том числе в Риге. В чате в июне 2026 его назвали вариантом для Латвии.",
+  "ru_access": {
+    "state": "unknown",
+    "note": "Сайт 24.09 открывался из домашних сетей и ДЦ РФ; локаций много, про доступность конкретных локаций из РФ данных нет",
+    "date": "24.09.2026",
+    "proof": "https://host.pink/check/oneprovider.com",
+    "via": "проверка host.pink 24.09.2026"
+  },
+  "prices": [
+    {
+      "text": "Рига, выделенный Pentium Gold G6500 / 16 ГБ / 500 ГБ SSD, 1 Гбит/с, 100 ТБ fair usage — 45 €/мес (без скидки 69 €)",
+      "date": "24.09.2026",
+      "via": "сайт oneprovider.com",
+      "check": "confirmed"
+    },
+    {
+      "text": "OneCloud VPS: 1 vCPU / 1 ГБ / 10 ГБ NVMe, 200 ГБ трафика — около 3,50 €/мес (почасово)",
+      "date": "24.09.2026",
+      "via": "сайт oneprovider.com",
+      "check": "confirmed"
+    },
+    {
+      "text": "OneCloud VPS: 1 vCPU / 2 ГБ / 20 ГБ NVMe, 1 ТБ трафика — около 9 €/мес",
+      "date": "24.09.2026",
+      "via": "сайт oneprovider.com",
+      "check": "confirmed"
+    }
+  ],
+  "good_for": [],
+  "avoid_for": [],
+  "pros": [
+    {
+      "text": "В чате oneprovider назвали вариантом для Латвии в подборке хостеров по странам",
+      "date": "22.06.2026",
+      "proof": "https://t.me/c/2941121338/731348",
+      "check": "confirmed",
+      "check_note": "Рига на сайте 24.09 есть, выделенные серверы от 45 €/мес"
+    },
+    {
+      "text": "Выбор локаций огромный: облачные VPS в 69 точках, выделенные ещё шире",
+      "date": "24.09.2026",
+      "proof": "https://oneprovider.com/en/onecloud/pricing",
+      "via": "сайт oneprovider.com",
+      "check": "confirmed"
+    }
+  ],
+  "cons": [
+    {
+      "text": "VPN запрещён там, где он не разрешён законом или не терпит ДЦ; на таких конфигурациях при заказе ставят галку «VPN не будет»",
+      "date": "24.09.2026",
+      "proof": "https://oneprovider.com/en/about-us/acceptable-usage-policy",
+      "via": "сайт oneprovider.com",
+      "check": "confirmed"
+    },
+    {
+      "text": "Первый заказ могут отправить на верификацию: без неё ни услуги, ни поддержки; выдача выделенных — до 3 рабочих дней после проверки",
+      "date": "24.09.2026",
+      "proof": "https://oneprovider.com/en/about-us/terms-of-service",
+      "via": "сайт oneprovider.com",
+      "check": "confirmed"
+    },
+    {
+      "text": "Трафик у OneCloud маленький: 200 ГБ на младшем тарифе, 1 ТБ на 1/2 ГБ",
+      "date": "24.09.2026",
+      "proof": "https://oneprovider.com/en/onecloud/pricing",
+      "via": "сайт oneprovider.com",
+      "check": "confirmed"
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2026-06-22",
+      "text": "В чате oneprovider попал в карту хостеров по странам как вариант для Латвии",
+      "proof": "https://t.me/c/2941121338/731348",
+      "check": "confirmed",
+      "check_note": "Локация Рига на сайте есть"
+    }
+  ],
+  "data": "thin",
+  "sources": [
+    "/baza/hronologiya/2026-06/"
+  ],
+  "official": {
+    "checked": "2026-09-24",
+    "url": "https://oneprovider.com",
+    "facts": [
+      {
+        "text": "Рига: выделенные от Pentium G6500 / 16 ГБ за 45 € (скидка с 69 €) до Xeon E5 / 128 ГБ; у всех 1 Гбит/с и 100 ТБ fair usage",
+        "url": "https://oneprovider.com/en/dedicated-servers/riga-latvia"
+      },
+      {
+        "text": "OneCloud: почасовая оплата, 69 локаций, от ~3,50 €/мес за 1 vCPU / 1 ГБ / 10 ГБ NVMe с 200 ГБ трафика",
+        "url": "https://oneprovider.com/en/onecloud/pricing"
+      },
+      {
+        "text": "AUP: VPN запрещён в локациях, где его запрещает закон или не терпит ДЦ; такие конфигурации помечены галкой при заказе",
+        "url": "https://oneprovider.com/en/about-us/acceptable-usage-policy"
+      },
+      {
+        "text": "Оплата: PayPal, AliPay, Apple/Google/Microsoft Pay, карты, SWIFT для счетов от 500 $; крипты в списке нет",
+        "url": "https://oneprovider.com/en/support/frequently-asked-questions"
+      },
+      {
+        "text": "Верификация аккаунта обычно в течение рабочего дня; её просят, например, при карте без 3D Secure; может повториться при смене способа оплаты",
+        "url": "https://oneprovider.com/en/support/frequently-asked-questions"
+      },
+      {
+        "text": "Деньги за неполученный сервер возвращают в течение 10 дней, кроме покупок со скидкой от 25%; при нарушении ToS предоплата сгорает",
+        "url": "https://oneprovider.com/en/about-us/terms-of-service"
+      },
+      {
+        "text": "Компания — BrainStorm Network Inc.; у неё есть AS136258 (ONEPROVIDER-AS)",
+        "url": "https://stat.ripe.net/data/as-overview/data.json?resource=AS136258"
+      }
+    ]
+  },
+  "review": {
+    "checked": "2026-09-24",
+    "fresh": "ok",
+    "verdict": "Серверы в десятках городов, Рига есть. Но правила зависят от ДЦ, и VPN местами запрещён галкой при заказе",
+    "text": "OneProvider (BrainStorm Network Inc.) продаёт выделенные серверы и облачные VPS в огромном числе городов. В AUP прямо сказано, что допустимое зависит от конкретного дата-центра, так что правила от локации к локации разные. В чате его назвали 22 июня, когда составляли карту хостеров по странам: для Латвии. Рига на сайте есть, самый дешёвый выделенный там 45 € со скидкой, 1 Гбит/с и 100 ТБ.\n\nС VPN аккуратно. По AUP он запрещён там, где его запрещает закон или не терпит дата-центр, и на таких конфигурациях при заказе ставится галка «VPN не будет». Для Риги я такой пометки не проверял, смотри при заказе. Первый заказ могут отправить на верификацию, крипту не принимают, только PayPal, карты и AliPay.\n\nОблачные VPS OneCloud дешёвые, от 3,5 €, но с 200 ГБ трафика на младшем тарифе. Для ноды мало. Я бы смотрел сюда за выделенным сервером в редкой стране, когда больше негде, и сначала читал условия конкретной локации.",
+    "for": [
+      "Выделенный сервер в редкой стране или городе",
+      "Рига на выделенном железе с 100 ТБ",
+      "Кто платит PayPal или AliPay"
+    ],
+    "against": [
+      "Ноды на OneCloud: трафика мало",
+      "Кто хочет платить криптой",
+      "Локации с галкой «без VPN»"
+    ]
+  }
+}
