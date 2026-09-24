@@ -13,7 +13,7 @@
     <div class="hfacts">
       <div><span>Из РФ</span>{{ partial "hoster-status.html" ($h.ru_access.state | default "unknown") }}</div>
       {{ with $h.countries }}<div><span>Страны</span>{{ range $i, $c := . }}{{ if $i }}, {{ end }}{{ index $countries $c | default $c }}{{ end }}</div>{{ end }}
-      {{ with $h.asn }}<div><span>ASN</span>{{ range $i, $a := . }}{{ if $i }}, {{ end }}<a href="/AS{{ $a }}">AS{{ $a }}</a>{{ end }}</div>{{ end }}
+      {{ with $h.asn }}<div><span>ASN</span><span>{{ range $i, $a := . }}{{ if $i }}, {{ end }}<a href="/AS{{ $a }}">AS{{ $a }}</a>{{ end }}</span></div>{{ end }}
       {{ with $h.site }}<div><span>Сайт</span><a href="{{ . }}" rel="nofollow noopener">{{ strings.TrimSuffix "/" (strings.TrimPrefix "http://" (strings.TrimPrefix "https://" .)) }}</a></div>{{ end }}
     </div>
 
